@@ -1,25 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import styled from "styled-components";
+import Map from "./page/map";
+
+import "./App.css";
+
+const StyledApp = styled.div`
+  background-color: wheat;
+  min-height: 85vh;
+`;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <StyledApp>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Map />} />
+          {/* <Route path="/map" element={<Map />} /> */}
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+      </BrowserRouter>
+    </StyledApp>
   );
+}
+
+function Home() {
+  return (
+    <>
+      <h1>Home Page</h1>
+      <a href="/map">map으로 이동</a>
+      <a href="/page/map2">map2로 이동</a>
+    </>
+  );
+}
+
+function About() {
+  return <h1>About Page</h1>;
+}
+
+function Contact() {
+  return <h1>Contact Page</h1>;
 }
 
 export default App;
