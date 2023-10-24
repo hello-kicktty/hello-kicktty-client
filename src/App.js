@@ -15,6 +15,7 @@ function App() {
     <StyledApp>
       <BrowserRouter>
         <Routes>
+          {/* <Route path="/" element={<Home />} /> */}
           <Route path="/" element={<Map />} />
           {/* <Route path="/map" element={<Map />} /> */}
           <Route path="/about" element={<About />} />
