@@ -37,8 +37,8 @@ function Map() {
       window.kakao.maps.load(() => {
         const mapContainer = document.getElementById("map");
         const mapOption = {
-          center: new window.kakao.maps.LatLng(37.44978, 126.6586),
-          level: 3,
+          center: new window.kakao.maps.LatLng(37.44978, 126.6586), //지도 시작 위치 (위도, 경도)
+          level: 3, // 확대,축소 정도
         };
         new window.kakao.maps.Map(mapContainer, mapOption);
       });
