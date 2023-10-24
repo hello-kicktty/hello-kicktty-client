@@ -6,23 +6,23 @@ import Map from "./page/map";
 import "./App.css";
 
 const StyledApp = styled.div`
-  background-color: wheat;
-  min-height: 85vh;
+  /* background-color: wheat; */
+  /* min-height: 100vh; */
 `;
 
 function App() {
   return (
-    <StyledApp>
-      <BrowserRouter>
-        <Routes>
-          {/* <Route path="/" element={<Home />} /> */}
-          <Route path="/" element={<Map />} />
-          {/* <Route path="/map" element={<Map />} /> */}
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
-      </BrowserRouter>
-    </StyledApp>
+    // <StyledApp>
+    <BrowserRouter>
+      <Routes>
+        {/* <Route path="/" element={<Home />} /> */}
+        <Route path="/" element={<Map />} />
+        {/* <Route path="/map" element={<Map />} /> */}
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+    </BrowserRouter>
+    // </StyledApp>
   );
 }
 

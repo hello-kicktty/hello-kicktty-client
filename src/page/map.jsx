@@ -3,9 +3,25 @@ import styled from "styled-components";
 
 const apiKey = "759cc21177f7d8714e0d75a11877c4ab";
 
+const MapBox = styled.div`
+  display: flex;
+  justify-content: center; // 수평 가운데 정렬
+  align-items: center; // 수직 가운데 정렬
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  background-color: wheat;
+`;
+
+const MapBoxTextBox = styled.div`
+  font-weight: bold;
+  font-family: "Courier New", Courier, monospace;
+`;
+
 const MapContainer = styled.div`
-  width: 100%; // 원하는 너비로 설정
-  height: 100vh; // 원하는 높이로 설정
+  width: 90vw; // 원하는 너비로 설정
+  height: 90vh; // 원하는 높이로 설정
+  display: flex;
 `;
 
 function Map() {
@@ -21,7 +37,7 @@ function Map() {
       window.kakao.maps.load(() => {
         const mapContainer = document.getElementById("map");
         const mapOption = {
-          center: new window.kakao.maps.LatLng(33.450701, 126.570667),
+          center: new window.kakao.maps.LatLng(37.44978, 126.6586),
           level: 3,
         };
         new window.kakao.maps.Map(mapContainer, mapOption);
@@ -30,7 +46,14 @@ function Map() {
     mapScript.addEventListener("load", onLoadKakaoMap);
   }, []);
 
-  return <MapContainer id="map" />;
+  return (
+    <>
+      <MapBox>
+        <MapBoxTextBox>카카오 맵 입니다</MapBoxTextBox>
+        <MapContainer id="map" />
+      </MapBox>
+    </>
+  );
 }
 
 export default Map;
