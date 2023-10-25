@@ -81,6 +81,8 @@ function Map() {
 
         function displayLevel() {
           var levelEl = document.getElementById("maplevel");
+          const level = map.getLevel(); // 현재 지도 레벨을 가져옵니다
+          console.log(level);
         }
 
         // 클릭 이벤트 핸들러 등록
@@ -96,6 +98,29 @@ function Map() {
             displayLevel();
           }
         );
+
+        // 이벤트 리스너 추가: 마우스 스크롤 이벤트
+        const handleMouseWheel = (e) => {
+          // e.deltaY 값이 양수면 스크롤을 아래로 내리고 음수면 위로 올립니다
+          if (e.deltaY > 0) {
+            zoomOut();
+          } else {
+            zoomIn();
+          }
+
+          // 이벤트 기본 동작(페이지 스크롤)을 막습니다
+          e.preventDefault();
+        };
+
+        // 스크롤 이벤트 리스너 등록
+        mapContainer.addEventListener("wheel", handleMouseWheel, {
+          passive: false,
+        });
+
+        // 컴포넌트 언마운트 시 이벤트 리스너 제거
+        return () => {
+          mapContainer.removeEventListener("wheel", handleMouseWheel);
+        };
 
         // 지도 타입 컨트롤 생성
         const mapTypeControl = new window.kakao.maps.MapTypeControl();
