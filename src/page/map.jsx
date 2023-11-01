@@ -42,19 +42,6 @@ function Map() {
         };
         const map = new window.kakao.maps.Map(mapContainer, mapOption);
 
-        function displayLevel() {
-          if (map) {
-            const levelEl = document.getElementById("maplevel");
-            const level = map.getLevel(); // 현재 지도 레벨을 가져옵니다
-
-            // 콘솔에 레벨을 출력합니다
-            console.log("현재 지도 레벨은 " + level + " 레벨 입니다.");
-
-            // HTML 엘리먼트에 레벨을 표시합니다
-            levelEl.innerHTML = "현재 지도 레벨은 " + level + " 레벨 입니다.";
-          }
-        }
-
         // 지도 레벨은 지도의 확대 수준을 의미합니다
         // 지도 레벨은 1부터 14레벨이 있으며 숫자가 작을수록 지도 확대 수준이 높습니다
         function zoomIn() {
