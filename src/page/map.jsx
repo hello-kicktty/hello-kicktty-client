@@ -107,15 +107,6 @@ function Map() {
         return () => {
           mapContainer.removeEventListener("wheel", handleMouseWheel);
         };
-
-        // 지도 타입 컨트롤 생성
-        const mapTypeControl = new window.kakao.maps.MapTypeControl();
-
-        // 지도 타입 컨트롤을 지도에 표시 (지도/스카이뷰 선택 기능)
-        map.addControl(
-          mapTypeControl,
-          window.kakao.maps.ControlPosition.TOPRIGHT
-        );
       });
     };
     mapScript.addEventListener("load", onLoadKakaoMap);
