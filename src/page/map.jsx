@@ -164,6 +164,7 @@ function Map() {
           function (mouseEvent) {
             // 마우스무브 이벤트가 발생했을 때 원을 그리고있는 상태이면
             if (drawingFlag) {
+              removeCircles();
               // 마우스 커서의 현재 위치를 얻어옵니다
               var mousePosition = mouseEvent.latLng;
 
