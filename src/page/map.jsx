@@ -89,6 +89,8 @@ function Map() {
             const lng = latlng.getLng();
             console.log("클릭한 위치의 위도:", lat);
             console.log("클릭한 위치의 경도:", lng);
+            // 마커 위치를 클릭한 위치로 옮깁니다
+            marker.setPosition(latlng);
             displayLevel();
           }
         );
