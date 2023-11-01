@@ -67,9 +67,8 @@ function Map() {
         }
 
         function displayLevel() {
-          var levelEl = document.getElementById("maplevel");
           const level = map.getLevel(); // 현재 지도 레벨을 가져옵니다
-          console.log(level);
+          console.log("현재 지도의 레벨 :" + level);
         }
 
         // 클릭 이벤트 핸들러 등록
