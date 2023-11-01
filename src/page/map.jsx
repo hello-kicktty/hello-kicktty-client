@@ -113,46 +113,6 @@ function Map() {
             // 마커 위에 인포윈도우를 표시합니다
             infowindow.open(map, marker);
             displayLevel();
-
-            // 클릭 이벤트가 발생했을 때 원을 그리고 있는 상태가 아니면 중심좌표를 클릭한 지점으로 설정합니다
-            if (!drawingFlag) {
-              // 상태를 그리고있는 상태로 변경합니다
-              drawingFlag = true;
-
-              // 원이 그려질 중심좌표를 클릭한 위치로 설정합니다
-              centerPosition = mouseEvent.latLng;
-
-              // 그려지고 있는 원의 반경을 표시할 선 객체를 생성합니다
-              if (!drawingLine) {
-                drawingLine = new window.kakao.maps.Polyline({
-                  strokeWeight: 3, // 선의 두께입니다
-                  strokeColor: "#00a0e9", // 선의 색깔입니다
-                  strokeOpacity: 1, // 선의 불투명도입니다 0에서 1 사이값이며 0에 가까울수록 투명합니다
-                  strokeStyle: "solid", // 선의 스타일입니다
-                });
-              }
-
-              // 그려지고 있는 원을 표시할 원 객체를 생성합니다
-              if (!drawingCircle) {
-                drawingCircle = new window.kakao.maps.Circle({
-                  strokeWeight: 1, // 선의 두께입니다
-                  strokeColor: "#00a0e9", // 선의 색깔입니다
-                  strokeOpacity: 0.1, // 선의 불투명도입니다 0에서 1 사이값이며 0에 가까울수록 투명합니다
-                  strokeStyle: "solid", // 선의 스타일입니다
-                  fillColor: "#00a0e9", // 채우기 색깔입니다
-                  fillOpacity: 0.2, // 채우기 불투명도입니다
-                });
-              }
-
-              // 그려지고 있는 원의 반경 정보를 표시할 커스텀오버레이를 생성합니다
-              if (!drawingOverlay) {
-                drawingOverlay = new window.kakao.maps.CustomOverlay({
-                  xAnchor: 0,
-                  yAnchor: 0,
-                  zIndex: 1,
-                });
-              }
-            }
           }
         );
 
@@ -291,6 +251,46 @@ function Map() {
               drawingCircle.setMap(null);
               drawingLine.setMap(null);
               drawingOverlay.setMap(null);
+            } else {
+              // 클릭 이벤트가 발생했을 때 원을 그리고 있는 상태가 아니면 중심좌표를 클릭한 지점으로 설정합니다
+              if (!drawingFlag) {
+                // 상태를 그리고있는 상태로 변경합니다
+                drawingFlag = true;
+
+                // 원이 그려질 중심좌표를 클릭한 위치로 설정합니다
+                centerPosition = mouseEvent.latLng;
+
+                // 그려지고 있는 원의 반경을 표시할 선 객체를 생성합니다
+                if (!drawingLine) {
+                  drawingLine = new window.kakao.maps.Polyline({
+                    strokeWeight: 3, // 선의 두께입니다
+                    strokeColor: "#00a0e9", // 선의 색깔입니다
+                    strokeOpacity: 1, // 선의 불투명도입니다 0에서 1 사이값이며 0에 가까울수록 투명합니다
+                    strokeStyle: "solid", // 선의 스타일입니다
+                  });
+                }
+
+                // 그려지고 있는 원을 표시할 원 객체를 생성합니다
+                if (!drawingCircle) {
+                  drawingCircle = new window.kakao.maps.Circle({
+                    strokeWeight: 1, // 선의 두께입니다
+                    strokeColor: "#00a0e9", // 선의 색깔입니다
+                    strokeOpacity: 0.1, // 선의 불투명도입니다 0에서 1 사이값이며 0에 가까울수록 투명합니다
+                    strokeStyle: "solid", // 선의 스타일입니다
+                    fillColor: "#00a0e9", // 채우기 색깔입니다
+                    fillOpacity: 0.2, // 채우기 불투명도입니다
+                  });
+                }
+
+                // 그려지고 있는 원의 반경 정보를 표시할 커스텀오버레이를 생성합니다
+                if (!drawingOverlay) {
+                  drawingOverlay = new window.kakao.maps.CustomOverlay({
+                    xAnchor: 0,
+                    yAnchor: 0,
+                    zIndex: 1,
+                  });
+                }
+              }
             }
           }
         );
