@@ -47,6 +47,16 @@ function Map() {
           // 지도 중심좌표에 마커를 생성합니다
           position: map.getCenter(),
         });
+
+        // 마커를 클릭했을 때 마커 위에 표시할 인포윈도우를 생성합니다
+        var iwContent = '<div style="padding:5px;">마커 말풍선</div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+          iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
+
+        // 인포윈도우를 생성합니다
+        var infowindow = new window.kakao.maps.InfoWindow({
+          content: iwContent,
+          removable: iwRemoveable,
+        });
         // 지도에 마커를 표시합니다
         marker.setMap(map);
 
@@ -91,6 +101,8 @@ function Map() {
             console.log("클릭한 위치의 경도:", lng);
             // 마커 위치를 클릭한 위치로 옮깁니다
             marker.setPosition(latlng);
+            // 마커 위에 인포윈도우를 표시합니다
+            infowindow.open(map, marker);
             displayLevel();
           }
         );
