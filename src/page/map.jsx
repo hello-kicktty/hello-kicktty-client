@@ -42,6 +42,14 @@ function Map() {
         };
         const map = new window.kakao.maps.Map(mapContainer, mapOption);
 
+        // 지도를 클릭한 위치에 표출할 마커입니다
+        var marker = new window.kakao.maps.Marker({
+          // 지도 중심좌표에 마커를 생성합니다
+          position: map.getCenter(),
+        });
+        // 지도에 마커를 표시합니다
+        marker.setMap(map);
+
         // 지도 레벨은 지도의 확대 수준을 의미합니다
         // 지도 레벨은 1부터 14레벨이 있으며 숫자가 작을수록 지도 확대 수준이 높습니다
         function zoomIn() {
