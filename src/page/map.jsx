@@ -54,10 +54,17 @@ function Map() {
         // 마커를 표시할 위치와 title 객체 배열입니다
         var positions = [
           {
-            title: "인근주차추천구역",
+            title: "인하안경",
             latlng: new window.kakao.maps.LatLng(
               37.45088642579393,
               126.65829774165455
+            ),
+          },
+          {
+            title: "인하안경2",
+            latlng: new window.kakao.maps.LatLng(
+              37.45109669691925,
+              126.65779104112308
             ),
           },
         ];
