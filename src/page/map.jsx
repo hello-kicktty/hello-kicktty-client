@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 
-import coordinatesData from "../data/10250930.json"
-
 const apiKey = "759cc21177f7d8714e0d75a11877c4ab";
 
 const MapBox = styled.div`
@@ -28,8 +26,6 @@ const MapContainer = styled.div`
 
 function Map() {
   useEffect(() => {
-
-    
     const mapScript = document.createElement("script");
 
     mapScript.async = true;
@@ -48,12 +44,6 @@ function Map() {
         
         var positions = [];
         // 마커를 표시할 위치와 title 객체 배열입니다 
-        for(var i = 0; i < coordinatesData.items.length; i++){
-          positions.push({
-            title: coordinatesData.items[i].place,
-            latlng: new window.kakao.maps.LatLng(coordinatesData.items[i].lat, coordinatesData.items[i].lng)
-          })
-        } 
         console.log(positions);
         for(var i = 0; i < positions.length; i ++){
           // 마커를 생성합니다
@@ -62,9 +52,8 @@ function Map() {
               position: positions[i].latlng, // 마커를 표시할 위치
               title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
           });
-        }
+        };
         // 지도에 마커를 표시합니다
-        marker.setMap(map);
         
         // 지도 레벨은 지도의 확대 수준을 의미합니다
         // 지도 레벨은 1부터 14레벨이 있으며 숫자가 작을수록 지도 확대 수준이 높습니다
@@ -96,6 +85,7 @@ function Map() {
         }
 
         // 클릭 이벤트 핸들러 등록
+        var j = 1;
         window.kakao.maps.event.addListener(
           map,
           "click",
@@ -104,18 +94,21 @@ function Map() {
             const lat = latlng.getLat();
             const lng = latlng.getLng();
             
-            positions.push(
-              {
-              title: '카카오', 
-              latlng: new window.kakao.maps.LatLng(37.449865, 126.65331)
-              }
-            )
             var marker = new window.kakao.maps.Marker({
               map: map, // 마커를 표시할 지도
               position: latlng, // 마커를 표시할 위치
-              title : 1, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-          });       
-            console.log(lat + " " + lng);
+              title : j, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+          }); 
+
+            positions.push(
+              {
+              title: j, 
+              lat: lat,
+              lng: lng
+              }
+            )
+            j++;
+            console.log(positions);
             displayLevel();
           }
         );

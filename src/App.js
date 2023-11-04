@@ -1,14 +1,10 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import styled from "styled-components";
 import Map from "./page/map";
 
 import "./App.css";
 
-const StyledApp = styled.div`
-  /* background-color: wheat; */
-  /* min-height: 100vh; */
-`;
+
 
 function App() {
   return (
@@ -23,16 +19,6 @@ function App() {
       </Routes>
     </BrowserRouter>
     // </StyledApp>
-  );
-}
-
-function Home() {
-  return (
-    <>
-      <h1>Home Page</h1>
-      <a href="/map">map으로 이동</a>
-      <a href="/page/map2">map2로 이동</a>
-    </>
   );
 }
 
