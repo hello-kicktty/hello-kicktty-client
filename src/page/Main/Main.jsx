@@ -1,3 +1,6 @@
+import React from 'react';
+import ScanBox from '../../Components/Box/ScanBox';
+import QRCodeScanner from '../../Components/Camera/Camera';
 import React from "react";
 import Header from "../../Components/header/header";
 import UserWelcome from "../../Components/main/UserWelcome/UserWelcome";
