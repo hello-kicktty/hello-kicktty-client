@@ -4,6 +4,7 @@ import Qrimg from './img/qr.png';
 const All = styled.div`
     display: flex;
     flex-direction: column;
+    margin-top: 37px;
 `
 const Title = styled.p`
     font-size: 12px;
