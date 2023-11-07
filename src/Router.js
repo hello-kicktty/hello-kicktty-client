@@ -8,10 +8,10 @@ function Router() {
     return (
       <BrowserRouter>
         <Routes>
-          <Route path="/Map" element={<Map />} />
           <Route element={<Layout />}>
             <Route path="" element={<LogoWelcome />} />
             <Route path="/main" element={<Main />} />
+            <Route path="/Map" element={<Map />} />
           </Route>
         </Routes>
       </BrowserRouter>
