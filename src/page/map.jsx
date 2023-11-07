@@ -8,9 +8,10 @@ const MapBox = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   background-color: wheat;
+  box-sizing: border-box;
 `;
 
 const MapBoxTextBox = styled.div`
@@ -19,8 +20,8 @@ const MapBoxTextBox = styled.div`
 `;
 
 const MapContainer = styled.div`
-  width: 90vw;
-  height: 90vh;
+  width: 100%;
+  height: 100%;
   display: flex;
 `;
 
