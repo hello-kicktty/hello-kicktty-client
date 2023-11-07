@@ -13,6 +13,7 @@
     "react-dom": "^18.2.0",
     "react-native-camera-kit": "^13.0.0",
     "react-native-vision-camera": "^3.6.4",
+    "react-icons": "^4.11.0",
     "react-router-dom": "^6.17.0",
     "react-scripts": "5.0.1",
     "reactstrap": "^9.2.0",

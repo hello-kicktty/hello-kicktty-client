@@ -3,17 +3,27 @@ import styled from 'styled-components';
 import Profileimg from './img/profile.png';
 import Chart from '../Chart/Chart';
 
+const All = styled.div`
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+`
 const Box = styled.div`
     width: 350px;
     height: 188px;
     border-radius: 20px;
+    margin-top: 11px;
     background: #D3FF52;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    margin-top: 40px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+`
+const Title = styled.p`
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 11px;
 `
 const Top = styled.div`
     display: flex;
@@ -94,32 +104,35 @@ const Rewardbox = styled.div`
 const Profile = () => {
     return (
         <>
-        <Box>
-            <Top>
-                <Img/>
-                <TextWrapper>
-                    <TextName>SONNY님</TextName>
-                    <TextNext>SONNY님의 리워드를 확인해보세요.</TextNext>
-                </TextWrapper>
-            </Top>
-                <Midle>
-                    <Boxcontainer>
-                        <BlackBox>
-                            <BlackText>누적된 리워드</BlackText>
-                            <BlackText1>1500 P</BlackText1>
-                        </BlackBox>
-                        <BlackBox>
-                            <BlackText>오늘 받은 리워드</BlackText>
-                            <BlackText1>1500 P</BlackText1>
-                        </BlackBox>
-                    </Boxcontainer>
-                    <Chart></Chart>
-                </Midle>
-            <Bottom>
-                <Rewardbox>리워드 혜택보러 가기</Rewardbox>
-                <Rewardbox>리워드 확인하러 가기</Rewardbox>
-            </Bottom>
-        </Box>
+        <All>
+            <Title>SONNY님의 리워드를 확인해보세요.</Title>
+            <Box>
+                <Top>
+                    <Img/>
+                    <TextWrapper>
+                        <TextName>SONNY님</TextName>
+                        <TextNext>SONNY님의 리워드를 확인해보세요.</TextNext>
+                    </TextWrapper>
+                </Top>
+                    <Midle>
+                        <Boxcontainer>
+                            <BlackBox>
+                                <BlackText>누적된 리워드</BlackText>
+                                <BlackText1>1500 P</BlackText1>
+                            </BlackBox>
+                            <BlackBox>
+                                <BlackText>오늘 받은 리워드</BlackText>
+                                <BlackText1>1500 P</BlackText1>
+                            </BlackBox>
+                        </Boxcontainer>
+                        <Chart></Chart>
+                    </Midle>
+                <Bottom>
+                    <Rewardbox>리워드 혜택보러 가기</Rewardbox>
+                    <Rewardbox>리워드 확인하러 가기</Rewardbox>
+                </Bottom>
+            </Box>
+        </All>
         </>
     );
 };

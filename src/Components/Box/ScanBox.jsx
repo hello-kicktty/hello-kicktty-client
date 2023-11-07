@@ -1,6 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 import Qrimg from './img/qr.png';
+const All = styled.div`
+    display: flex;
+    flex-direction: column;
+`
+const Title = styled.p`
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 11px;
+`
 const BoxWrapper = styled.div`
     display: flex;
     gap:20px;
@@ -40,10 +49,13 @@ const Button = styled.div`
 const ScanBox = () => {
     return (
         <div>
-            <BoxWrapper>
-            <Box><Img/><Button>주행하기</Button></Box>
-            <Box><Img/><Button>견인하기</Button></Box>
-            </BoxWrapper>
+            <All>
+                <Title> QR을 스캔 후 주행 견인을 시작하세요.</Title>
+                <BoxWrapper>
+                <Box><Img/><Button>주행하기</Button></Box>
+                <Box><Img/><Button>견인하기</Button></Box>
+                </BoxWrapper>
+            </All>
         </div>
     );
 };
