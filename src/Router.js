@@ -5,17 +5,17 @@ import Layout from "./Components/Layout/Layout";
 import LogoWelcome from "./page/Welcome/Welcome";
 import Main from "./page/Main/Main";
 function Router() {
-    return (
-      <BrowserRouter>
-        <Routes>
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route element={<Layout />}>
           <Route path="/Map" element={<Map />} />
-          <Route element={<Layout />}>
-            <Route path="" element={<LogoWelcome />} />
-            <Route path="/main" element={<Main />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    );
-  }
+          <Route path="" element={<LogoWelcome />} />
+          <Route path="/main" element={<Main />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
+}
 
 export default Router;

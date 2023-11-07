@@ -12,15 +12,13 @@ const Background = styled.div`
   }
 `;
 
-
-function Layout(){
-    return(
-        <>
-        <Background>
-
+function Layout() {
+  return (
+    <>
+      <Background>
         <Outlet />
-        </Background>
-        </>
-    )
+      </Background>
+    </>
+  );
 }
 export default Layout;
