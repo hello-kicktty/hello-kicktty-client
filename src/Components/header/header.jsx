@@ -21,8 +21,8 @@ const LeftBox = styled.div`
 
 const Logo = styled.img`
   background-color: #d9d9d9;
-  width: 25px;
-  height: 25px;
+  width: 2rem;
+  height: 2rem;
 `;
 
 const UserName = styled.p`

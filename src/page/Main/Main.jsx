@@ -1,11 +1,14 @@
 import React from "react";
 import Header from "../../Components/header/header";
+import UserWelcome from "../../Components/main/UserWelcome/UserWelcome";
+import MiniMap from "../../Components/main/minimap/minimap";
 
 const Main = () => {
   return (
     <>
-      <Header></Header>
-      <div>이페이지는 MAIN입니다.</div>
+      <Header />
+      <UserWelcome />
+      <MiniMap></MiniMap>
     </>
   );
 };
