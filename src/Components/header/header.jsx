@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { AiOutlineSearch } from "react-icons/ai";
 import { FiBell } from "react-icons/fi";
 import { AiOutlineMenu } from "react-icons/ai";
+import { filterProps } from "framer-motion";
 
 const HeaderBox = styled.div`
   width: 100%;
@@ -36,13 +37,13 @@ const IconBox = styled.div`
   justify-content: space-evenly;
 `;
 
-const Header = () => {
+const Header = (props) => {
   return (
     <>
       <HeaderBox>
         <LeftBox>
           <Logo />
-          <UserName>유저네임</UserName>
+          <UserName>Hello Kicktty</UserName>
         </LeftBox>
         <IconBox>
           <AiOutlineSearch size={30} />

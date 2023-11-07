@@ -7,8 +7,8 @@ const Main = () => {
   return (
     <>
       <Header />
-      <UserWelcome />
-      <MiniMap></MiniMap>
+      <UserWelcome username="이선재" />
+      <MiniMap text="킥보드 위치를 확인하세요!" boxColor="#D3FF52"></MiniMap>
     </>
   );
 };

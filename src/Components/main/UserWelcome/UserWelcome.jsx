@@ -20,12 +20,12 @@ const WelcomeMent = styled.div`
   margin-left: 1rem;
 `;
 
-const UserWelcome = () => {
+const UserWelcome = (props) => {
   return (
     <>
       <UserWelcomeBox>
         <ProfileImg />
-        <WelcomeMent>Props님 반가워요!</WelcomeMent>
+        <WelcomeMent>{props.username}님 반가워요!</WelcomeMent>
       </UserWelcomeBox>
     </>
   );

@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import minimap from "./minimap.png";
 
 const MiniMapContainer = styled.div`
   display: flex;
@@ -8,19 +9,24 @@ const MiniMapContainer = styled.div`
   font-weight: bold;
 `;
 
+const MiniMapText = styled.p``;
+
 const MiniMapBox = styled.div`
   width: 100%;
   height: 10rem;
-  background-color: #d4d4d4;
+  background-color: ${(props) =>
+    props.boxColor ? props.boxColor : "#d4d4d4;"};
   border-radius: 1.5rem;
+  background-image: url(${minimap});
+  background-size: cover;
 `;
 
-const MiniMap = () => {
+const MiniMap = (props) => {
   return (
     <>
       <MiniMapContainer>
-        <p>킥보드 위치를 확인하세요!</p>
-        <MiniMapBox></MiniMapBox>
+        <MiniMapText>{props.text}</MiniMapText>
+        <MiniMapBox boxColor={props.boxColor}></MiniMapBox>
       </MiniMapContainer>
     </>
   );
