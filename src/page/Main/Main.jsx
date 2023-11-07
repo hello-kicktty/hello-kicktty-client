@@ -1,9 +1,12 @@
 import React from 'react';
-
+import ScanBox from '../../Components/Box/ScanBox';
+import QRCodeScanner from '../../Components/Camera/Camera';
 const Main = () => {
     return (
         <div>
-            이페이지는 MAIN입니다.
+            <ScanBox>
+            </ScanBox>
+
         </div>
     );
 };
