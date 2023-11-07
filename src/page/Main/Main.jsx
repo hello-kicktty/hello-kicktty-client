@@ -1,12 +1,11 @@
 import React from 'react';
 import ScanBox from '../../Components/Box/ScanBox';
-import QRCodeScanner from '../../Components/Camera/Camera';
+import Profile from '../../Components/Box/Profile';
 const Main = () => {
     return (
         <div>
-            <ScanBox>
-            </ScanBox>
-
+            <ScanBox/>
+            <Profile/>
         </div>
     );
 };

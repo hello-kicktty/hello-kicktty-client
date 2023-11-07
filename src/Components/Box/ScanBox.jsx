@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import Qrimg from './qr.png';
+import Qrimg from './img/qr.png';
 const BoxWrapper = styled.div`
     display: flex;
-    gap:30px;
+    gap:20px;
     flex-direction: row;
     
 `
@@ -16,6 +16,7 @@ const Box = styled.div`
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 `
 const Img = styled.div`
     background-image: url(${Qrimg});
