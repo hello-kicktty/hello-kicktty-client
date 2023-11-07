@@ -7,9 +7,14 @@ const MiniMapContainer = styled.div`
   width: 100%;
   flex-direction: column;
   font-weight: bold;
+  margin-top: 38px;
 `;
 
-const MiniMapText = styled.p``;
+const MiniMapText = styled.p`
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 10px;
+`;
 
 const MiniMapBox = styled.div`
   width: 100%;
