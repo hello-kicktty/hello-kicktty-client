@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { Outlet } from "react-router-dom";
 const Background = styled.div`
-  width: 40vw;
-  background-color: white;
+  width: 390px;
+  background-color: #F3F3F3;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -12,15 +12,13 @@ const Background = styled.div`
   }
 `;
 
-
-function Layout(){
-    return(
-        <>
-        <Background>
-
+function Layout() {
+  return (
+    <>
+      <Background>
         <Outlet />
-        </Background>
-        </>
-    )
+      </Background>
+    </>
+  );
 }
 export default Layout;
