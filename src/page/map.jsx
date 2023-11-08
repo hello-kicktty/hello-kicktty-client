@@ -43,15 +43,6 @@ function Map() {
         };
         const map = new window.kakao.maps.Map(mapContainer, mapOption);
 
-        var drawingFlag = false; // 원이 그려지고 있는 상태를 가지고 있을 변수입니다
-        var centerPosition; // 원의 중심좌표 입니다
-        var drawingCircle; // 그려지고 있는 원을 표시할 원 객체입니다
-        var drawingLine; // 그려지고 있는 원의 반지름을 표시할 선 객체입니다
-        var drawingOverlay; // 그려지고 있는 원의 반경을 표시할 커스텀오버레이 입니다
-        var drawingDot; // 그려지고 있는 원의 중심점을 표시할 커스텀오버레이 입니다
-
-        var circles = []; // 클릭으로 그려진 원과 반경 정보를 표시하는 선과 커스텀오버레이를 가지고 있을 배열입니다
-
         // 마커를 표시할 위치와 title 객체 배열입니다
         var positions = [
           {
@@ -92,18 +83,6 @@ function Map() {
             image: markerImage, // 마커 이미지
           });
         }
-
-        // 마커를 클릭했을 때 마커 위에 표시할 인포윈도우를 생성합니다
-        var iwContent = '<div style="padding:1px;">내위치</div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-          iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
-
-        // 인포윈도우를 생성합니다
-        var infowindow = new window.kakao.maps.InfoWindow({
-          content: iwContent,
-          removable: iwRemoveable,
-        });
-        // 지도에 마커를 표시합니다
-        marker.setMap(map);
 
         // HTML5의 geolocation으로 사용할 수 있는지 확인합니다
         if (navigator.geolocation) {
