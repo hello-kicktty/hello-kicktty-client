@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 import ScanBox from "../../Components/Box/ScanBox";
 import QRCodeScanner from "../../Components/Camera/Camera";
-import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   width: 100%;
@@ -79,7 +79,13 @@ const RidingQR = () => {
           >
             돌아가기
           </BackBtn>
-          <RidingBtn>주행하기</RidingBtn>
+          <RidingBtn
+            onClick={() => {
+              navigate("/22");
+            }}
+          >
+            주행하기
+          </RidingBtn>
         </BtnBox>
       </Container>
     </>
