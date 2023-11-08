@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@nivo/pie": "^0.83.0",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -10,6 +11,7 @@
     "jsqr": "^1.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-icon": "^1.0.0",
     "react-icons": "^4.11.0",
     "react-native-camera-kit": "^13.0.0",
     "react-native-vision-camera": "^3.6.4",

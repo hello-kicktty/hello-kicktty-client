@@ -7,6 +7,7 @@ const UserWelcomeBox = styled.div`
   height: fit-content;
   display: flex;
   align-items: center;
+  margin-top: 48px;
 `;
 
 const ProfileImg = styled.img`
