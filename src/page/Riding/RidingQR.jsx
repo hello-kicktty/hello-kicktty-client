@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import ScanBox from "../../Components/Box/ScanBox";
+import QRCodeScanner from "../../Components/Camera/Camera";
 
 const Container = styled.div`
   width: 100%;
@@ -62,7 +64,9 @@ const RidingQR = () => {
     <>
       <Container>
         <RidingTextBox>주행하기</RidingTextBox>
-        <QRBox></QRBox>
+        <QRBox>
+          <QRCodeScanner></QRCodeScanner>
+        </QRBox>
         <QRText>QR을 인식해주세요</QRText>
         <BtnBox>
           <BackBtn>돌아가기</BackBtn>
