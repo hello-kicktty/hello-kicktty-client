@@ -14,7 +14,8 @@ function Router() {
           <Route path="/Map" element={<Map />} />
           <Route path="" element={<LogoWelcome />} />
           <Route path="/main" element={<Main />} />
-          <Route path="/RidingQR" element={<RidingQR />} />
+          <Route path="/RidingQR" element={<RidingQR text="주행하기"/>} />
+          <Route path="/tractionQR" element={<RidingQR text="견인하기"/>} />
         </Route>
       </Routes>
     </BrowserRouter>
