@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import Information from "../Components/KickboardInfo/Information";
 import RidingInfor from "../Components/KickboardInfo/RidingInfor";
-
+import toast, { Toaster } from "react-hot-toast";
 const apiKey = "759cc21177f7d8714e0d75a11877c4ab";
 
 const MapBox = styled.div`
@@ -25,6 +25,7 @@ const MapContainer = styled.div`
   height: 100%;
   display: flex;
 `;
+
 
 function Map() {
   useEffect(() => {
@@ -429,10 +430,21 @@ function Map() {
     };
     mapScript.addEventListener("load", onLoadKakaoMap);
   }, []);
+  const fetchTweets = async () => {
+    try {
+      const response = await fetch('https://api.example.com/tweets');
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error('Error fetching tweets:', error);
+      return [];
+    }
+  };
 
   return (
     <MapBox>
-      <MapBoxTextBox>카카오 맵 입니다</MapBoxTextBox>
+      <MapBoxTextBox>카카오 맵 입니다
+      </MapBoxTextBox>
       <MapContainer id="map" />
       <RidingInfor/>
       </MapBox>
