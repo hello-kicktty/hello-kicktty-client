@@ -63,7 +63,15 @@ const GuideBox = styled.div`
     border-radius: 20px;
     background: #FFF;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+`
+const GuideboxText = styled.p`
+    font-size: 10px;
+    font-weight: bold;
+    margin-bottom: 10%;
 `
 const Guide = () => {
     return (
@@ -74,10 +82,10 @@ const Guide = () => {
                     <GuideText>안전한 주행을 위해 확인해주세요.</GuideText>
                         <SliderXwrapper>
                             <SliderXItems>
-                                <GuideBox></GuideBox>
-                                <GuideBox></GuideBox>
-                                <GuideBox></GuideBox>
-                                <GuideBox></GuideBox>
+                                <GuideBox><GuideboxText>주행하기</GuideboxText></GuideBox>
+                                <GuideBox><GuideboxText>주차하기</GuideboxText></GuideBox>
+                                <GuideBox><GuideboxText>견인하기</GuideboxText></GuideBox>
+                                <GuideBox><GuideboxText>리워드 안내</GuideboxText></GuideBox>
                             </SliderXItems>
                         </SliderXwrapper>
                 </Box>

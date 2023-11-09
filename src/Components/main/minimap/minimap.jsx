@@ -36,7 +36,7 @@ const MiniMapBox = styled.div`
   width: 349px;
   height: 155px;
   background-color: ${(props) =>
-    props.boxColor ? props.boxColor : "#d4d4d4;"};
+    props.boxColor ? props.boxColor : "#ffffff;"};
   border-radius: 1.5rem;
   background-image: url(${minimap});
   background-size: cover;

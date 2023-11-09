@@ -1,0 +1,43 @@
+.btn1 {
+  margin-bottom: 10px;
+  width: 175px;
+  color: black;
+  background-color: pink;
+  height: 32px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: bold;
+  &.active {
+    background-color: #d3ff52;
+  }
+}
+.btn1 {
+  background-color: #fff;
+  cursor: default;
+}
+.btn:active,
+.btn:focus {
+  border: none !important;
+  box-shadow: none !important;
+}
+.btn2 {
+    margin-bottom: 10px;
+    width: 50px;
+    color: black;
+    background-color: pink;
+    height: 30px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 9px;
+    font-weight: bold;
+    &.active {
+      background-color: #d3ff52;
+    }
+  }
+  .btn2 {
+    background-color: #E8E8E8;
+    cursor: default;
+  }

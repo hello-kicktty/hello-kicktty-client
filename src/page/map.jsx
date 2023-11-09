@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import Information from "../Components/KickboardInfo/Information";
+import RidingInfor from "../Components/KickboardInfo/RidingInfor";
 
 const apiKey = "759cc21177f7d8714e0d75a11877c4ab";
 
@@ -433,8 +434,8 @@ function Map() {
     <MapBox>
       <MapBoxTextBox>카카오 맵 입니다</MapBoxTextBox>
       <MapContainer id="map" />
-      <Information/>
-    </MapBox>
+      <RidingInfor/>
+      </MapBox>
   );
 }
 
