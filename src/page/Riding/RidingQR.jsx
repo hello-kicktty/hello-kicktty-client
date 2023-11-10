@@ -83,10 +83,6 @@ const RidingQR = (props) => {
         <Box>
         <RidingTextBox>{props.text}</RidingTextBox>
         <QRBox><QRCodeScanner/></QRBox>
-        <RidingTextBox>주행하기</RidingTextBox>
-        <QRBox>
-          <QRCodeScanner></QRCodeScanner>
-        </QRBox>
         <QRText>QR을 인식해주세요</QRText>
         </Box>
         <BtnBox>
