@@ -6,6 +6,7 @@ import LogoWelcome from "./page/Welcome/Welcome";
 import Main from "./page/Main/Main";
 import RidingQR from "./page/Riding/RidingQR";
 import Reward from "./Components/reward/reward";
+import ParkingComplete from "./Components/parking/parkingcomplete";
 
 function Router() {
   return (
@@ -17,6 +18,7 @@ function Router() {
           <Route path="/main" element={<Main />} />
           <Route path="/reward" element={<Reward />} />
           <Route path="/RidingQR" element={<RidingQR />} />
+          <Route path="/ParkingComplete" element={<ParkingComplete />} />
         </Route>
       </Routes>
     </BrowserRouter>
