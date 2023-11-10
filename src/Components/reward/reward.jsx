@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useState, useEffect } from "react";
+import styled, { keyframes } from "styled-components";
 import { useNavigate } from "react-router-dom";
 import coin from "./coin.png";
 
@@ -10,7 +10,7 @@ const Container = styled.div`
   flex-direction: column;
   background: linear-gradient(rgba(211, 255, 82, 1), rgba(211, 255, 82, 0));
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
 `;
 
 const TextBox = styled.div`
@@ -57,14 +57,54 @@ const CoinImg = styled.img`
   height: 163px;
 `;
 
+// 애니메이션 효과 정의
+const slideInAnimation = keyframes`
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 350px;
+  }
+`;
+
+const SlideInPopup = styled.div`
+  width: 309px;
+  height: 56px;
+  background-color: white;
+  position: absolute;
+  font-weight: 600;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 91px;
+  left: 50%;
+  border-radius: 1rem;
+  transform: translate(-50%, -50%);
+  animation: ${slideInAnimation} 0.5s ease-out; /* 애니메이션 적용 */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+`;
+
 const Reward = (props) => {
   const navigate = useNavigate();
+  const [showPopup, setShowPopup] = useState(false);
+
+  useEffect(() => {
+    // 페이지 렌더링 후 0.5초 후에 팝업을 보여줍니다.
+    const timer = setTimeout(() => {
+      setShowPopup(true);
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <>
       <Container>
+        {/* 애니메이션이 적용된 팝업 */}
+        {showPopup && <SlideInPopup>주행이 완료되었습니다!</SlideInPopup>}
         <TextBox>
-          <Text1>주차하기 완료</Text1>
+          <Text1>주차하기 완료!</Text1>
           <Text2>리워드를 확인해보세요!</Text2>
         </TextBox>
         <CoinImg src={coin}></CoinImg>
