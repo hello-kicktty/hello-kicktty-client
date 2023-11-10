@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import QRCodeScanner from "../../Components/Camera/Camera";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   width: 100%;
@@ -16,7 +17,7 @@ const Box = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 100px;
-  `
+`;
 const RidingTextBox = styled.div`
   background-color: #f0f0f0;
   width: 273px;
@@ -48,7 +49,7 @@ const QRText = styled.div`
 const BtnBox = styled.div`
   display: flex;
   position: absolute;
-  bottom : 20px;
+  bottom: 20px;
 `;
 
 const BackBtn = styled.div`
@@ -77,17 +78,25 @@ const RidingBtn = styled.div`
 `;
 
 const RidingQR = (props) => {
-const RidingQR = (props) => {
+  const navigate = useNavigate();
   return (
     <>
       <Container>
         <Box>
-        <RidingTextBox>{props.text}</RidingTextBox>
-        <QRBox><QRCodeScanner/></QRBox>
-        <QRText>QR을 인식해주세요</QRText>
+          <RidingTextBox>{props.text}</RidingTextBox>
+          <QRBox>
+            <QRCodeScanner />
+          </QRBox>
+          <QRText>QR을 인식해주세요</QRText>
         </Box>
         <BtnBox>
-          <BackBtn>돌아가기</BackBtn>
+          <BackBtn
+            onClick={() => {
+              navigate(-1);
+            }}
+          >
+            돌아가기
+          </BackBtn>
           <RidingBtn>{props.text}</RidingBtn>
         </BtnBox>
       </Container>
