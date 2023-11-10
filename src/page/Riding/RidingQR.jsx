@@ -4,6 +4,7 @@ import QRCodeScanner from "../../Components/Camera/Camera";
 import img1 from '../../Components/Box/img/Group 237.png'
 import img2 from '../../Components/Box/img/Group 238.png'
 import img3 from '../../Components/Box/img/Subtract.png'
+import { useNavigate } from "react-router-dom";
 const Container = styled.div`
   width: 100%;
   height: 100%;
@@ -106,6 +107,7 @@ const Box1 = styled.div`
   gap:30px;
 `
 const RidingQR = (props) => {
+  const navigate = useNavigate();
   return (
     <>
       <Container>
@@ -119,7 +121,13 @@ const RidingQR = (props) => {
           <Img2></Img2>
         </Box1>
         <BtnBox>
-          <BackBtn>돌아가기</BackBtn>
+          <BackBtn
+            onClick={() => {
+              navigate(-1);
+            }}
+          >
+            돌아가기
+          </BackBtn>
         </BtnBox>
       </Container>
     </>
