@@ -10,6 +10,8 @@ const Background = styled.div`
   @media (max-width: 770px) {
     width: 100%;
   }
+  overflow-y: hidden;
+  overflow-x: hidden;
 `;
 
 function Layout() {
