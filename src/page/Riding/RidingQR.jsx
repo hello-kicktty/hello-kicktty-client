@@ -77,6 +77,7 @@ const RidingBtn = styled.div`
 `;
 
 const RidingQR = (props) => {
+const RidingQR = (props) => {
   return (
     <>
       <Container>

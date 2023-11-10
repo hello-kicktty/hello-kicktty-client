@@ -5,6 +5,8 @@ import Layout from "./Components/Layout/Layout";
 import LogoWelcome from "./page/Welcome/Welcome";
 import Main from "./page/Main/Main";
 import RidingQR from "./page/Riding/RidingQR";
+import Reward from "./Components/reward/reward";
+import ParkingComplete from "./Components/parking/parkingcomplete";
 import Receipt from "./page/Receipt/Receipt";
 
 function Router() {
@@ -18,6 +20,8 @@ function Router() {
           <Route path="/RidingQR" element={<RidingQR text="주행하기"/>} />
           <Route path="/tractionQR" element={<RidingQR text="견인하기"/>} />
           <Route path="/receipt" element={<Receipt/>} />
+          <Route path="/reward" element={<Reward />} />
+          <Route path="/ParkingComplete" element={<ParkingComplete />} />
         </Route>
       </Routes>
     </BrowserRouter>
