@@ -7,13 +7,21 @@ const All = styled.div`
     display: flex;
     flex-direction: column;
     margin-top: 40px;
+    width: 105%;
+    height: 304px;
+    background-color: white;
+    border-radius: 30px;
+    justify-content: center;
+    align-items: center;
+    margin-left: -10px;
+    
 `
 const Box = styled.div`
     width: 350px;
     height: 188px;
     border-radius: 20px;
     margin-top: 11px;
-    background: #D3FF52;
+    background: #EFEFEF;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     display: flex;
     flex-direction: column;
@@ -21,9 +29,9 @@ const Box = styled.div`
     align-items: center;
 `
 const Title = styled.p`
-    font-size: 12px;
+    font-size: 15px;
     font-weight: 600;
-    margin-bottom: 11px;
+    margin-bottom: 5px;
 `
 const Top = styled.div`
     display: flex;
@@ -42,6 +50,12 @@ const TextWrapper = styled.div`
     flex-direction: column;
     gap:1px;
     margin-left: 7px;
+`
+const TextWrapper1 = styled.div`
+    display: flex;
+    flex-direction: column;
+    margin-right: auto;
+    margin-left: 15px;
 `
 const TextName = styled.p`
     font-size: 12px;
@@ -93,8 +107,9 @@ const Rewardbox = styled.div`
     width: 145px;
     height: 28px;
     border-radius: 10px;
-    background-color: white;
+    background: #D3FF52;
     font-size: 10px;
+    font-weight: bold;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -105,7 +120,10 @@ const Profile = () => {
     return (
         <>
         <All>
-            <Title>SONNY님의 리워드를 확인해보세요.</Title>
+            <TextWrapper1>
+                <Title>SONNY님!</Title>
+                <Title>오늘의 리워드를 확인해보세요.</Title>
+            </TextWrapper1>
             <Box>
                 <Top>
                     <Img/>

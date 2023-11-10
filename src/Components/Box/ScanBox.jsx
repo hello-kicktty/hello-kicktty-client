@@ -10,6 +10,7 @@ const Title = styled.p`
     font-size: 12px;
     font-weight: 600;
     margin-bottom: 11px;
+    margin-left: 5px;
 `
 const BoxWrapper = styled.div`
     display: flex;
@@ -20,7 +21,7 @@ const BoxWrapper = styled.div`
 const Box = styled.div`
     width: 165px;
     height: 165px;
-    background-color: #D3FF52;
+    background-color: white;
     border-radius:20px;
     display: flex;
     justify-content: center;

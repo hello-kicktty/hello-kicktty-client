@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
+import Information from "../Components/KickboardInfo/Information";
+import RidingInfor from "../Components/KickboardInfo/RidingInfor";
 
 const apiKey = "759cc21177f7d8714e0d75a11877c4ab";
 
@@ -10,7 +12,6 @@ const MapBox = styled.div`
   flex-direction: column;
   width: 100%;
   height: 100%;
-  background-color: wheat;
   box-sizing: border-box;
 `;
 
@@ -190,7 +191,8 @@ function Map() {
     <MapBox>
       <MapBoxTextBox>카카오 맵 입니다</MapBoxTextBox>
       <MapContainer id="map" />
-    </MapBox>
+      <RidingInfor/>
+      </MapBox>
   );
 }
 

@@ -9,11 +9,10 @@ import { filterProps } from "framer-motion";
 const HeaderBox = styled.div`
   width: 100%;
   height: fit-content;
-  background-color: wheat;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 60px;
+  margin-top: 15px;
 `;
 
 const LeftBox = styled.div`
