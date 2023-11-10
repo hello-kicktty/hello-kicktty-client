@@ -1,7 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import QRCodeScanner from "../../Components/Camera/Camera";
-
+import img1 from '../../Components/Box/img/Group 237.png'
+import img2 from '../../Components/Box/img/Group 238.png'
+import img3 from '../../Components/Box/img/Subtract.png'
 const Container = styled.div`
   width: 100%;
   height: 100%;
@@ -15,10 +17,10 @@ const Container = styled.div`
 const Box = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 100px;
+  margin-bottom: 30px;
   `
 const RidingTextBox = styled.div`
-  background-color: #f0f0f0;
+ background: #000;
   width: 273px;
   height: 44px;
   font-weight: bold;
@@ -27,6 +29,7 @@ const RidingTextBox = styled.div`
   align-items: center;
   border-radius: 10px;
   margin-bottom: 7px;
+  color: white;
 `;
 
 const QRBox = styled.div`
@@ -47,8 +50,7 @@ const QRText = styled.div`
 
 const BtnBox = styled.div`
   display: flex;
-  position: absolute;
-  bottom : 20px;
+  margin-top: 35px;
 `;
 
 const BackBtn = styled.div`
@@ -76,18 +78,48 @@ const RidingBtn = styled.div`
   justify-content: center;
 `;
 
+const Img1 = styled.div`
+    background-image: url(${img1});
+
+    width: 82px;
+    height: 84px;
+`
+const Img2 = styled.div`
+    background-image: url(${img2});
+
+    width: 82px;
+    height: 84px;
+`
+const Img3 = styled.div`
+    background-image: url(${img3});
+
+    width: 236px;
+  height: 236px;
+  position: absolute;
+  top: 50%;
+    left: 50%;
+    transform: translate(-50%, -80%);
+`
+const Box1 = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap:30px;
+`
 const RidingQR = (props) => {
   return (
     <>
       <Container>
         <Box>
         <RidingTextBox>{props.text}</RidingTextBox>
-        <QRBox><QRCodeScanner/></QRBox>
+        <QRBox><QRCodeScanner/><Img3></Img3></QRBox>
         <QRText>QR을 인식해주세요</QRText>
         </Box>
+        <Box1>
+          <Img1></Img1>
+          <Img2></Img2>
+        </Box1>
         <BtnBox>
           <BackBtn>돌아가기</BackBtn>
-          <RidingBtn>{props.text}</RidingBtn>
         </BtnBox>
       </Container>
     </>

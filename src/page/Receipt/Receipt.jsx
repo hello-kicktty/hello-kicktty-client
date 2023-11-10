@@ -46,13 +46,14 @@ const Img4 = styled.div`
     background-image: url(${img4});
     width: 21px;
     height: 42px;
-    margin-top: 18px;
-    margin-bottom: 3px;
+    margin-top: 1px;
+    margin-left: -20px;
 `
 const Img5 = styled.div`
     background-image: url(${img5});
     width: 210px;
     height: 13px;
+    margin-left: -22px;
 `
 const Box = styled.div`
     width: 350px;
@@ -70,6 +71,11 @@ const Box1 = styled.div`
     background: #F0F0F0;
     border-radius: 10px;
     margin-top: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center; 
+    margin-bottom: 25px;
 `
 const Box2 = styled.div`
     width: 350px;
@@ -99,6 +105,38 @@ const Box3 = styled.div`
     color: white;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 `
+const Box4 = styled.div`
+    display: flex;
+    flex-direction: row;
+`
+const Box5 = styled.div`
+    display: flex;
+    flex-direction: row;
+    margin-left: -48px;
+`
+const TextBox = styled.div`
+    display: flex;
+    flex-direction: column;
+    margin-top: -1px;
+    margin-left: 50px;
+`
+const Text1 = styled.p`
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 18px;
+`
+const Text2 = styled.p`
+    font-size: 15px;
+    font-weight: bold;
+    margin-left: 13px;
+    margin-right: 77px;
+`
+const Text3 = styled.p`
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 18px;
+    margin-left: 46px;
+`
 const Receipt = () => {
     return (
         <div>
@@ -108,12 +146,28 @@ const Receipt = () => {
             </Top>
             <Box>
                 <Img1/>
+                <Box4>
                 <Img3/>
+                    <TextBox>
+                        <Text1>31323</Text1>
+                        <Text1>2023-10-25(목)</Text1>
+                        <Text1>오전 11:50 ~ 11:54</Text1>
+                        <Text1>1.0km</Text1>
+                        <Text1>50P</Text1>
+                    </TextBox>
+                </Box4>
                 <Img2/>
                 <Box1>
-
+                    <Text2>전체</Text2>
+                    <Text2>1,284원</Text2>
                 </Box1>
-                <Img4/>
+                <Box5>
+                    <Img4/>
+                    <TextBox>
+                        <Text3>1,385원</Text3>
+                        <Text3>100원</Text3>
+                    </TextBox>
+                </Box5>
                 <Img5/>
             </Box>
             <Box2>HOME</Box2>
