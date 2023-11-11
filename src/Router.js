@@ -13,6 +13,7 @@ import Guide from "./page/Guide.jsx/Home";
 import Riding from "./page/Guide.jsx/Riding";
 import Parking from "./page/Guide.jsx/Parking";
 import Traction from "./page/Guide.jsx/Traction";
+import ParkingSpot from "./page/ParkingSpot/ParkingSpot";
 
 function Router() {
   return (
@@ -22,10 +23,10 @@ function Router() {
           <Route path="/Map" element={<Map />} />
           <Route path="" element={<LogoWelcome />} />
           <Route path="/main" element={<Main />} />
-          <Route path="/RidingQR" element={<RidingQR text="주행하기"/>} />
-          <Route path="/tractionQR" element={<RidingQR text="견인하기"/>} />
-          <Route path="/parkingQR" element={<RidingQR text="주차하기"/>} />
-          <Route path="/receipt" element={<Receipt/>} />
+          <Route path="/RidingQR" element={<RidingQR text="주행하기" />} />
+          <Route path="/tractionQR" element={<RidingQR text="견인하기" />} />
+          <Route path="/parkingQR" element={<RidingQR text="주차하기" />} />
+          <Route path="/receipt" element={<Receipt />} />
           <Route path="/reward" element={<Reward />} />
           <Route path="/ParkingComplete" element={<ParkingComplete />} />
           <Route path="/ParkingReward" element={<ParkReward />} />
@@ -34,7 +35,7 @@ function Router() {
             <Route path="Parking" element={<Parking />} />
             <Route path="Traction" element={<Traction />} />
           </Route>
-
+          <Route path="/ParkingSpot" element={<ParkingSpot />} />
         </Route>
       </Routes>
     </BrowserRouter>

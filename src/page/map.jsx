@@ -431,8 +431,6 @@ function Map() {
   }, []);
   return (
     <MapBox>
-      <MapBoxTextBox>카카오 맵 입니다
-      </MapBoxTextBox>
       <MapContainer id="map" />
       <Information/>
       </MapBox>
