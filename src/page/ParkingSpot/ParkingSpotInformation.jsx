@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Toggle from "./toggle.png";
 import Line from "./line.png";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
+import { useState } from "react";
 const Box = styled.div`
   border-radius: 50px 50px 0px 0px;
   background: #f0f0f0;
@@ -20,6 +21,7 @@ const Box = styled.div`
   align-items: center;
 `;
 
+/* eslint-disable no-undef */
 const Top = styled.div`
   display: flex;
   width: 350px;
@@ -32,6 +34,16 @@ const Top = styled.div`
   justify-content: center;
   font-size: 13px;
   font-weight: bold;
+  height: ${isAccordionOpen ? "100px" : "32px"};
+  overflow: ${isAccordionOpen ? "visible" : "hidden"};
+`;
+
+const AccordionContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  gap: 10px;
+  font-size: 13px;
 `;
 
 const TopToggle = styled.div`
@@ -62,7 +74,6 @@ const Middle = styled.div`
   right: 2rem;
 `;
 const WhiteBox = styled.div`
-  width: 157px;
   width: fit-content;
   height: 32px;
   border-radius: 10px;
@@ -137,15 +148,30 @@ const LineImg = styled.img`
 `;
 
 const ParkingSpotInformation = () => {
+  const [isAccordionOpen, setIsAccordionOpen] = useState(false);
+
+  const handleAccordionToggle = () => {
+    setIsAccordionOpen(!isAccordionOpen);
+  };
+
   return (
     <>
       <Box>
         <Top>
           추천 주차지 선택하기
-          <TopToggle>
+          <TopToggle onClick={handleAccordionToggle}>
             {" "}
             <TopToggleImg src={Toggle} />{" "}
           </TopToggle>
+          {isAccordionOpen && (
+            <AccordionContent>
+              {/* 아코디언 내용 */}
+              <div>구역 A</div>
+              <div>구역 B</div>
+              <div>구역 C</div>
+              <div>구역 D</div>
+            </AccordionContent>
+          )}
         </Top>
         <Middle>
           <WhiteBox>
