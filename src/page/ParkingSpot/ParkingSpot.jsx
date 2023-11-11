@@ -38,9 +38,10 @@ const ReloadBtnImg = styled.img`
   width: 41px;
   height: 41px;
   position: absolute;
-  top: 14rem;
-  left: 12rem;
+  top: 24rem;
+  left: 22rem;
   z-index: 2;
+  cursor: pointer;
 `;
 
 function ParkingSpot() {
@@ -51,9 +52,17 @@ function ParkingSpot() {
       navigate(-1); // -1은 뒤로가기를 의미함
     };
 
+    const handleReloadButtonClick = () => {
+      window.location.reload(); // 페이지 새로고침
+    };
+
     document
       .getElementById("backBtn")
       .addEventListener("click", handleBackButtonClick);
+
+    document
+      .getElementById("reloadBtn")
+      .addEventListener("click", handleReloadButtonClick);
 
     mapScript.async = true;
     mapScript.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${apiKey}&autoload=false&libraries=services,clusterer,drawing`;
@@ -209,6 +218,9 @@ function ParkingSpot() {
             .getElementById("backBtn")
             .removeEventListener("click", handleBackButtonClick);
           mapContainer.removeEventListener("wheel", handleMouseWheel);
+          document
+            .getElementById("reloadBtn")
+            .removeEventListener("click", handleReloadButtonClick);
         };
       }, [navigate]);
     };
@@ -228,7 +240,7 @@ function ParkingSpot() {
   return (
     <MapBox>
       <BackBtnImg id="backBtn" src={BackBtn} />
-      <ReloadBtnImg src={ReloadBtn}></ReloadBtnImg>
+      <ReloadBtnImg id="reloadBtn" src={ReloadBtn}></ReloadBtnImg>
 
       <MapContainer id="map" />
       <ParkingSpotInformation />
