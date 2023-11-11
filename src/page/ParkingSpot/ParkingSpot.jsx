@@ -1,5 +1,9 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
+import BackBtn from "./backbtn.png";
+import ReloadBtn from "./reloadbtn.png";
+import { useNavigate } from "react-router-dom";
+
 import toast, { Toaster } from "react-hot-toast";
 import ParkingSpotInformation from "./ParkingSpotInformation";
 
@@ -15,20 +19,41 @@ const MapBox = styled.div`
   box-sizing: border-box;
 `;
 
-const MapBoxTextBox = styled.div`
-  font-weight: bold;
-  font-family: "Courier New", Courier, monospace;
-`;
-
 const MapContainer = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
 `;
 
+const BackBtnImg = styled.img`
+  width: 41px;
+  height: 41px;
+  position: absolute;
+  top: 4rem;
+  left: 2rem;
+  z-index: 2;
+`;
+
+const ReloadBtnImg = styled.img`
+  width: 41px;
+  height: 41px;
+  position: absolute;
+  top: 14rem;
+  left: 12rem;
+  z-index: 2;
+`;
+
 function ParkingSpot() {
+  const navigate = useNavigate();
   useEffect(() => {
     const mapScript = document.createElement("script");
+    const handleBackButtonClick = () => {
+      navigate(-1); // -1은 뒤로가기를 의미함
+    };
+
+    document
+      .getElementById("backBtn")
+      .addEventListener("click", handleBackButtonClick);
 
     mapScript.async = true;
     mapScript.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${apiKey}&autoload=false&libraries=services,clusterer,drawing`;
@@ -180,9 +205,12 @@ function ParkingSpot() {
 
         // 컴포넌트 언마운트 시 이벤트 리스너 제거
         return () => {
+          document
+            .getElementById("backBtn")
+            .removeEventListener("click", handleBackButtonClick);
           mapContainer.removeEventListener("wheel", handleMouseWheel);
         };
-      });
+      }, [navigate]);
     };
     mapScript.addEventListener("load", onLoadKakaoMap);
   }, []);
@@ -199,6 +227,9 @@ function ParkingSpot() {
 
   return (
     <MapBox>
+      <BackBtnImg id="backBtn" src={BackBtn} />
+      <ReloadBtnImg src={ReloadBtn}></ReloadBtnImg>
+
       <MapContainer id="map" />
       <ParkingSpotInformation />
     </MapBox>

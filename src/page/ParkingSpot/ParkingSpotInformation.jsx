@@ -4,13 +4,14 @@ import Toggle from "./toggle.png";
 import Line from "./line.png";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import { useState } from "react";
+
 const Box = styled.div`
   border-radius: 50px 50px 0px 0px;
   background: #f0f0f0;
   box-shadow: 0px 0px 70px 0px rgba(0, 0, 0, 0.25);
   width: 390px;
   height: 45%;
-  position: fixed;
+  position: absolute;
   bottom: 0;
   z-index: 5;
   left: 50%;
@@ -22,7 +23,26 @@ const Box = styled.div`
 `;
 
 /* eslint-disable no-undef */
-const Top = styled.div`
+const Top = ({ isAccordionOpen, handleAccordionToggle }) => (
+  <StyledTop isAccordionOpen={isAccordionOpen}>
+    추천 주차지 선택하기
+    <TopToggle onClick={handleAccordionToggle}>
+      {" "}
+      <TopToggleImg src={Toggle} />{" "}
+    </TopToggle>
+    {isAccordionOpen && (
+      <AccordionContent isAccordionOpen={isAccordionOpen}>
+        {/* 아코디언 내용 */}
+        <div>구역 A</div>
+        <div>구역 B</div>
+        <div>구역 C</div>
+        <div>구역 D</div>
+      </AccordionContent>
+    )}
+  </StyledTop>
+);
+
+const StyledTop = styled.div`
   display: flex;
   width: 350px;
   height: 32px;
@@ -34,8 +54,13 @@ const Top = styled.div`
   justify-content: center;
   font-size: 13px;
   font-weight: bold;
-  height: ${isAccordionOpen ? "100px" : "32px"};
-  overflow: ${isAccordionOpen ? "visible" : "hidden"};
+  overflow: ${(props) => (props.isAccordionOpen ? "visible" : "hidden")};
+  z-index: 10;
+  transition: height 0.3s ease; /* height 속성에 transition 효과 추가 */
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const AccordionContent = styled.div`
@@ -44,6 +69,14 @@ const AccordionContent = styled.div`
   margin-top: 10px;
   gap: 10px;
   font-size: 13px;
+  background-color: wheat;
+  position: absolute;
+  top: -6rem;
+  right: 0.5rem;
+  height: ${(props) => (props.isAccordionOpen ? "100px" : "0")};
+  overflow: hidden;
+  opacity: ${(props) => (props.isAccordionOpen ? "1" : "0")};
+  transition: height 1s ease, opacity 1s ease;
 `;
 
 const TopToggle = styled.div`
@@ -157,22 +190,10 @@ const ParkingSpotInformation = () => {
   return (
     <>
       <Box>
-        <Top>
-          추천 주차지 선택하기
-          <TopToggle onClick={handleAccordionToggle}>
-            {" "}
-            <TopToggleImg src={Toggle} />{" "}
-          </TopToggle>
-          {isAccordionOpen && (
-            <AccordionContent>
-              {/* 아코디언 내용 */}
-              <div>구역 A</div>
-              <div>구역 B</div>
-              <div>구역 C</div>
-              <div>구역 D</div>
-            </AccordionContent>
-          )}
-        </Top>
+        <Top
+          isAccordionOpen={isAccordionOpen}
+          handleAccordionToggle={handleAccordionToggle}
+        />
         <Middle>
           <WhiteBox>
             <InnerBox1>출발</InnerBox1> <InnerBox1>도착</InnerBox1>
