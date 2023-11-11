@@ -8,7 +8,6 @@ import RidingQR from "./page/Riding/RidingQR";
 import Reward from "./Components/reward/reward";
 import ParkingComplete from "./Components/parking/parkingcomplete";
 import Receipt from "./page/Receipt/Receipt";
-import Reward from "./page/Reward/Reward";
 
 function Router() {
   return (
@@ -18,10 +17,10 @@ function Router() {
           <Route path="/Map" element={<Map />} />
           <Route path="" element={<LogoWelcome />} />
           <Route path="/main" element={<Main />} />
-          <Route path="/RidingQR" element={<RidingQR text="주행하기"/>} />
-          <Route path="/tractionQR" element={<RidingQR text="견인하기"/>} />
-          <Route path="/parkingQR" element={<RidingQR text="주차하기"/>} />
-          <Route path="/receipt" element={<Receipt/>} />
+          <Route path="/RidingQR" element={<RidingQR text="주행하기" />} />
+          <Route path="/tractionQR" element={<RidingQR text="견인하기" />} />
+          <Route path="/parkingQR" element={<RidingQR text="주차하기" />} />
+          <Route path="/receipt" element={<Receipt />} />
           <Route path="/reward" element={<Reward />} />
           <Route path="/ParkingComplete" element={<ParkingComplete />} />
         </Route>
