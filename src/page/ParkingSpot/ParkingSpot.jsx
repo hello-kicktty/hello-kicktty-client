@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import toast, { Toaster } from "react-hot-toast";
-import Information from "../../Components/KickboardInfo/Information";
-import RidingInfor from "../../Components/KickboardInfo/RidingInfor";
+import ParkingSpotInformation from "./ParkingSpotInformation";
+
 const apiKey = "759cc21177f7d8714e0d75a11877c4ab";
 
 const MapBox = styled.div`
@@ -200,7 +200,7 @@ function ParkingSpot() {
   return (
     <MapBox>
       <MapContainer id="map" />
-      <RidingInfor />
+      <ParkingSpotInformation />
     </MapBox>
   );
 }
