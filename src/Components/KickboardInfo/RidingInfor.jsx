@@ -1,6 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import Kickboard from "../Box/img/메이커톤 킥보드 1.png"
+import { ReactComponent as Icon1 } from "./Assets/Group 181.svg"
+import { ReactComponent as Icon2 } from "./Assets/🦆 icon _coin_.svg"
+import { ReactComponent as Icon3 } from "./Assets/🦆 icon _map_.svg"
+import { ReactComponent as Icon4 } from "./Assets/🦆 icon _organic food_.svg"
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 const Box = styled.div`
     border-radius: 50px 50px 0px 0px;
@@ -42,6 +46,10 @@ const WhiteBox = styled.div`
     border-radius: 10px;
     text-align: center;
     line-height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap:10px;
 `
 const KickboardInfo = styled.div`
     display: flex;
@@ -65,6 +73,7 @@ const Img = styled.div`
     width:64px;
     height:64px;
 `
+
 const Buttonbox3 = styled.div`
     display: flex;
     flex-direction: row;
@@ -123,17 +132,17 @@ const RidingInfor = () => {
           </Top>
         <Middle>
             <WhiteBox>
-                1분당 180원
+                <Icon2/>1분당 180원
             </WhiteBox>
             <WhiteBox>
-                리워드 혜택 받기
+                <Icon4/>리워드 혜택 받기
             </WhiteBox>
         </Middle>
         <Box2>
-            <Text1>시간</Text1>
+            <Icon1/>
             <Text1>1분</Text1>
             <Text1><div class='v-line'></div></Text1>
-            <Text1>거리</Text1>
+            <Icon3/>
             <Text1>1km</Text1>
         </Box2>
         <Buttonbox3>

@@ -104,7 +104,7 @@ const SlideInPopup = styled.div`
   top: 121px;
   left: 50%;
   border-radius: 1rem;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -100%);
   /* 애니메이션 적용 */
   animation: ${slideInAnimation} 0.4s ease-out;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
@@ -121,8 +121,9 @@ const Stars1 = styled.img`
   width: 48px;
   height: 48px;
   position: absolute;
+  left: 50%;
   top: 121px;
-  left: 5%;
+  transform: translate(-360%, -150%);
   opacity: 0; /* Initially set opacity to 0 */
   animation: ${appearStars} 0.5s ease-out 0.8s forwards;
 `;
@@ -131,8 +132,9 @@ const Stars2 = styled.img`
   width: 48px;
   height: 48px;
   position: absolute;
-  top: 60px;
-  left: 82%;
+  left: 50%;
+  top: 121px;
+  transform: translate(260%, -50%);
   opacity: 0; /* Initially set opacity to 0 */
   animation: ${appearStars} 0.5s ease-out 0.8s forwards;
 `;

@@ -5,7 +5,8 @@ import "../KickboardInfo/Btn.css"
 import Kickboard from "../Box/img/메이커톤 킥보드 1.png"
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
-
+import { ReactComponent as Icon2 } from "./Assets/🦆 icon _coin_.svg"
+import { ReactComponent as Icon4 } from "./Assets/🦆 icon _organic food_.svg"
 const Box = styled.div`
     border-radius: 50px 50px 0px 0px;
     background: #F0F0F0;
@@ -36,13 +37,6 @@ const Middle = styled.div`
     display: flex;
     flex-direction: column;
 `
-const Battery = styled.div`
-    font-size: 20px;
-    font-weight: 700;
-    span{
-        font-size: 14px;
-    }
-`
 const KickboardInfo = styled.div`
     display: flex;
     flex-direction: column;
@@ -64,14 +58,20 @@ const MiddleTextBox = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin: 5px;
+    margin: 3px;
     font-weight: bold;
 `
 const MiddleText = styled.div`
     font-size:11px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:10px;
+
 `
 const MiddleText1 = styled.div`
     font-size:11px;
+    margin-top: 10px;
 `
 const MiddleText2 = styled.div`
     font-size:13px;
@@ -169,8 +169,9 @@ const Information = () => {
           </Top>
           <Middle>
             <MiddleTextBox>
-                <MiddleText>요금제</MiddleText>
-                <MiddleText1>180₩ per min</MiddleText1>
+
+                <MiddleText><Icon2/>요금제</MiddleText>
+                <MiddleText1>잠금해제 600원 + 주행요금 160 / 분</MiddleText1>
             </MiddleTextBox>
             <Buttonbox>
             {data.map((item, idx) => (
@@ -186,7 +187,7 @@ const Information = () => {
           </Middle>
           <Bottom>
                 <MiddleTextBox>
-                    <MiddleText>리워드</MiddleText>
+                    <MiddleText><Icon4/>리워드</MiddleText>
                     <MiddleText1>내 잔여 리워드 : 4000P</MiddleText1>
                 </MiddleTextBox>
                 <Buttonbox1>

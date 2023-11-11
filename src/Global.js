@@ -1,6 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
-
+import toast, { Toaster } from "react-hot-toast";
 const GlobalStyle = createGlobalStyle`
   ${reset}
 
