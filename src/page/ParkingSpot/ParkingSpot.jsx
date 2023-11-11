@@ -1,8 +1,12 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import Information from "../Components/KickboardInfo/Information";
-import RidingInfor from "../Components/KickboardInfo/RidingInfor";
+import BackBtn from "./backbtn.png";
+import ReloadBtn from "./reloadbtn.png";
+import { useNavigate } from "react-router-dom";
+
 import toast, { Toaster } from "react-hot-toast";
+import ParkingSpotInformation from "./ParkingSpotInformation";
+
 const apiKey = "759cc21177f7d8714e0d75a11877c4ab";
 
 const MapBox = styled.div`
@@ -15,20 +19,50 @@ const MapBox = styled.div`
   box-sizing: border-box;
 `;
 
-const MapBoxTextBox = styled.div`
-  font-weight: bold;
-  font-family: "Courier New", Courier, monospace;
-`;
-
 const MapContainer = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
 `;
 
-function Map() {
+const BackBtnImg = styled.img`
+  width: 41px;
+  height: 41px;
+  position: absolute;
+  top: 4rem;
+  left: 2rem;
+  z-index: 2;
+`;
+
+const ReloadBtnImg = styled.img`
+  width: 41px;
+  height: 41px;
+  position: absolute;
+  top: 24rem;
+  left: 22rem;
+  z-index: 2;
+  cursor: pointer;
+`;
+
+function ParkingSpot() {
+  const navigate = useNavigate();
   useEffect(() => {
     const mapScript = document.createElement("script");
+    const handleBackButtonClick = () => {
+      navigate(-1); // -1은 뒤로가기를 의미함
+    };
+
+    const handleReloadButtonClick = () => {
+      window.location.reload(); // 페이지 새로고침
+    };
+
+    document
+      .getElementById("backBtn")
+      .addEventListener("click", handleBackButtonClick);
+
+    document
+      .getElementById("reloadBtn")
+      .addEventListener("click", handleReloadButtonClick);
 
     mapScript.async = true;
     mapScript.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${apiKey}&autoload=false&libraries=services,clusterer,drawing`;
@@ -180,9 +214,15 @@ function Map() {
 
         // 컴포넌트 언마운트 시 이벤트 리스너 제거
         return () => {
+          document
+            .getElementById("backBtn")
+            .removeEventListener("click", handleBackButtonClick);
           mapContainer.removeEventListener("wheel", handleMouseWheel);
+          document
+            .getElementById("reloadBtn")
+            .removeEventListener("click", handleReloadButtonClick);
         };
-      });
+      }, [navigate]);
     };
     mapScript.addEventListener("load", onLoadKakaoMap);
   }, []);
@@ -199,10 +239,13 @@ function Map() {
 
   return (
     <MapBox>
+      <BackBtnImg id="backBtn" src={BackBtn} />
+      <ReloadBtnImg id="reloadBtn" src={ReloadBtn}></ReloadBtnImg>
+
       <MapContainer id="map" />
-      <RidingInfor />
+      <ParkingSpotInformation />
     </MapBox>
   );
 }
 
-export default Map;
+export default ParkingSpot;
