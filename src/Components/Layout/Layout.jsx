@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Outlet } from "react-router-dom";
 const Background = styled.div`
   width: 390px;
-  background-color: #F3F3F3;
+  background-color: #EFEFEF;;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
