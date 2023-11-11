@@ -8,6 +8,7 @@ import RidingQR from "./page/Riding/RidingQR";
 import Reward from "./Components/reward/reward";
 import ParkingComplete from "./Components/parking/parkingcomplete";
 import Receipt from "./page/Receipt/Receipt";
+import ParkingSpot from "./page/ParkingSpot/ParkingSpot";
 
 function Router() {
   return (
@@ -23,6 +24,7 @@ function Router() {
           <Route path="/receipt" element={<Receipt />} />
           <Route path="/reward" element={<Reward />} />
           <Route path="/ParkingComplete" element={<ParkingComplete />} />
+          <Route path="/ParkingSpot" element={<ParkingSpot />} />
         </Route>
       </Routes>
     </BrowserRouter>

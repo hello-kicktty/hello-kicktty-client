@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import Information from "../Components/KickboardInfo/Information";
-import RidingInfor from "../Components/KickboardInfo/RidingInfor";
 import toast, { Toaster } from "react-hot-toast";
+import Information from "../../Components/KickboardInfo/Information";
+import RidingInfor from "../../Components/KickboardInfo/RidingInfor";
 const apiKey = "759cc21177f7d8714e0d75a11877c4ab";
 
 const MapBox = styled.div`
@@ -26,7 +26,7 @@ const MapContainer = styled.div`
   display: flex;
 `;
 
-function Map() {
+function ParkingSpot() {
   useEffect(() => {
     const mapScript = document.createElement("script");
 
@@ -205,4 +205,4 @@ function Map() {
   );
 }
 
-export default Map;
+export default ParkingSpot;
