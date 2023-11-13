@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { Outlet } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+
 const Top = styled.div`
     display: flex;
     flex-direction: row;
@@ -45,10 +46,13 @@ const Home = () => {
         navigate(section);
         setActiveSection(section);
     }
+    const goBack = () => {
+        navigate(-1); 
+      };
     return (
         <div>
             <Top>
-            <Icon></Icon>
+            <Icon onClick={goBack}></Icon>
             <Text>이용가이드</Text>
             </Top>
             <Section>

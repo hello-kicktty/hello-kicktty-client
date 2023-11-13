@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-
+import { Link } from 'react-router-dom';
 const Wrapper=  styled.div`
     display: flex;
     flex-direction: column;
@@ -57,7 +57,7 @@ const SliderXwrapper = styled.div`
   width: 100%;
   scroll-snap-type: x mandatory;
 `;
-const GuideBox = styled.div`
+const GuideBox = styled(Link)`
     width: 141.311px;
     height: 141.311px;
     border-radius: 20px;
@@ -67,6 +67,7 @@ const GuideBox = styled.div`
     display: flex;
     justify-content: center;
     align-items: flex-end;
+    text-decoration: none;
 `
 const GuideboxText = styled.p`
     font-size: 10px;
@@ -82,10 +83,10 @@ const Guide = () => {
                     <GuideText>안전한 주행을 위해 확인해주세요.</GuideText>
                         <SliderXwrapper>
                             <SliderXItems>
-                                <GuideBox><GuideboxText>주행하기</GuideboxText></GuideBox>
-                                <GuideBox><GuideboxText>주차하기</GuideboxText></GuideBox>
-                                <GuideBox><GuideboxText>견인하기</GuideboxText></GuideBox>
-                                <GuideBox><GuideboxText>리워드 안내</GuideboxText></GuideBox>
+                                <GuideBox to="/guide/riding"><GuideboxText>주행하기</GuideboxText></GuideBox>
+                                <GuideBox to="/guide/parking"><GuideboxText>주차하기</GuideboxText></GuideBox>
+                                <GuideBox to="/guide/traction"><GuideboxText>견인하기</GuideboxText></GuideBox>
+                                <GuideBox to="/main"><GuideboxText>리워드 안내</GuideboxText></GuideBox>
                             </SliderXItems>
                         </SliderXwrapper>
                 </Box>
