@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import Profileimg from './img/profile.png';
-import Chart from '../Chart/Chart';
-
+import {Link} from 'react-router-dom';
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 const All = styled.div`
     display: flex;
     flex-direction: column;
@@ -42,8 +42,8 @@ const Top = styled.div`
 const Img = styled.div`
     background-image: url(${Profileimg});
     background-size: cover;
-    width:25px;
-    height:26px;
+    width:21px;
+    height:21px;
 `
 const TextWrapper = styled.div`
     display: flex;
@@ -103,7 +103,7 @@ const Bottom = styled.div`
     gap:20px;
     margin-top: 20px;
 `
-const Rewardbox = styled.div`
+const Rewardbox = styled(Link)`
     width: 145px;
     height: 28px;
     border-radius: 10px;
@@ -113,6 +113,7 @@ const Rewardbox = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    text-decoration: none;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     
 `
@@ -143,11 +144,18 @@ const Profile = () => {
                                 <BlackText1>1500 P</BlackText1>
                             </BlackBox>
                         </Boxcontainer>
-                        <Chart></Chart>
+                        <div style={{ width: 92, height: 92 }}>
+                            <CircularProgressbar value={66} text={'66%'} strokeWidth={15}
+                            styles={buildStyles({
+                                textColor: "black",
+                                pathColor: "#D3FF52",
+                                trailColor: "black"
+                            })}/>
+                        </div>
                     </Midle>
                 <Bottom>
                     <Rewardbox>리워드 혜택보러 가기</Rewardbox>
-                    <Rewardbox>리워드 확인하러 가기</Rewardbox>
+                    <Rewardbox to = '/reward'>리워드 확인하러 가기</Rewardbox>
                 </Bottom>
             </Box>
         </All>

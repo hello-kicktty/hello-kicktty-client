@@ -14,10 +14,23 @@ import Riding from "./page/Guide.jsx/Riding";
 import Parking from "./page/Guide.jsx/Parking";
 import Traction from "./page/Guide.jsx/Traction";
 import ParkingSpot from "./page/ParkingSpot/ParkingSpot";
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({top: 0,behavior : 'auto'});
+  }, [pathname]);
+
+  return null;
+}
 
 function Router() {
   return (
     <BrowserRouter>
+    <ScrollToTop />
       <Routes>
         <Route element={<Layout />}>
           <Route path="/Map" element={<Map />} />

@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Qrimg from './img/qr.png';
+import { Link } from 'react-router-dom';
 const All = styled.div`
     display: flex;
     flex-direction: column;
@@ -18,8 +19,9 @@ const BoxWrapper = styled.div`
     flex-direction: row;
     
 `
-const Box = styled.div`
+const Box = styled(Link)`
     width: 165px;
+    text-decoration: none;
     height: 165px;
     background-color: white;
     border-radius:20px;
@@ -54,8 +56,8 @@ const ScanBox = () => {
             <All>
                 <Title> QR을 스캔 후 주행 견인을 시작하세요.</Title>
                 <BoxWrapper>
-                <Box><Img/><Button>주행하기</Button></Box>
-                <Box><Img/><Button>견인하기</Button></Box>
+                <Box to="/ridingqr"><Img/><Button>주행하기</Button></Box>
+                <Box to="/tractionqr"><Img/><Button>견인하기</Button></Box>
                 </BoxWrapper>
             </All>
         </div>
