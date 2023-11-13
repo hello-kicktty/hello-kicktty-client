@@ -56,9 +56,8 @@ const HomeBtn = styled.button`
 
 const CoinImg = styled.img`
   width: 360px;
-  height: 230px;
-  margin-top: 3rem;
-  margin-bottom: 3rem;
+  height: 300px;
+  margin-top: 1rem;
 `;
 
 // 애니메이션 효과 정의
@@ -121,8 +120,7 @@ const Stars1 = styled.img`
   width: 48px;
   height: 48px;
   position: absolute;
-  top: 121px;
-  left: 5%;
+  transform: translate(-310%, -630%);
   opacity: 0; /* Initially set opacity to 0 */
   animation: ${appearStars} 0.5s ease-out 0.8s forwards;
 `;
@@ -131,8 +129,7 @@ const Stars2 = styled.img`
   width: 48px;
   height: 48px;
   position: absolute;
-  top: 60px;
-  left: 82%;
+  transform: translate(300%, -520%);
   opacity: 0; /* Initially set opacity to 0 */
   animation: ${appearStars} 0.5s ease-out 0.8s forwards;
 `;
