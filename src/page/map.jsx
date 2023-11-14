@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Information from "../Components/KickboardInfo/Information";
 import RidingInfor from "../Components/KickboardInfo/RidingInfor";
 import toast, { Toaster } from "react-hot-toast";
+
 const apiKey = "759cc21177f7d8714e0d75a11877c4ab";
 
 const MapBox = styled.div`
@@ -72,17 +73,26 @@ function Map() {
         ];
 
         // 마커 이미지의 이미지 주소입니다
-        var imageSrc =
-          "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+        var imageSrc = require("./marker.png");
+        var userlocation = require("./userlocation.png");
 
         for (var i = 0; i < positions.length; i++) {
           // 마커 이미지의 이미지 크기 입니다
-          var imageSize = new window.kakao.maps.Size(24, 35);
+          var imageSize = new window.kakao.maps.Size(30.91, 40);
 
           // 마커 이미지를 생성합니다
           var markerImage = new window.kakao.maps.MarkerImage(
             imageSrc,
             imageSize
+          );
+
+          // 마커 이미지의 이미지 크기 입니다
+          var UserimageSize = new window.kakao.maps.Size(40, 40);
+
+          // 유저 위치마커 이미지를 생성합니다
+          var UsermarkerImage = new window.kakao.maps.MarkerImage(
+            userlocation,
+            UserimageSize
           );
 
           // 마커를 생성합니다
@@ -97,6 +107,7 @@ function Map() {
         var marker = new window.kakao.maps.Marker({
           // 지도 중심좌표에 마커를 생성합니다
           position: map.getCenter(),
+          image: UsermarkerImage,
         });
 
         // 마커를 클릭했을 때 마커 위에 표시할 인포윈도우를 생성합니다
@@ -432,8 +443,8 @@ function Map() {
   return (
     <MapBox>
       <MapContainer id="map" />
-      <Information/>
-      </MapBox>
+      <Information />
+    </MapBox>
   );
 }
 
