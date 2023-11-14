@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Information from "../Components/KickboardInfo/Information";
 import RidingInfor from "../Components/KickboardInfo/RidingInfor";
 import toast, { Toaster } from "react-hot-toast";
+
 const apiKey = "759cc21177f7d8714e0d75a11877c4ab";
 
 const MapBox = styled.div`
@@ -72,12 +73,11 @@ function Map() {
         ];
 
         // 마커 이미지의 이미지 주소입니다
-        var imageSrc =
-          "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+        var imageSrc = require("./marker.png");
 
         for (var i = 0; i < positions.length; i++) {
           // 마커 이미지의 이미지 크기 입니다
-          var imageSize = new window.kakao.maps.Size(24, 35);
+          var imageSize = new window.kakao.maps.Size(30.91, 40);
 
           // 마커 이미지를 생성합니다
           var markerImage = new window.kakao.maps.MarkerImage(
@@ -432,8 +432,8 @@ function Map() {
   return (
     <MapBox>
       <MapContainer id="map" />
-      <Information/>
-      </MapBox>
+      <Information />
+    </MapBox>
   );
 }
 
