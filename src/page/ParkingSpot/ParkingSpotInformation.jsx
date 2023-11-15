@@ -32,7 +32,7 @@ const Top = ({
     {selectedLocation}
     <TopToggle onClick={handleAccordionToggle}>
       {" "}
-      <TopToggleImg src={Toggle} />{" "}
+      <TopToggleImg src={Toggle} isAccordionOpen={isAccordionOpen} />{" "}
     </TopToggle>
     {isAccordionOpen && (
       <AccordionContent isAccordionOpen={isAccordionOpen}>
@@ -139,6 +139,9 @@ const TopToggle = styled.div`
 const TopToggleImg = styled.img`
   width: auto;
   height: auto;
+  transition: transform 0.2s ease; // transform 속성에 transition 효과 추가
+  transform: ${(props) =>
+    props.isAccordionOpen ? "rotate(0deg)" : "rotate(180deg)"};
 `;
 
 const Middle = styled.div`
