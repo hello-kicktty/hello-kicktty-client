@@ -230,6 +230,40 @@ function Map() {
           }
         );
 
+        // 다각형을 구성하는 좌표 배열입니다. 이 좌표들을 이어서 다각형을 표시합니다
+        var polygonPath = [
+          new window.kakao.maps.LatLng(37.44530517404025, 126.65925260652892),
+          new window.kakao.maps.LatLng(37.44651469242157, 126.66000427818024),
+          new window.kakao.maps.LatLng(37.446927240459104, 126.66012107084096),
+          new window.kakao.maps.LatLng(37.44698632517772, 126.66030161834878),
+          new window.kakao.maps.LatLng(37.44680349317251, 126.66252872192162),
+          new window.kakao.maps.LatLng(37.44640528757706, 126.66349108185493),
+          new window.kakao.maps.LatLng(37.445269676731115, 126.66575347654735),
+          new window.kakao.maps.LatLng(37.4433459033457, 126.66412347940455),
+          new window.kakao.maps.LatLng(37.443495052892274, 126.66350129063738),
+          new window.kakao.maps.LatLng(37.44384519506977, 126.66306182998811),
+          new window.kakao.maps.LatLng(37.44389407327951, 126.66282430112803),
+          new window.kakao.maps.LatLng(37.444493380676285, 126.66129603739688),
+          new window.kakao.maps.LatLng(37.44473037072315, 126.66067626198775),
+          new window.kakao.maps.LatLng(37.44487390578653, 126.66045807706557),
+          new window.kakao.maps.LatLng(37.444967584982074, 126.6601355860088),
+          new window.kakao.maps.LatLng(37.44515802305834, 126.65977875410422),
+        ];
+
+        // 지도에 표시할 다각형을 생성합니다
+        var polygon = new window.kakao.maps.Polygon({
+          path: polygonPath, // 그려질 다각형의 좌표 배열입니다
+          strokeWeight: 3, // 선의 두께입니다
+          strokeColor: "#39DE2A", // 선의 색깔입니다
+          strokeOpacity: 0.8, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+          strokeStyle: "longdash", // 선의 스타일입니다
+          fillColor: "#A2FF99", // 채우기 색깔입니다
+          fillOpacity: 0.7, // 채우기 불투명도 입니다
+        });
+
+        // 지도에 다각형을 표시합니다
+        polygon.setMap(map);
+
         // 지도에 마우스 오른쪽 클릭이벤트를 등록합니다
         // 원을 그리고있는 상태에서 마우스 오른쪽 클릭 이벤트가 발생하면
         // 마우스 오른쪽 클릭한 위치를 기준으로 원과 원의 반경정보를 표시하는 선과 커스텀 오버레이를 표시하고 그리기를 종료합니다
