@@ -22,10 +22,14 @@ const Box = styled.div`
   align-items: center;
 `;
 
-/* eslint-disable no-undef */
-const Top = ({ isAccordionOpen, handleAccordionToggle }) => (
+const Top = ({
+  isAccordionOpen,
+  handleAccordionToggle,
+  selectedLocation,
+  handleAccordionItemClick,
+}) => (
   <StyledTop isAccordionOpen={isAccordionOpen}>
-    추천 주차지 선택하기
+    {selectedLocation}
     <TopToggle onClick={handleAccordionToggle}>
       {" "}
       <TopToggleImg src={Toggle} />{" "}
@@ -220,9 +224,17 @@ const LineImg = styled.img`
 
 const ParkingSpotInformation = () => {
   const [isAccordionOpen, setIsAccordionOpen] = useState(false);
+  const [selectedLocation, setSelectedLocation] =
+    useState("추천 주차지 선택하기");
 
   const handleAccordionToggle = () => {
     setIsAccordionOpen(!isAccordionOpen);
+  };
+
+  const handleAccordionItemClick = (location) => {
+    setSelectedLocation(location);
+    setIsAccordionOpen(false); // close the accordion after selecting a location
+    // Perform any additional actions if needed
   };
 
   return (
@@ -231,6 +243,8 @@ const ParkingSpotInformation = () => {
         <Top
           isAccordionOpen={isAccordionOpen}
           handleAccordionToggle={handleAccordionToggle}
+          selectedLocation={selectedLocation}
+          handleAccordionItemClick={handleAccordionItemClick}
         />
         <Middle>
           <WhiteBox>
