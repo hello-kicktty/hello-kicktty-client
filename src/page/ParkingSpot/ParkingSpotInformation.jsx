@@ -155,6 +155,7 @@ const Middle = styled.div`
   top: 6rem;
   background-color: white;
   border-radius: 10px;
+  display: none;
 `;
 const WhiteBox = styled.div`
   width: fit-content;
