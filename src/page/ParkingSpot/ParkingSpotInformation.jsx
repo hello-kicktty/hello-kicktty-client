@@ -253,7 +253,10 @@ const ParkingSpotInformation = () => {
           <LineImg src={Line} />
           <WhiteBox>
             <InnerBox2>현위치</InnerBox2>{" "}
-            <InnerBox2> 인하대 비룡플라자</InnerBox2>
+            <InnerBox2 selectedLocation={selectedLocation}>
+              {" "}
+              {selectedLocation}
+            </InnerBox2>
           </WhiteBox>
         </Middle>
         <Box2>
