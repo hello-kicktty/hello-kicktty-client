@@ -54,23 +54,22 @@ function Map() {
 
         var circles = []; // 클릭으로 그려진 원과 반경 정보를 표시하는 선과 커스텀오버레이를 가지고 있을 배열입니다
 
-        // 마커를 표시할 위치와 title 객체 배열입니다
-        var positions = [
-          {
-            title: "인하안경",
+        var positions = [];
+
+        for (var i = 1; i <= 181; i++) {
+          var position = {
+            title: "id_" + i,
             latlng: new window.kakao.maps.LatLng(
-              37.45088642579393,
-              126.65829774165455
+              37.449091065967444,
+              126.65208740066505
             ),
-          },
-          {
-            title: "인하안경2",
-            latlng: new window.kakao.maps.LatLng(
-              37.45109669691925,
-              126.65779104112308
-            ),
-          },
-        ];
+          };
+
+          positions.push(position);
+        }
+
+        // 이제 'positions' 배열에는 36부터 181까지의 id를 갖는 객체가 들어 있습니다.
+        console.log(positions);
 
         // 마커 이미지의 이미지 주소입니다
         var imageSrc = require("./marker.png");
