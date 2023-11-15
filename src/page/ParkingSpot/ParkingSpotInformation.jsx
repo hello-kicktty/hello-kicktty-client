@@ -83,6 +83,9 @@ const AccordionInnerEach = styled.div`
   background-color: #f0f0f0;
   align-items: center;
   cursor: pointer;
+  &:hover {
+    background-color: #d3ff52; // 마우스 호버 시 변경될 배경색
+  }
 `;
 
 const StyledTop = styled.div`
