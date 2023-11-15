@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import minimap from "./minimap.png";
+import { useNavigate } from "react-router-dom";
 
 const MiniMapContainer = styled.div`
   display: flex;
@@ -12,14 +13,20 @@ const MiniMapContainer = styled.div`
   font-weight: bold;
   margin-top: 38px;
   margin-left: -10px;
-  background: linear-gradient(180deg, rgba(211, 255, 82, 0.00) 0%, #D3FF52 22.92%, rgba(211, 255, 82, 0.63) 69.79%, rgba(211, 255, 82, 0.00) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(211, 255, 82, 0) 0%,
+    #d3ff52 22.92%,
+    rgba(211, 255, 82, 0.63) 69.79%,
+    rgba(211, 255, 82, 0) 100%
+  );
 `;
 const TextWrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin-right: auto;
-    margin-left: 15px;
-`
+  margin-left: 15px;
+`;
 const MiniMapText1 = styled.p`
   display: flex;
   font-size: 15px;
@@ -44,6 +51,8 @@ const MiniMapBox = styled.div`
 `;
 
 const MiniMap = (props) => {
+  const navigate = useNavigate();
+
   return (
     <>
       <MiniMapContainer>
@@ -51,7 +60,12 @@ const MiniMap = (props) => {
           <MiniMapText1>주차구역 확인하고 킥보드 찾기</MiniMapText1>
           <MiniMapText>{props.text}</MiniMapText>
         </TextWrapper>
-        <MiniMapBox boxColor={props.boxColor}></MiniMapBox>
+        <MiniMapBox
+          boxColor={props.boxColor}
+          onClick={() => {
+            navigate("/map");
+          }}
+        ></MiniMapBox>
       </MiniMapContainer>
     </>
   );
