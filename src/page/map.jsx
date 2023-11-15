@@ -254,10 +254,10 @@ function Map() {
         var polygon = new window.kakao.maps.Polygon({
           path: polygonPath, // 그려질 다각형의 좌표 배열입니다
           strokeWeight: 3, // 선의 두께입니다
-          strokeColor: "#39DE2A", // 선의 색깔입니다
+          strokeColor: "#F6B0A8", // 선의 색깔입니다
           strokeOpacity: 0.8, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
           strokeStyle: "longdash", // 선의 스타일입니다
-          fillColor: "#A2FF99", // 채우기 색깔입니다
+          fillColor: "#F6B0A8", // 채우기 색깔입니다
           fillOpacity: 0.7, // 채우기 불투명도 입니다
         });
 
