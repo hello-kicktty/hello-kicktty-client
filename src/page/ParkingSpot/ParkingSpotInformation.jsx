@@ -149,18 +149,19 @@ const Middle = styled.div`
   flex-direction: row;
   font-size: 12px;
   font-weight: bold;
+  width: 350px;
+  height: 180px;
   gap: 27px;
-  position: absolute;
   top: 6rem;
-  right: 2rem;
+  background-color: white;
+  border-radius: 10px;
 `;
 const WhiteBox = styled.div`
   width: fit-content;
-  height: 32px;
   border-radius: 10px;
   text-align: center;
   line-height: 32px;
-  margin-left: -10px;
+  margin-left: 15px;
 `;
 const Buttonbox3 = styled.div`
   display: flex;
@@ -179,7 +180,7 @@ const Buttonbox3 = styled.div`
   font-size: 17px;
   font-weight: bold;
   position: absolute;
-  top: 17rem;
+  top: 18rem;
 `;
 const Box2 = styled.div`
   width: 350px;
@@ -205,27 +206,77 @@ const Text1 = styled.p`
 const InnerBox1 = styled.div`
   display: flex;
   background-color: #d3ff52;
+  background-color: ${(props) => props.color};
+  color: ${(props) => props.fontcolor};
+
   width: 86px;
   height: 32px;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: ${(props) => props.margintop};
+
+  border-radius: 10px;
 `;
 
 const InnerBox2 = styled.div`
   display: flex;
   background-color: #d3ff52;
-  width: 185px;
+  background-color: ${(props) => props.color};
+  border-radius: 10px;
+  width: 170px;
   height: 32px;
-  padding-left: 30px;
-  margin-top: 20px;
+  color: ${(props) => props.fontcolor};
+  padding-left: 15px;
+  margin-top: ${(props) => props.margintop};
 `;
 
 const LineImg = styled.img`
   width: auto;
-  height: auto;
+  height: 50px;
   position: absolute;
-  top: 3.5rem;
+  transform: translate(1500%, 150%) rotate(1.3deg);
+  top: 5.5rem;
   left: 2rem;
+  z-index: 50;
+`;
+
+const InformBox = styled.div`
+  display: flex;
+  width: 190px;
+  height: 22px;
+  background-color: #f0f0f0;
+  position: absolute;
+  border-radius: 10px;
+  transform: translate(75%, 390%);
+  justify-content: space-evenly;
+  align-items: center;
+`;
+
+const InformInner = styled.div`
+  display: flex;
+  width: 69px;
+  height: 12px;
+  font-size: 8.5px;
+`;
+
+const AddressBox1 = styled.div`
+  display: flex;
+  width: fit-content;
+  height: fit-content;
+  position: absolute;
+  color: #6b8f00;
+  font-size: x-small;
+  transform: translate(0%, -15%);
+`;
+
+const AddressBox2 = styled.div`
+  display: flex;
+  width: fit-content;
+  height: fit-content;
+  position: absolute;
+  color: #648700;
+  font-size: x-small;
+
+  transform: translate(0%, -15%);
 `;
 
 const ParkingSpotInformation = () => {
@@ -254,18 +305,31 @@ const ParkingSpotInformation = () => {
         />
         <Middle>
           <WhiteBox>
-            <InnerBox1>출발</InnerBox1> <InnerBox1>도착</InnerBox1>
+            <InnerBox1 margintop="20px">출발</InnerBox1> <LineImg src={Line} />
+            <InnerBox1 margintop="70px" color="#648700" fontcolor="white">
+              도착
+            </InnerBox1>
           </WhiteBox>
-          <LineImg src={Line} />
+          <InformBox>
+            <InformInner>견인거리 | 467m</InformInner>
+            <InformInner>소요시간 | 8m</InformInner>
+          </InformBox>
           <WhiteBox>
-            <InnerBox2>현위치</InnerBox2>{" "}
-            <InnerBox2 selectedLocation={selectedLocation}>
+            <InnerBox2 margintop="20px">현위치</InnerBox2>{" "}
+            <AddressBox1>인천광역시 미추홀구 인하로 100 인하대학교</AddressBox1>
+            <InnerBox2
+              margintop="70px"
+              selectedLocation={selectedLocation}
+              color="#648700"
+              fontcolor="white"
+            >
               {" "}
               {selectedLocation}
             </InnerBox2>
+            <AddressBox2>인천광역시 미추홀구 인하로 100 인하대학교</AddressBox2>
           </WhiteBox>
         </Middle>
-        <Box2>
+        {/* <Box2>
           <Text1>시간</Text1>
           <Text1>1분</Text1>
           <Text1>
@@ -273,8 +337,8 @@ const ParkingSpotInformation = () => {
           </Text1>
           <Text1>거리</Text1>
           <Text1>1km</Text1>
-        </Box2>
-        <Buttonbox3>견인 시작하기</Buttonbox3>
+        </Box2> */}
+        <Buttonbox3>견인하기</Buttonbox3>
       </Box>
     </>
   );
