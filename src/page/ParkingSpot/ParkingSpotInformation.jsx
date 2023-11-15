@@ -219,13 +219,6 @@ const LineImg = styled.img`
 `;
 
 const ParkingSpotInformation = () => {
-  const [selectedLocation, setSelectedLocation] =
-    useState("추천 주차지 선택하기");
-
-  const handleAccordionItemClick = (location) => {
-    setSelectedLocation(location);
-    // Perform any additional actions if needed
-  };
   const [isAccordionOpen, setIsAccordionOpen] = useState(false);
 
   const handleAccordionToggle = () => {
