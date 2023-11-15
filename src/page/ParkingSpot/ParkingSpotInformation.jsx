@@ -33,14 +33,53 @@ const Top = ({ isAccordionOpen, handleAccordionToggle }) => (
     {isAccordionOpen && (
       <AccordionContent isAccordionOpen={isAccordionOpen}>
         {/* 아코디언 내용 */}
-        <div>구역 A</div>
-        <div>구역 B</div>
-        <div>구역 C</div>
-        <div>구역 D</div>
+        <AccordionInner>
+          <AccordionInnerEach
+            onClick={() => handleAccordionItemClick("인하대 본관")}
+          >
+            인하대 본관
+          </AccordionInnerEach>
+          <AccordionInnerEach
+            onClick={() => handleAccordionItemClick("인하대 5호관 남")}
+          >
+            인하대 5호관 남
+          </AccordionInnerEach>
+          <AccordionInnerEach
+            onClick={() => handleAccordionItemClick("인하대 서호관")}
+          >
+            인하대 서호관
+          </AccordionInnerEach>
+          <AccordionInnerEach
+            onClick={() => handleAccordionItemClick("인하대 하이테크관")}
+          >
+            인하대 하이테크관
+          </AccordionInnerEach>
+        </AccordionInner>
       </AccordionContent>
     )}
   </StyledTop>
 );
+
+const AccordionInner = styled.div`
+  display: flex;
+  width: 308px;
+  height: 145px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+`;
+
+const AccordionInnerEach = styled.div`
+  display: flex;
+  font-size: 12px;
+  justify-content: center;
+  width: 287px;
+  height: 29px;
+  border-radius: 10px;
+  background-color: #f0f0f0;
+  align-items: center;
+  cursor: pointer;
+`;
 
 const StyledTop = styled.div`
   display: flex;
@@ -66,14 +105,13 @@ const StyledTop = styled.div`
 const AccordionContent = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 10px;
   gap: 10px;
   font-size: 13px;
-  background-color: wheat;
+  background-color: white;
   position: absolute;
-  top: -6rem;
-  right: 0.5rem;
-  height: ${(props) => (props.isAccordionOpen ? "100px" : "0")};
+  top: -10rem;
+  right: 3rem;
+  height: 145px;
   overflow: hidden;
   opacity: ${(props) => (props.isAccordionOpen ? "1" : "0")};
   transition: height 1s ease, opacity 1s ease;
@@ -181,6 +219,13 @@ const LineImg = styled.img`
 `;
 
 const ParkingSpotInformation = () => {
+  const [selectedLocation, setSelectedLocation] =
+    useState("추천 주차지 선택하기");
+
+  const handleAccordionItemClick = (location) => {
+    setSelectedLocation(location);
+    // Perform any additional actions if needed
+  };
   const [isAccordionOpen, setIsAccordionOpen] = useState(false);
 
   const handleAccordionToggle = () => {
