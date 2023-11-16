@@ -3,9 +3,9 @@ import styled from "styled-components";
 import Toggle from "./toggle.png";
 import Line from "./line.png";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
-const BoxContainer = styled.div`
+const Box = styled.div`
   border-radius: 50px 50px 0px 0px;
   background: #f0f0f0;
   box-shadow: 0px 0px 70px 0px rgba(0, 0, 0, 0.25);
@@ -20,11 +20,6 @@ const BoxContainer = styled.div`
   justify-content: space-evenly;
   flex-direction: column;
   align-items: center;
-  overflow-y: auto; /* 스크롤이 필요한 경우에만 스크롤 표시 */
-
-  /* 옵션으로, 슬라이드 방향을 감지하기 위해 "onScroll" 이벤트를 사용할 수 있습니다.
-     그리고 주어진 onSlide 콜백을 호출합니다. */
-  overflow-anchor: none; /* Firefox에서 스크롤 이벤트 발생을 감지하기 위한 설정 */
 `;
 
 const Top = ({
@@ -150,14 +145,7 @@ const TopToggleImg = styled.img`
 `;
 
 const Middle = styled.div`
-  display: ${(props) => (props.isVisible ? "flex" : "none")};
   display: flex;
-  // 추가: visibility 속성을 사용하여 투명도 조절
-  visibility: ${(props) => (props.isVisible ? "visible" : "hidden")};
-  // 추가: transition 효과를 추가하여 부드러운 애니메이션
-  transition: visibility 0.3s ease, opacity 0.3s ease;
-  // 추가: 투명도를 0 또는 1로 설정
-  opacity: ${(props) => (props.isVisible ? 1 : 0)};
   flex-direction: row;
   font-size: 12px;
   font-weight: bold;
@@ -295,7 +283,6 @@ const ParkingSpotInformation = () => {
   const [isAccordionOpen, setIsAccordionOpen] = useState(false);
   const [selectedLocation, setSelectedLocation] =
     useState("추천 주차지 선택하기");
-  const [isMiddleVisible, setIsMiddleVisible] = useState(false);
 
   const handleAccordionToggle = () => {
     setIsAccordionOpen(!isAccordionOpen);
@@ -303,25 +290,20 @@ const ParkingSpotInformation = () => {
 
   const handleAccordionItemClick = (location) => {
     setSelectedLocation(location);
-    setIsAccordionOpen(false);
-  };
-
-  const handleBoxScroll = (e) => {
-    const isSlidUp = e.currentTarget.scrollTop < e.currentTarget.lastScrollTop;
-    setIsMiddleVisible(isSlidUp);
-    e.currentTarget.lastScrollTop = e.currentTarget.scrollTop;
+    setIsAccordionOpen(false); // close the accordion after selecting a location
+    // Perform any additional actions if needed
   };
 
   return (
     <>
-      <BoxContainer onScroll={handleBoxScroll}>
+      <Box>
         <Top
           isAccordionOpen={isAccordionOpen}
           handleAccordionToggle={handleAccordionToggle}
           selectedLocation={selectedLocation}
           handleAccordionItemClick={handleAccordionItemClick}
         />
-        <Middle isVisible={isMiddleVisible}>
+        <Middle>
           <WhiteBox>
             <InnerBox1 margintop="20px">출발</InnerBox1> <LineImg src={Line} />
             <InnerBox1 margintop="70px" color="#648700" fontcolor="white">
@@ -357,7 +339,7 @@ const ParkingSpotInformation = () => {
           <Text1>1km</Text1>
         </Box2> */}
         <Buttonbox3>견인하기</Buttonbox3>
-      </BoxContainer>
+      </Box>
     </>
   );
 };
