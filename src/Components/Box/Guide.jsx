@@ -1,20 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import Img from './img/메이커톤 이용가이드-01 1.png';
+import Img1 from './img/Mask group.png';
+import Img2 from './img/메이커톤 이용가이드-03 1.png';
+import Img4 from './img/123.png';
+
+
 const Wrapper=  styled.div`
     display: flex;
     flex-direction: column;
-    margin-top: 43px;
-    margin-left: -15px;
-
-`
-const TopText = styled.p`
-        color: #000;
-        font-size: 12px;
-        font-weight: 600;
+    margin-left: -193px;
+    margin-top: 3px;
 `
 const Box = styled.div`
-    width: 105%;
+    width: 200%;
     height: 247px;
     border-radius: 20px;
     background: #D3FF52;
@@ -24,6 +24,7 @@ const Box = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+   
 `
 const GuideText = styled.p`
     color: #000;
@@ -70,28 +71,52 @@ const GuideBox = styled(Link)`
     text-decoration: none;
 `
 const GuideboxText = styled.p`
-    font-size: 10px;
+    font-size: 12px;
     font-weight: bold;
     margin-bottom: 10%;
 `
 const Guide = () => {
     return (
-        <div>
+        <>
             <Wrapper>
                 <Box>
                     <GuideText1>헬로킥티 이용 가이드</GuideText1>
                     <GuideText>안전한 주행을 위해 확인해주세요.</GuideText>
                         <SliderXwrapper>
                             <SliderXItems>
-                                <GuideBox to="/guide/riding"><GuideboxText>주행하기</GuideboxText></GuideBox>
-                                <GuideBox to="/guide/parking"><GuideboxText>주차하기</GuideboxText></GuideBox>
-                                <GuideBox to="/guide/traction"><GuideboxText>견인하기</GuideboxText></GuideBox>
-                                <GuideBox to="/main"><GuideboxText>리워드 안내</GuideboxText></GuideBox>
+                            <GuideBox to="/guide/riding" style={{ 
+  backgroundImage: `url(${Img4})`,
+  backgroundSize: "cover"
+}}>
+  <GuideboxText>리워드 안내</GuideboxText>
+</GuideBox>
+
+<GuideBox to="/guide/parking" style={{ 
+  backgroundImage: `url(${Img1})`,
+  backgroundSize: "cover"
+}}>
+  <GuideboxText>주차하기</GuideboxText>
+</GuideBox>
+
+<GuideBox to="/guide/traction" style={{ 
+  backgroundImage: `url(${Img2})`,
+  backgroundSize: "cover"
+}}>
+  <GuideboxText>견인하기</GuideboxText>
+</GuideBox>
+
+<GuideBox to="/main" style={{ 
+  backgroundImage: `url(${Img})`,
+  backgroundSize: "cover"
+}}>
+  <GuideboxText>주행하기</GuideboxText>
+</GuideBox>
+
                             </SliderXItems>
                         </SliderXwrapper>
                 </Box>
             </Wrapper>
-        </div>
+        </>
     );
 };
 

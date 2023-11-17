@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import jsQR from "jsqr";
 import './QRcode.css'
 function QRCodeScanner() {
+  const navigate = useNavigate();
   useEffect(() => {
     const video = document.createElement('video');
     const canvasElement = document.getElementById('canvas');
@@ -57,6 +59,9 @@ function QRCodeScanner() {
           outputData.parentElement.hidden = false;
 
           outputData.innerHTML = code.data;
+          navigate('/map');
+          localStorage.setItem('Kickid', code.data);
+
         } else {
           outputMessage.hidden = false;
           outputData.parentElement.hidden = true;
@@ -65,7 +70,7 @@ function QRCodeScanner() {
 
       requestAnimationFrame(tick);
     }
-  }, []);
+  }, [navigate]);
 
   return (
     <div>

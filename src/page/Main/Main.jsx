@@ -11,14 +11,14 @@ import Footer from '../../Components/main/Footer';
 
 const Main = () => {
     return (
-        <div>
+        <>
           <Header/>
             <MiniMap text="가까운 전동 킥보드를 찾아보세요"></MiniMap>
             <ScanBox/>
             <Profile/>
             <Guide/>
             <Footer/>
-        </div>
+        </>
     );
     }
 export default Main;

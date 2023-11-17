@@ -3,6 +3,10 @@ import styled from "styled-components";
 import Information from "../Components/KickboardInfo/Information";
 import RidingInfor from "../Components/KickboardInfo/RidingInfor";
 import toast, { Toaster } from "react-hot-toast";
+import { useState } from "react";
+import FirstInfo from "../Components/KickboardInfo/FirstInfo";
+import * as api from "../Api";
+import axios from "axios";
 
 const apiKey = "759cc21177f7d8714e0d75a11877c4ab";
 
@@ -28,7 +32,24 @@ const MapContainer = styled.div`
 `;
 
 function Map() {
+  const [Info,setInfo] = useState(false);
+  const [kickId, setKickId] = useState('');
+  const [data, setData] = useState([]);
+  const getData = async () => {
+    const data = await api.getKickList();
+    console.log(data);
+    setData(data);
+  };
+
   useEffect(() => {
+    getData();
+  }, []);
+  useEffect(() => {
+    const storedKickId = localStorage.getItem('Kickid');
+    if (storedKickId) {
+      setInfo(true);
+      setKickId(storedKickId);
+    }
     const mapScript = document.createElement("script");
 
     mapScript.async = true;
@@ -469,15 +490,19 @@ function Map() {
         // 컴포넌트 언마운트 시 이벤트 리스너 제거
         return () => {
           mapContainer.removeEventListener("wheel", handleMouseWheel);
+          localStorage.removeItem('Kickid');
         };
       });
     };
+
+    
     mapScript.addEventListener("load", onLoadKakaoMap);
   }, []);
   return (
     <MapBox>
       <MapContainer id="map" />
-      <Information />
+      {Info && <Information Title={kickId}/>}
+      <FirstInfo></FirstInfo>
     </MapBox>
   );
 }

@@ -4,15 +4,15 @@ import minimap from "./minimap.png";
 import { useNavigate } from "react-router-dom";
 
 const MiniMapContainer = styled.div`
+z-index:2;
   display: flex;
-  width: 105%;
+  width: 100%;
   height: 330px;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   font-weight: bold;
-  margin-top: 38px;
-  margin-left: -10px;
+  margin-top: 105px;
   background: linear-gradient(
     180deg,
     rgba(211, 255, 82, 0) 0%,
@@ -32,11 +32,13 @@ const MiniMapText1 = styled.p`
   font-size: 15px;
   font-weight: bold;
   margin-bottom: 10px;
+  margin-left: 7px;
 `;
 const MiniMapText = styled.p`
   font-size: 10px;
   font-weight: bold;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+  margin-left: 7px;
 `;
 
 const MiniMapBox = styled.div`
@@ -46,8 +48,8 @@ const MiniMapBox = styled.div`
     props.boxColor ? props.boxColor : "#ffffff;"};
   border-radius: 1.5rem;
   background-image: url(${minimap});
-  background-size: cover;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  background-position: center;
+	background-repeat: no-repeat;
 `;
 
 const MiniMap = (props) => {

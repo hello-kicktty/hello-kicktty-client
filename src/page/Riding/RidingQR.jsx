@@ -123,7 +123,7 @@ const RidingQR = (props) => {
         <BtnBox>
           <BackBtn
             onClick={() => {
-              navigate(-1);
+              navigate('/main');
             }}
           >
             돌아가기

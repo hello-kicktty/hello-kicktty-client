@@ -132,7 +132,7 @@ const Img = styled.div`
     width:64px;
     height:64px;
 `
-const Information = () => {
+const Information = (props) => {
     let [btnActive, setBtnActive] = useState("");
     let [btnActive1, setBtnActive1] = useState("");
     const data = ['분당 요금제', '거리 우선 요금제'];
@@ -162,7 +162,7 @@ const Information = () => {
         </div>
             <KickboardInfo>
                 <KickboardText1>Max Pro</KickboardText1>
-                <KickboardText2>234125</KickboardText2>
+                <KickboardText2>{props.Title}</KickboardText2>
                 <KickboardText2>약 <span>24km</span>주행할 수 있어요!</KickboardText2>
             </KickboardInfo>
             <Img/>

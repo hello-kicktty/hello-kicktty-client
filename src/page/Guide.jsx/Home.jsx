@@ -41,13 +41,13 @@ const SectionText = styled.div`
 `
 const Home = () => {
     const navigate = useNavigate();
-    const [activeSection, setActiveSection] = useState(null);
+    const [activeSection, setActiveSection] = useState('Riding');
     const handleSectionClick = (section) => {
         navigate(section);
         setActiveSection(section);
     }
     const goBack = () => {
-        navigate(-1); 
+        navigate('/main'); 
       };
     return (
         <div>
@@ -56,16 +56,16 @@ const Home = () => {
             <Text>이용가이드</Text>
             </Top>
             <Section>
-                <SectionBox active={activeSection === 'Riding'} onClick={() => handleSectionClick('Riding')}>
-                    <SectionText>주행하기</SectionText>
-                    <hr/>
-                </SectionBox>
                 <SectionBox active={activeSection === 'Parking'} onClick={() => handleSectionClick('Parking')}>
                     <SectionText>주차하기</SectionText>
                     <hr/>
                 </SectionBox>
                 <SectionBox active={activeSection === 'Traction'} onClick={() => handleSectionClick('Traction')}>
                     <SectionText>견인하기</SectionText>
+                    <hr/>
+                </SectionBox>
+                <SectionBox active={activeSection === 'Riding'} onClick={() => handleSectionClick('Riding')}>
+                    <SectionText>리워드안내</SectionText>
                     <hr/>
                 </SectionBox>
             </Section>

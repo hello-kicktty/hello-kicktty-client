@@ -5,37 +5,38 @@ import { AiOutlineSearch } from "react-icons/ai";
 import { FiBell } from "react-icons/fi";
 import { AiOutlineMenu } from "react-icons/ai";
 import { filterProps } from "framer-motion";
+import { ReactComponent as Logo } from "../KickboardInfo/Assets/로고.svg"
+import { ReactComponent as Logo2 } from "../KickboardInfo/Assets/상단 바.svg"
 
 const HeaderBox = styled.div`
-  width: 100%;
-  height: fit-content;
+  width: 390px;
+  height: 100px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 15px;
+  // margin-top: 15px;
+  position: absolute;
+  z-index:1;
+  padding-top:20px;
+  padding-bottom: 100px;
+  // padding: 30px 10px;
+  background-color: #fff;
+
 `;
 
 const LeftBox = styled.div`
   display: flex;
   align-items: center;
+  margin-left: 21px;
 `;
 
-const Logo = styled.img`
-  background-color: #d9d9d9;
-  width: 2rem;
-  height: 2rem;
-`;
 
-const UserName = styled.p`
-  font-weight: bold;
-  margin-left: 1rem;
-`;
-
-const IconBox = styled.div`
+const RightBox = styled.div`
   display: flex;
-  width: 35%;
-  justify-content: space-evenly;
+  align-items: center;
+  margin-right: 21px;
 `;
+
 
 const Header = (props) => {
   return (
@@ -43,13 +44,10 @@ const Header = (props) => {
       <HeaderBox>
         <LeftBox>
           <Logo />
-          <UserName>Hello Kicktty</UserName>
         </LeftBox>
-        <IconBox>
-          <AiOutlineSearch size={30} />
-          <FiBell size={30} />
-          <AiOutlineMenu size={30} />
-        </IconBox>
+        <RightBox>
+          <Logo2/>
+          </RightBox>
       </HeaderBox>
     </>
   );

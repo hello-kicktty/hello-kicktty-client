@@ -7,9 +7,7 @@ const Background = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  @media (max-width: 770px) {
-    width: 100%;
-  }
+
   overflow-y: hidden;
   overflow-x: hidden;
 `;

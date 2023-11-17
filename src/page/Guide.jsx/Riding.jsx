@@ -28,8 +28,8 @@ const Riding = () => {
     return (
         <div>
             <All>
-                <Box>주행하기</Box>
-                <StyledIcon />
+                <Box>리워드 안내</Box>
+                <StyledIcon/>
             </All>
         </div>
     );

@@ -1,6 +1,5 @@
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
-import toast, { Toaster } from "react-hot-toast";
 const GlobalStyle = createGlobalStyle`
   ${reset}
 
@@ -18,7 +17,7 @@ const GlobalStyle = createGlobalStyle`
     }
     
     ::-webkit-scrollbar-thumb {
-      background: #ec7538;
+      background: #D3FF52;
       -webkit-border-radius: 3ex;
     }
     ::-webkit-scrollbar-corner {
@@ -38,8 +37,9 @@ const GlobalStyle = createGlobalStyle`
       background-image: url('/img/LogoBack5.jpg');
       background-size: auto;
       background-repeat: repeat;
-      background-color: none;
+      background-color: white !important;
       justify-content: center;
+      overscroll-behavior: contain;
       display: flex;
       margin: 0;
       padding: 0;

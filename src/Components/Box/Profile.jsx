@@ -7,13 +7,12 @@ const All = styled.div`
     display: flex;
     flex-direction: column;
     margin-top: 40px;
-    width: 105%;
+    width: 100%;
     height: 304px;
     background-color: white;
     border-radius: 30px;
     justify-content: center;
     align-items: center;
-    margin-left: -10px;
     
 `
 const Box = styled.div`
@@ -30,8 +29,9 @@ const Box = styled.div`
 `
 const Title = styled.p`
     font-size: 15px;
-    font-weight: 600;
+    font-weight: 800;
     margin-bottom: 5px;
+    margin-left: 5px;
 `
 const Top = styled.div`
     display: flex;
@@ -80,21 +80,21 @@ const BlackBox = styled.div`
     width: 201px;
     height: 24px;
     border-radius: 10px;
-    background: #000;
+    background: #4A6300;;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     margin-top: 12px;
 `
 const BlackText = styled.p`
-    font-size: 10px;
-    font-weight: bold;
+    font-size: 12px;
+    font-weight: 600;
     color: #FFF;
 `
 const BlackText1 = styled.p`
-    font-size: 10px;
-    font-weight: bold;
+    font-size: 12px;
+    font-weight: 500;
     color: #FFF;
 `
 const Bottom = styled.div`
@@ -108,12 +108,13 @@ const Rewardbox = styled(Link)`
     height: 28px;
     border-radius: 10px;
     background: #D3FF52;
-    font-size: 10px;
-    font-weight: bold;
+    font-size: 12px;
+    font-weight: 500;
     display: flex;
     align-items: center;
     justify-content: center;
     text-decoration: none;
+    color: black;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     
 `
@@ -154,8 +155,8 @@ const Profile = () => {
                         </div>
                     </Midle>
                 <Bottom>
-                    <Rewardbox>리워드 혜택보러 가기</Rewardbox>
-                    <Rewardbox to = '/reward'>리워드 확인하러 가기</Rewardbox>
+                    <Rewardbox to = '/reward'>리워드 적립 내역 보기</Rewardbox>
+                    <Rewardbox to = '/reward'>리워드 사용 내역 보기</Rewardbox>
                 </Bottom>
             </Box>
         </All>
