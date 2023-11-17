@@ -74,7 +74,7 @@ function Map() {
         var drawingLine; // 그려지고 있는 원의 반지름을 표시할 선 객체입니다
         var drawingOverlay; // 그려지고 있는 원의 반경을 표시할 커스텀오버레이 입니다
         var drawingDot; // 그려지고 있는 원의 중심점을 표시할 커스텀오버레이 입니다
-        console.log(data.kickboards);
+
         var circles = []; // 클릭으로 그려진 원과 반경 정보를 표시하는 선과 커스텀오버레이를 가지고 있을 배열입니다
 
         var positions = [];
