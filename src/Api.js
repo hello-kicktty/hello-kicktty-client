@@ -17,3 +17,7 @@ export function getKickList() {
 
     return axios.post(`${BASE_URL}/kickboards`, data).then((res) => console.log(res.data));
   }
+
+export function borrowKick(id) {
+    return axios.delete(`${BASE_URL}/kickboards/${id}`).then((res) => res.data);
+}

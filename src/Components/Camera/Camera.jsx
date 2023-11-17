@@ -1,9 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import jsQR from "jsqr";
 import './QRcode.css'
+
+// Delete Method
+import * as api from "../../Api";
+
+
 function QRCodeScanner() {
   const navigate = useNavigate();
+
   useEffect(() => {
     const video = document.createElement('video');
     const canvasElement = document.getElementById('canvas');
@@ -12,6 +18,14 @@ function QRCodeScanner() {
     const outputContainer = document.getElementById('output');
     const outputMessage = document.getElementById('outputMessage');
     const outputData = document.getElementById('outputData');
+
+    
+    // Delete Method
+    const handleDelete = async (kickId) => {
+      const response = await api.borrowKick(kickId);
+      console.log(response);
+    };
+
 
     function drawLine(begin, end, color) {
       canvas.beginPath();
@@ -59,8 +73,15 @@ function QRCodeScanner() {
           outputData.parentElement.hidden = false;
 
           outputData.innerHTML = code.data;
+          console.log(code.data)
           navigate('/map');
           localStorage.setItem('Kickid', code.data);
+          
+          // Delete Method 실행
+          handleDelete(code.data);
+          
+
+
 
         } else {
           outputMessage.hidden = false;

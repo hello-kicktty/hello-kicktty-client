@@ -32,22 +32,21 @@ const MapContainer = styled.div`
 `;
 
 function Map() {
-  const [Info,setInfo] = useState(false);
-  const [kickId, setKickId] = useState('');
-  const [data, setData] = useState([])
+  const [Info, setInfo] = useState(false);
+  const [kickId, setKickId] = useState("");
+  const [data, setData] = useState([]);
 
   const getData = async () => {
     const data = await api.getKickList();
     console.log(data);
     setData(data);
-
   };
 
   useEffect(() => {
     getData();
   }, []);
   useEffect(() => {
-    const storedKickId = localStorage.getItem('Kickid');
+    const storedKickId = localStorage.getItem("Kickid");
     if (storedKickId) {
       setInfo(true);
       setKickId(storedKickId);
@@ -81,10 +80,13 @@ function Map() {
 
         if (data.kickboards && data.kickboards.length > 0) {
           var positions = [];
-          data.kickboards.forEach(kickboard => {
+          data.kickboards.forEach((kickboard) => {
             positions.push({
               title: `Kickboard ${kickboard.id}`,
-              latlng: new window.kakao.maps.LatLng(kickboard.lat, kickboard.lng),
+              latlng: new window.kakao.maps.LatLng(
+                kickboard.lat,
+                kickboard.lng
+              ),
             });
           });
           console.log(positions);
@@ -139,6 +141,31 @@ function Map() {
         // 지도에 마커를 표시합니다
         marker.setMap(map);
 
+        //console.log(data.clusters.length);
+
+        if (data.clusters && data.clusters.length > 0) {
+          var tmp = data.clusters;
+          console.log(data.clusters)
+          tmp.forEach(cluster => {
+            var layerLatLng = []
+            cluster.borders.forEach(latlng => {
+              layerLatLng.push(new window.kakao.maps.LatLng(latlng.lat, latlng.lng))
+            })
+            var polygon = new window.kakao.maps.Polygon({
+              path: layerLatLng, // 그려질 다각형의 좌표 배열입니다
+              strokeWeight: 20, // 선의 두께입니다
+              strokeColor: '#39DE2A', // 선의 색깔입니다
+              strokeOpacity: 0.8, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+              strokeStyle: 'longdash', // 선의 스타일입니다
+              fillColor: '#39DE2A', // 채우기 색깔입니다
+              fillOpacity: 0.7 // 채우기 불투명도 입니다
+            });
+            // 지도에 다각형을 표시합니다
+            polygon.setMap(map);
+          });
+        }
+
+
         function zoomIn() {
           var level = map.getLevel();
   
@@ -173,71 +200,10 @@ function Map() {
             console.log("클릭한 위치의 위도:", lat);
             console.log("클릭한 위치의 경도:", lng);
             // 마커 위치를 클릭한 위치로 옮깁니다
-            marker.setPosition(latlng);
+            // marker.setPosition(latlng);
             // 마커 위에 인포윈도우를 표시합니다
             infowindow.open(map, marker);
             displayLevel();
-          }
-        );
-
-        // 지도에 마우스무브 이벤트를 등록합니다
-        // 원을 그리고있는 상태에서 마우스무브 이벤트가 발생하면 그려질 원의 위치와 반경정보를 동적으로 보여주도록 합니다
-        window.kakao.maps.event.addListener(
-          map,
-          "mousemove",
-          function (mouseEvent) {
-            // 마우스무브 이벤트가 발생했을 때 원을 그리고있는 상태이면
-            if (drawingFlag) {
-              removeCircles();
-              // 마우스 커서의 현재 위치를 얻어옵니다
-              var mousePosition = mouseEvent.latLng;
-
-              // 그려지고 있는 선을 표시할 좌표 배열입니다. 클릭한 중심좌표와 마우스커서의 위치로 설정합니다
-              var linePath = [centerPosition, mousePosition];
-
-              // 그려지고 있는 선을 표시할 선 객체에 좌표 배열을 설정합니다
-              drawingLine.setPath(linePath);
-
-              // 원의 반지름을 선 객체를 이용해서 얻어옵니다
-              var length = drawingLine.getLength();
-
-              if (length > 0) {
-                // 그려지고 있는 원의 중심좌표와 반지름입니다
-                var circleOptions = {
-                  center: centerPosition,
-                  radius: length,
-                };
-
-                // 그려지고 있는 원의 옵션을 설정합니다
-                drawingCircle.setOptions(circleOptions);
-
-                // 반경 정보를 표시할 커스텀오버레이의 내용입니다
-                var radius = Math.round(drawingCircle.getRadius()),
-                  content =
-                    '<div class="info">반경 <span class="number">' +
-                    radius +
-                    "</span>m</div>";
-
-                // 반경 정보를 표시할 커스텀 오버레이의 좌표를 마우스커서 위치로 설정합니다
-                drawingOverlay.setPosition(mousePosition);
-
-                // 반경 정보를 표시할 커스텀 오버레이의 표시할 내용을 설정합니다
-                drawingOverlay.setContent(content);
-
-                // 그려지고 있는 원을 지도에 표시합니다
-                drawingCircle.setMap(map);
-
-                // 그려지고 있는 선을 지도에 표시합니다
-                drawingLine.setMap(map);
-
-                // 그려지고 있는 원의 반경정보 커스텀 오버레이를 지도에 표시합니다
-                drawingOverlay.setMap(map);
-              } else {
-                drawingCircle.setMap(null);
-                drawingLine.setMap(null);
-                drawingOverlay.setMap(null);
-              }
-            }
           }
         );
 
@@ -275,95 +241,6 @@ function Map() {
         // 지도에 다각형을 표시합니다
         polygon.setMap(map);
 
-        // 지도에 마우스 오른쪽 클릭이벤트를 등록합니다
-        // 원을 그리고있는 상태에서 마우스 오른쪽 클릭 이벤트가 발생하면
-        // 마우스 오른쪽 클릭한 위치를 기준으로 원과 원의 반경정보를 표시하는 선과 커스텀 오버레이를 표시하고 그리기를 종료합니다
-        window.kakao.maps.event.addListener(
-          map,
-          "rightclick",
-          function (mouseEvent) {
-            if (drawingFlag) {
-              // 마우스로 오른쪽 클릭한 위치입니다
-              var rClickPosition = mouseEvent.latLng;
-
-              // 원의 반경을 표시할 선 객체를 생성합니다
-              var polyline = new window.kakao.maps.Polyline({
-                path: [centerPosition, rClickPosition], // 선을 구성하는 좌표 배열입니다. 원의 중심좌표와 클릭한 위치로 설정합니다
-                strokeWeight: 3, // 선의 두께 입니다
-                strokeColor: "#00a0e9", // 선의 색깔입니다
-                strokeOpacity: 1, // 선의 불투명도입니다 0에서 1 사이값이며 0에 가까울수록 투명합니다
-                strokeStyle: "solid", // 선의 스타일입니다
-              });
-            }
-          }
-        );
-
-        // 지도에 표시되어 있는 모든 원과 반경정보를 표시하는 선, 커스텀 오버레이를 지도에서 제거합니다
-        function removeCircles() {
-          for (var i = 0; i < circles.length; i++) {
-            circles[i].circle.setMap(null);
-            circles[i].polyline.setMap(null);
-            circles[i].overlay.setMap(null);
-          }
-          circles = [];
-        }
-
-        // 마우스 우클릭 하여 원 그리기가 종료됐을 때 호출하여
-        // 그려진 원의 반경 정보와 반경에 대한 도보, 자전거 시간을 계산하여
-        // HTML Content를 만들어 리턴하는 함수입니다
-        function getTimeHTML(distance) {
-          // 도보의 시속은 평균 4km/h 이고 도보의 분속은 67m/min입니다
-          var walkkTime = (distance / 67) | 0;
-          var walkHour = "",
-            walkMin = "";
-
-          // 계산한 도보 시간이 60분 보다 크면 시간으로 표시합니다
-          if (walkkTime > 60) {
-            walkHour =
-              '<span class="number">' +
-              Math.floor(walkkTime / 60) +
-              "</span>시간 ";
-          }
-          walkMin = '<span class="number">' + (walkkTime % 60) + "</span>분";
-
-          // 자전거의 평균 시속은 16km/h 이고 이것을 기준으로 자전거의 분속은 267m/min입니다
-          var bycicleTime = (distance / 227) | 0;
-          var bycicleHour = "",
-            bycicleMin = "";
-
-          // 계산한 자전거 시간이 60분 보다 크면 시간으로 표출합니다
-          if (bycicleTime > 60) {
-            bycicleHour =
-              '<span class="number">' +
-              Math.floor(bycicleTime / 60) +
-              "</span>시간 ";
-          }
-          bycicleMin =
-            '<span class="number">' + (bycicleTime % 60) + "</span>분";
-
-          // 거리와 도보 시간, 자전거 시간을 가지고 HTML Content를 만들어 리턴합니다
-          var content = '<ul class="info">';
-          content += "    <li>";
-          content +=
-            '        <span class="label">총거리</span><span class="number">' +
-            distance +
-            "</span>m";
-          content += "    </li>";
-          content += "    <li>";
-          content +=
-            '        <span class="label">도보</span>' + walkHour + walkMin;
-          content += "    </li>";
-          content += "    <li>";
-          content +=
-            '        <span class="label">자전거/헬로킥티</span>' +
-            bycicleHour +
-            bycicleMin;
-          content += "    </li>";
-          content += "</ul>";
-
-          return content;
-        }
-
         // 이벤트 리스너 추가: 마우스 스크롤 이벤트
         const handleMouseWheel = (e) => {
           // e.deltaY 값이 양수면 스크롤을 아래로 내리고 음수면 위로 올립니다
@@ -385,18 +262,17 @@ function Map() {
         // 컴포넌트 언마운트 시 이벤트 리스너 제거
         return () => {
           mapContainer.removeEventListener("wheel", handleMouseWheel);
-          localStorage.removeItem('Kickid');
+          localStorage.removeItem("Kickid");
         };
       });
     };
 
-    
     mapScript.addEventListener("load", onLoadKakaoMap);
   }, [data]);
   return (
     <MapBox>
       <MapContainer id="map" />
-      {Info && <Information Title={kickId}/>}
+      {Info && <Information Title={kickId} />}
       <FirstInfo></FirstInfo>
     </MapBox>
   );
