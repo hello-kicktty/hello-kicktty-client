@@ -3,6 +3,7 @@ import styled, { keyframes } from "styled-components";
 import { useNavigate } from "react-router-dom";
 import stars from "./stars.png";
 import kickboard from "./kickboard.png";
+import Homebtnimg from "../../page/homebtnimg";
 
 const Container = styled.div`
   width: 100%;
@@ -149,6 +150,8 @@ const ParkingComplete = (props) => {
 
   return (
     <>
+      <Homebtnimg></Homebtnimg>
+
       <Container>
         {/* 애니메이션이 적용된 팝업 */}
         {showPopup && <SlideInPopup />}
@@ -160,14 +163,14 @@ const ParkingComplete = (props) => {
         </TextBox>
         <CoinImg src={kickboard}></CoinImg>
         <BtnContainer>
-          <HomeBtn
+          {/* <HomeBtn
             onClick={() => {
               navigate("/main");
             }}
             btnColor={"rgba(0, 0, 0, 0.25)"}
           >
             Home
-          </HomeBtn>
+          </HomeBtn> */}
           <HomeBtn
             onClick={() => {
               navigate("/receipt");
