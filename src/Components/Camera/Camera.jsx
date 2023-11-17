@@ -10,10 +10,6 @@ import * as api from "../../Api";
 function QRCodeScanner() {
   const navigate = useNavigate();
 
-  // Delete Method
-  const [deleteResult, setDeleteResult] = useState(null);
-  const [error, setError] = useState(null);
-
   useEffect(() => {
     const video = document.createElement('video');
     const canvasElement = document.getElementById('canvas');
