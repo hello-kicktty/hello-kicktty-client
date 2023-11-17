@@ -139,6 +139,54 @@ function Map() {
         // 지도에 마커를 표시합니다
         marker.setMap(map);
 
+        //console.log(data.clusters.length);
+
+        if (data.clusters && data.clusters.length > 0) {
+          var tmp = data.clusters;
+          console.log(data.clusters)
+          tmp.forEach(cluster => {
+            var layerLatLng = []
+            cluster.borders.forEach(latlng => {
+              layerLatLng.push(new window.kakao.maps.LatLng(latlng.lat, latlng.lng))
+            })
+            console.log(layerLatLng);
+            var polygon = new window.kakao.maps.Polygon({
+              path: layerLatLng, // 그려질 다각형의 좌표 배열입니다
+              strokeWeight: 20, // 선의 두께입니다
+              strokeColor: '#39DE2A', // 선의 색깔입니다
+              strokeOpacity: 0.8, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+              strokeStyle: 'longdash', // 선의 스타일입니다
+              fillColor: '#39DE2A', // 채우기 색깔입니다
+              fillOpacity: 0.7 // 채우기 불투명도 입니다
+            });
+            // 지도에 다각형을 표시합니다
+            polygon.setMap(map);
+          });
+        }
+/*
+          for(var cluster = 0; cluster < data.clusters.length; cluster++) {
+            var tmpClusterPolygonPathData = []
+            for(var cluster_node = 0; cluster_node<data.clusters[cluster].borders.length; cluster_node){
+              var cluster_kickboard = data.clusters[cluster].borders[cluster_node];
+              tmpClusterPolygonPathData.push(new window.kakao.maps.LatLng(cluster_kickboard.lat, cluster_kickboard.lng))
+            }
+            console.log(tmpClusterPolygonPathData);
+            var polygon = new window.kakao.maps.Polygon({
+              path:tmpClusterPolygonPathData, // 그려질 다각형의 좌표 배열입니다
+              strokeWeight: 20, // 선의 두께입니다
+              strokeColor: '#39DE2A', // 선의 색깔입니다
+              strokeOpacity: 0.8, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+              strokeStyle: 'longdash', // 선의 스타일입니다
+              fillColor: '#A2FF99', // 채우기 색깔입니다
+              fillOpacity: 0.7 // 채우기 불투명도 입니다
+            });
+            // 지도에 다각형을 표시합니다
+            polygon.setMap(map);
+          }
+        }
+
+*/
+
         // 지도 레벨은 지도의 확대 수준을 의미합니다
         // 지도 레벨은 1부터 14레벨이 있으며 숫자가 작을수록 지도 확대 수준이 높습니다
         function zoomIn() {
