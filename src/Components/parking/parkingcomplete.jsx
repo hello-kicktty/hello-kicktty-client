@@ -160,14 +160,14 @@ const ParkingComplete = (props) => {
         </TextBox>
         <CoinImg src={kickboard}></CoinImg>
         <BtnContainer>
-          {/* <HomeBtn
+          <HomeBtn
             onClick={() => {
               navigate("/main");
             }}
             btnColor={"rgba(0, 0, 0, 0.25)"}
           >
             Home
-          </HomeBtn> */}
+          </HomeBtn>
           <HomeBtn
             onClick={() => {
               navigate("/receipt");
