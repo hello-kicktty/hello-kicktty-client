@@ -84,12 +84,6 @@ const Guide = () => {
                     <GuideText>안전한 주행을 위해 확인해주세요.</GuideText>
                         <SliderXwrapper>
                             <SliderXItems>
-                            <GuideBox to="/guide/riding" style={{ 
-  backgroundImage: `url(${Img4})`,
-  backgroundSize: "cover"
-}}>
-  <GuideboxText>리워드 안내</GuideboxText>
-</GuideBox>
 
 <GuideBox to="/guide/parking" style={{ 
   backgroundImage: `url(${Img1})`,
@@ -104,7 +98,12 @@ const Guide = () => {
 }}>
   <GuideboxText>견인하기</GuideboxText>
 </GuideBox>
-
+<GuideBox to="/guide/riding" style={{ 
+  backgroundImage: `url(${Img4})`,
+  backgroundSize: "cover"
+}}>
+  <GuideboxText>리워드 안내</GuideboxText>
+</GuideBox>
 <GuideBox to="/main" style={{ 
   backgroundImage: `url(${Img})`,
   backgroundSize: "cover"

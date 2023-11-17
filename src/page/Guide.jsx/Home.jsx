@@ -4,7 +4,8 @@ import styled from 'styled-components';
 import { Outlet } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-
+import {useParams } from 'react-router-dom';
+import { useEffect } from 'react';
 const Top = styled.div`
     display: flex;
     flex-direction: row;
@@ -41,11 +42,17 @@ const SectionText = styled.div`
 `
 const Home = () => {
     const navigate = useNavigate();
-    const [activeSection, setActiveSection] = useState('Riding');
+    const params = useParams();
+
+    const [activeSection, setActiveSection] = useState(params.section || 'Riding');
+    useEffect(() => {
+        setActiveSection(params.section || 'Parking');
+    }, [params.section]);
+
     const handleSectionClick = (section) => {
-        navigate(section);
+        navigate(`${section}`);
         setActiveSection(section);
-    }
+    };
     const goBack = () => {
         navigate('/main'); 
       };

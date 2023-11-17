@@ -17,6 +17,8 @@ import TractionComplete from "./page/Riding/tractionComplete";
 import ParkingSpot from "./page/ParkingSpot/ParkingSpot";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import ParkingQR from "./page/Riding/ParkingQR";
+import TractionQR from "./page/Riding/TracktionQr";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -38,8 +40,8 @@ function Router() {
           <Route path="" element={<LogoWelcome />} />
           <Route path="/main" element={<Main />} />
           <Route path="/RidingQR" element={<RidingQR text="주행하기" />} />
-          <Route path="/tractionQR" element={<RidingQR text="견인하기" />} />
-          <Route path="/parkingQR" element={<RidingQR text="주차하기" />} />
+          <Route path="/tractionQR" element={<TractionQR text="견인하기" />} />
+          <Route path="/parkingQR" element={<ParkingQR text="주차하기" />} />
           <Route path="/receipt" element={<Receipt />} />
           <Route path="/reward" element={<Reward />} />
           <Route path="/TractionComplete" element={<TractionComplete />} />
