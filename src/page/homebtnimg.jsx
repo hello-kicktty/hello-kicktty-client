@@ -4,20 +4,21 @@ import { useNavigate } from "react-router-dom";
 import homebtnimg from "./homebtnimg.png";
 
 const HomebtnImg = styled.img`
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   z-index: 500;
   position: absolute;
-  transform: translate(350%, 70%);
+  transform: ${(props) => props.transform || "translate(350%, 70%)"};
 `;
 
-const Homebtnimg = () => {
+const Homebtnimg = (props) => {
   const navigate = useNavigate();
 
   return (
     <>
       <HomebtnImg
         src={homebtnimg}
+        transform={props.transform}
         onClick={() => {
           navigate("/main");
         }}
