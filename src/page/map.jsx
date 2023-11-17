@@ -39,6 +39,7 @@ function Map() {
   const getData = async () => {
     const data = await api.getKickList();
     console.log(data);
+    localStorage.setItem("getData", JSON.stringify(data));
     setData(data);
   };
 
