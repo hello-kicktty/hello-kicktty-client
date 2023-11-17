@@ -28,7 +28,7 @@ const BackBtnImg = styled.img`
   position: absolute;
   top: 4rem;
   left: 2rem;
-  z-index: 2;
+  z-index: 5;
 `;
 
 const MapBoxTextBox = styled.div`

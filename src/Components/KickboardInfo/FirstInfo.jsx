@@ -10,7 +10,7 @@ const Box = styled.div`
   height: 17%;
   position: fixed;
   bottom: 0;
-  z-index: 5;
+  z-index: 1;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
