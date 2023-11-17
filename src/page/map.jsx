@@ -34,11 +34,13 @@ const MapContainer = styled.div`
 function Map() {
   const [Info,setInfo] = useState(false);
   const [kickId, setKickId] = useState('');
-  const [data, setData] = useState([]);
+  const [data, setData] = useState([])
+
   const getData = async () => {
     const data = await api.getKickList();
     console.log(data);
     setData(data);
+
   };
 
   useEffect(() => {
@@ -72,27 +74,21 @@ function Map() {
         var drawingLine; // 그려지고 있는 원의 반지름을 표시할 선 객체입니다
         var drawingOverlay; // 그려지고 있는 원의 반경을 표시할 커스텀오버레이 입니다
         var drawingDot; // 그려지고 있는 원의 중심점을 표시할 커스텀오버레이 입니다
-
+        console.log(data.kickboards);
         var circles = []; // 클릭으로 그려진 원과 반경 정보를 표시하는 선과 커스텀오버레이를 가지고 있을 배열입니다
 
-        // 마커를 표시할 위치와 title 객체 배열입니다
-        var positions = [
-          {
-            title: "인하안경",
-            latlng: new window.kakao.maps.LatLng(
-              37.45088642579393,
-              126.65829774165455
-            ),
-          },
-          {
-            title: "인하안경2",
-            latlng: new window.kakao.maps.LatLng(
-              37.45109669691925,
-              126.65779104112308
-            ),
-          },
-        ];
+        var positions = [];
 
+        if (data.kickboards && data.kickboards.length > 0) {
+          var positions = [];
+          data.kickboards.forEach(kickboard => {
+            positions.push({
+              title: `Kickboard ${kickboard.id}`,
+              latlng: new window.kakao.maps.LatLng(kickboard.lat, kickboard.lng),
+            });
+          });
+          console.log(positions);
+        }
         // 마커 이미지의 이미지 주소입니다
         var imageSrc = require("./marker.png");
         var userlocation = require("./userlocation.png");
@@ -497,7 +493,7 @@ function Map() {
 
     
     mapScript.addEventListener("load", onLoadKakaoMap);
-  }, []);
+  }, [data]);
   return (
     <MapBox>
       <MapContainer id="map" />
