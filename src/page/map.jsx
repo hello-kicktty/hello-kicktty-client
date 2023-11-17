@@ -151,7 +151,6 @@ function Map() {
             cluster.borders.forEach(latlng => {
               layerLatLng.push(new window.kakao.maps.LatLng(latlng.lat, latlng.lng))
             })
-            console.log(layerLatLng);
             var polygon = new window.kakao.maps.Polygon({
               path: layerLatLng, // 그려질 다각형의 좌표 배열입니다
               strokeWeight: 20, // 선의 두께입니다
