@@ -34,7 +34,7 @@ const GlobalStyle = createGlobalStyle`
   html, body, #root {
       width: 100%;
       min-height: 100vh;
-      background-image: url('/img/LogoBack5.jpg');
+      background-color: white;
       background-size: auto;
       background-repeat: repeat;
       background-color: white !important;

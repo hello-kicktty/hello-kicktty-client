@@ -164,54 +164,26 @@ function Map() {
             polygon.setMap(map);
           });
         }
-/*
-          for(var cluster = 0; cluster < data.clusters.length; cluster++) {
-            var tmpClusterPolygonPathData = []
-            for(var cluster_node = 0; cluster_node<data.clusters[cluster].borders.length; cluster_node){
-              var cluster_kickboard = data.clusters[cluster].borders[cluster_node];
-              tmpClusterPolygonPathData.push(new window.kakao.maps.LatLng(cluster_kickboard.lat, cluster_kickboard.lng))
-            }
-            console.log(tmpClusterPolygonPathData);
-            var polygon = new window.kakao.maps.Polygon({
-              path:tmpClusterPolygonPathData, // 그려질 다각형의 좌표 배열입니다
-              strokeWeight: 20, // 선의 두께입니다
-              strokeColor: '#39DE2A', // 선의 색깔입니다
-              strokeOpacity: 0.8, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
-              strokeStyle: 'longdash', // 선의 스타일입니다
-              fillColor: '#A2FF99', // 채우기 색깔입니다
-              fillOpacity: 0.7 // 채우기 불투명도 입니다
-            });
-            // 지도에 다각형을 표시합니다
-            polygon.setMap(map);
+
+
+        function zoomIn() {
+          var level = map.getLevel();
+  
+          if (level > 5) {
+            map.setLevel(level - 1);
+            displayLevel();
           }
         }
-
-*/
-
-        // 지도 레벨은 지도의 확대 수준을 의미합니다
-        // 지도 레벨은 1부터 14레벨이 있으며 숫자가 작을수록 지도 확대 수준이 높습니다
-        function zoomIn() {
-          // 현재 지도의 레벨을 얻어옵니다
-          var level = map.getLevel();
-
-          // 지도를 1레벨 내립니다 (지도가 확대됩니다)
-          map.setLevel(level - 1);
-
-          // 지도 레벨을 표시합니다
-          displayLevel();
-        }
-
+        
         function zoomOut() {
-          // 현재 지도의 레벨을 얻어옵니다
           var level = map.getLevel();
-
-          // 지도를 1레벨 올립니다 (지도가 축소됩니다)
-          map.setLevel(level + 1);
-
-          // 지도 레벨을 표시합니다
-          displayLevel();
+        
+          // Limit the maximum zoom level to 1
+          if (level < 1) {
+            map.setLevel(level + 1);
+            displayLevel();
+          }
         }
-
         function displayLevel() {
           const level = map.getLevel(); // 현재 지도 레벨을 가져옵니다
           console.log("현재 지도의 레벨 :" + level);
