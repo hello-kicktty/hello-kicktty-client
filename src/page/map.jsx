@@ -82,15 +82,6 @@ function Map() {
         };
         const map = new window.kakao.maps.Map(mapContainer, mapOption);
 
-        var drawingFlag = false; // 원이 그려지고 있는 상태를 가지고 있을 변수입니다
-        var centerPosition; // 원의 중심좌표 입니다
-        var drawingCircle; // 그려지고 있는 원을 표시할 원 객체입니다
-        var drawingLine; // 그려지고 있는 원의 반지름을 표시할 선 객체입니다
-        var drawingOverlay; // 그려지고 있는 원의 반경을 표시할 커스텀오버레이 입니다
-        var drawingDot; // 그려지고 있는 원의 중심점을 표시할 커스텀오버레이 입니다
-
-        var circles = []; // 클릭으로 그려진 원과 반경 정보를 표시하는 선과 커스텀오버레이를 가지고 있을 배열입니다
-
         var positions = [];
 
         if (data.kickboards && data.kickboards.length > 0) {
