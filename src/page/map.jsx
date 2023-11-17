@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
+import BackBtn from "./backbtn.png";
+import { useNavigate } from "react-router-dom";
 import Information from "../Components/KickboardInfo/Information";
 import RidingInfor from "../Components/KickboardInfo/RidingInfor";
 import toast, { Toaster } from "react-hot-toast";
@@ -20,6 +22,15 @@ const MapBox = styled.div`
   box-sizing: border-box;
 `;
 
+const BackBtnImg = styled.img`
+  width: 41px;
+  height: 41px;
+  position: absolute;
+  top: 4rem;
+  left: 2rem;
+  z-index: 2;
+`;
+
 const MapBoxTextBox = styled.div`
   font-weight: bold;
   font-family: "Courier New", Courier, monospace;
@@ -35,6 +46,10 @@ function Map() {
   const [Info, setInfo] = useState(false);
   const [kickId, setKickId] = useState("");
   const [data, setData] = useState([]);
+  const navigate = useNavigate();
+  const handleBackButtonClick = () => {
+    navigate(-1); // Navigate back
+  };
 
   const getData = async () => {
     const data = await api.getKickList();
@@ -145,27 +160,29 @@ function Map() {
 
         if (data.clusters && data.clusters.length > 0) {
           var tmp = data.clusters;
-          console.log(data.clusters)
-          tmp.forEach(cluster => {
-            var layerLatLng = []
-            cluster.borders.forEach(latlng => {
-              layerLatLng.push(new window.kakao.maps.LatLng(latlng.lat, latlng.lng))
-            })
+          console.log(data.clusters);
+          tmp.forEach((cluster) => {
+            var layerLatLng = [];
+            cluster.borders.forEach((latlng) => {
+              layerLatLng.push(
+                new window.kakao.maps.LatLng(latlng.lat, latlng.lng)
+              );
+            });
             console.log(layerLatLng);
             var polygon = new window.kakao.maps.Polygon({
               path: layerLatLng, // 그려질 다각형의 좌표 배열입니다
               strokeWeight: 20, // 선의 두께입니다
-              strokeColor: '#39DE2A', // 선의 색깔입니다
+              strokeColor: "#39DE2A", // 선의 색깔입니다
               strokeOpacity: 0.8, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
-              strokeStyle: 'longdash', // 선의 스타일입니다
-              fillColor: '#39DE2A', // 채우기 색깔입니다
-              fillOpacity: 0.7 // 채우기 불투명도 입니다
+              strokeStyle: "longdash", // 선의 스타일입니다
+              fillColor: "#39DE2A", // 채우기 색깔입니다
+              fillOpacity: 0.7, // 채우기 불투명도 입니다
             });
             // 지도에 다각형을 표시합니다
             polygon.setMap(map);
           });
         }
-/*
+        /*
           for(var cluster = 0; cluster < data.clusters.length; cluster++) {
             var tmpClusterPolygonPathData = []
             for(var cluster_node = 0; cluster_node<data.clusters[cluster].borders.length; cluster_node){
@@ -301,6 +318,8 @@ function Map() {
   return (
     <MapBox>
       <MapContainer id="map" />
+      <BackBtnImg id="backBtn" src={BackBtn} onClick={handleBackButtonClick} />
+
       {Info && <Information Title={kickId} />}
       <FirstInfo></FirstInfo>
     </MapBox>
