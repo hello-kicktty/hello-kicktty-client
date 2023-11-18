@@ -85,7 +85,7 @@ function Map() {
           level: 3,
         };
         const map = new window.kakao.maps.Map(mapContainer, mapOption);
-    
+        
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function (position) {
             const lat = position.coords.latitude;
@@ -204,7 +204,7 @@ function Map() {
               path: layerLatLng, // 그려질 다각형의 좌표 배열입니다
               strokeWeight: 30, // 선의 두께입니다
               strokeColor: '#39DE2A', // 선의 색깔입니다
-              strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+              strokeOpacity: 0.6, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
               strokeStyle: 'longdash', // 선의 스타일입니다
               fillColor: '#39DE2A', // 채우기 색깔입니다
               fillOpacity: 1 // 채우기 불투명도 입니다
