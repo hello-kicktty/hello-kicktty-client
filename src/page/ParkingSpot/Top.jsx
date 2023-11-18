@@ -109,8 +109,16 @@ const Top = ({
     useEffect(() => {
      if(kickid1)getData();
     }, [kickid1]);
-    if(data) {
-    }
+    if(data.clusters) {
+        const ing=JSON.parse(localStorage.getItem("getNamespace"))
+        const k = data.clusters[0].cluster_id
+        const k1 = data.clusters[1].cluster_id 
+        const k2= data.clusters[2].cluster_id 
+        const k3 = data.clusters[3].cluster_id  
+        console.log(ing.clusters[k].name);
+        console.log(ing.clusters[k1]);
+        console.log(ing.clusters[k2]);
+        console.log(ing.clusters[k3]);
     return (
     <StyledTop isAccordionOpen={isAccordionOpen}>
       {selectedLocation}
@@ -123,24 +131,24 @@ const Top = ({
           {/* 아코디언 내용 */}
           <AccordionInner>
             <AccordionInnerEach
-              onClick={() => handleAccordionItemClick("인하대 본관")}
+              onClick={() => handleAccordionItemClick(`${ing.clusters[k].name}`)}
             >
-              {JSON.parse(localStorage.getItem("getNamespace"))[data.clusters[0].cluster_id]}
+              {ing.clusters[k].name}
             </AccordionInnerEach>
             <AccordionInnerEach
-              onClick={() => handleAccordionItemClick("인하대 5호관 남")}
+              onClick={() => handleAccordionItemClick(`${ing.clusters[k1].name}`)}
             >
-              {JSON.parse(localStorage.getItem("getNamespace"))[data.clusters[1].cluster_id]}
+              {ing.clusters[k1].name}
             </AccordionInnerEach>
             <AccordionInnerEach
-              onClick={() => handleAccordionItemClick("인하대 서호관")}
+              onClick={() => handleAccordionItemClick(`${ing.clusters[k2].name}`)}
             >
-              {JSON.parse(localStorage.getItem("getNamespace"))[data.clusters[2].cluster_id]}
+              {ing.clusters[k2].name}
             </AccordionInnerEach>
             <AccordionInnerEach
-              onClick={() => handleAccordionItemClick("인하대 하이테크관")}
+              onClick={() => handleAccordionItemClick(`${ing.clusters[k3].name}`)}
             >
-              {JSON.parse(localStorage.getItem("getNamespace"))[data.clusters[3].cluster_id]}
+              {ing.clusters[k3].name}
             </AccordionInnerEach>
           </AccordionInner>
         </AccordionContent>
@@ -148,5 +156,6 @@ const Top = ({
     </StyledTop>
       );
     }
+}
   
   export default Top;

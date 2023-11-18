@@ -87,47 +87,50 @@ function Map() {
     document.head.appendChild(mapScript);
 
     const onLoadKakaoMap = () => {
+
       window.kakao.maps.load(() => {
         const mapContainer = document.getElementById("map");
-        const defaultPosition = new window.kakao.maps.LatLng(37.44978, 126.6586);
+        var defaultPosition = new window.kakao.maps.LatLng(37.44978, 126.6586);
         const mapOption = {
           center: defaultPosition,
           level: 3,
         };
         const map = new window.kakao.maps.Map(mapContainer, mapOption);
     
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function (position) {
-            const lat = position.coords.latitude;
-            const lon = position.coords.longitude;
-            const locPosition = new window.kakao.maps.LatLng(lat, lon);
-            const message = '<div style="padding:5px;">내 위치</div>';
-
+        const navigate = ()=> {
+          if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+              const lat = position.coords.latitude;
+              const lon = position.coords.longitude;
+              const locPosition = new window.kakao.maps.LatLng(lat, lon);
+              const message = '<div style="padding:5px;">내 위치</div>';
+  
+              const marker = new window.kakao.maps.Marker({
+                map: map,
+                position: locPosition,
+                UsermarkerImage
+              });
+      
+              map.setCenter(locPosition);
+      
+              const infowindow = new window.kakao.maps.InfoWindow({
+                content: message,
+              });
+              infowindow.open(map, marker);
+            });
+          } else {
+            const message = "Geolocation을 사용할 수 없어요..";
             const marker = new window.kakao.maps.Marker({
               map: map,
-              position: locPosition,
-              UsermarkerImage
+              position: defaultPosition,
+              image: "./userlocation.png"
             });
-    
-            map.setCenter(locPosition);
-    
+      
             const infowindow = new window.kakao.maps.InfoWindow({
               content: message,
             });
             infowindow.open(map, marker);
-          });
-        } else {
-          const message = "Geolocation을 사용할 수 없어요..";
-          const marker = new window.kakao.maps.Marker({
-            map: map,
-            position: defaultPosition,
-            image: "./userlocation.png"
-          });
-    
-          const infowindow = new window.kakao.maps.InfoWindow({
-            content: message,
-          });
-          infowindow.open(map, marker);
+          }
         }
         var positions = [];
 
@@ -193,11 +196,15 @@ function Map() {
           (function (marker, pos) {
             window.kakao.maps.event.addListener(marker, 'click', function() {
               console.log(pos);
-
+              console.log(pos.latlng.La)
+              console.log(pos.latlng.Ma)
+              marker.getMap().setCenter(new window.kakao.maps.LatLng(pos.latlng.La,pos.latlng.Ma))
+              defaultPosition = new window.kakao.maps.LatLng(pos.latlng.La,pos.latlng.Ma)
               let pos_id = pos.title.split(" ")[1];
               console.log(pos_id);
               const namespace = JSON.parse(localStorage.getItem("getNamespace"));
               console.log(namespace);
+       
               namespace.kickboards.forEach(kick=>{
                 console.log(kick.id)
                 if(kick.id == pos_id)setKickname(kick);
@@ -206,6 +213,7 @@ function Map() {
             });
             
           })(marker, positions[i]);
+          
         }
 
         //console.log(data.clusters.length);

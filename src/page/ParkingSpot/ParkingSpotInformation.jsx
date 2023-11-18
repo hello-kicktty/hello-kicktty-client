@@ -288,7 +288,7 @@ const handleTractionButtonClick = () => {
         <Top
           onDataToParent={handleDataFromTop}
           isAccordionOpen={isAccordionOpen}
-          handleAcz cordionToggle={handleAccordionToggle}
+          handleAccordionToggle={handleAccordionToggle}
           selectedLocation={selectedLocation}
           handleAccordionItemClick={handleAccordionItemClick}
           kickid = {kickid}
