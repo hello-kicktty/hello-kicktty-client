@@ -163,12 +163,6 @@ function Map() {
           var iwContent = message, // 인포윈도우에 표시할 내용
             iwRemoveable = true;
 
-          // 인포윈도우를 생성합니다
-          var infowindow = new window.kakao.maps.InfoWindow({
-            content: iwContent,
-            removable: iwRemoveable,
-          });
-
           // 클릭 이벤트 핸들러 등록
           window.kakao.maps.event.addListener(
             map,
@@ -181,14 +175,11 @@ function Map() {
               console.log("클릭한 위치의 경도:", lng);
               // 마커 위치를 클릭한 위치로 옮깁니다
               // marker.setPosition(latlng);
-              // 마커 위에 인포윈도우를 표시합니다
-              infowindow.open(map, marker);
               displayLevel();
             }
           );
 
           // 인포윈도우를 마커위에 표시합니다
-          infowindow.open(map, marker);
 
           // 지도 중심좌표를 접속위치로 변경합니다
           map.setCenter(locPosition);
