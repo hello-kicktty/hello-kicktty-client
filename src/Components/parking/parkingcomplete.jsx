@@ -3,6 +3,7 @@ import styled, { keyframes } from "styled-components";
 import { useNavigate } from "react-router-dom";
 import stars from "./stars.png";
 import kickboard from "./kickboard.png";
+import Homebtnimg from "../../page/homebtnimg";
 
 const Container = styled.div`
   width: 100%;
@@ -129,7 +130,7 @@ const Stars2 = styled.img`
   width: 48px;
   height: 48px;
   position: absolute;
-  transform: translate(300%, -520%);
+  transform: translate(300%, -680%);
   opacity: 0; /* Initially set opacity to 0 */
   animation: ${appearStars} 0.5s ease-out 0.8s forwards;
 `;
@@ -149,6 +150,8 @@ const ParkingComplete = (props) => {
 
   return (
     <>
+      <Homebtnimg></Homebtnimg>
+
       <Container>
         {/* 애니메이션이 적용된 팝업 */}
         {showPopup && <SlideInPopup />}
@@ -160,15 +163,21 @@ const ParkingComplete = (props) => {
         </TextBox>
         <CoinImg src={kickboard}></CoinImg>
         <BtnContainer>
-          <HomeBtn
+          {/* <HomeBtn
             onClick={() => {
               navigate("/main");
             }}
             btnColor={"rgba(0, 0, 0, 0.25)"}
           >
             Home
+          </HomeBtn> */}
+          <HomeBtn
+            onClick={() => {
+              navigate("/receipt");
+            }}
+          >
+            주행 영수증 보러가기
           </HomeBtn>
-          <HomeBtn>주행 영수증 보러가기</HomeBtn>
         </BtnContainer>
       </Container>
     </>
