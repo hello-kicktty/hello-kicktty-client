@@ -261,6 +261,8 @@ const ParkingSpotInformation = ({id,name}) => {
     // 여기서 받은 데이터로 상태 업데이트나 필요한 작업 수행
   };
 const handleTractionButtonClick = () => {
+  localStorage.removeItem("Tractionid");
+  localStorage.removeItem("TractionData");
   navigate('/TractionQr')
 }
 

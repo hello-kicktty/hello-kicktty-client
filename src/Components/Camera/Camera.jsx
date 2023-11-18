@@ -102,7 +102,6 @@ function QRCodeScanner() {
           outputData.innerHTML = code.data;
           console.log(code.data);
           if (Number(code.data) > 0 && Number(code.data) < 1000) {
-            console.log("not null data");
             localStorage.setItem("Kickid_toRiding", code.data);
             // Delete Method 실행
             handleDelete(code.data);
@@ -115,7 +114,7 @@ function QRCodeScanner() {
 
             localStorage.setItem("start_time", timeString);
 
-            console.log(timeString);
+            //console.log(timeString);
             navigate("/map");
           } else {
             console.log("is null data");

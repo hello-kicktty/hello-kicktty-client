@@ -144,15 +144,24 @@ const Reward = (props) => {
   const navigate = useNavigate();
   const [showPopup, setShowPopup] = useState(false);
 
+
   useEffect(() => {
     // 페이지 렌더링 후 0.5초 후에 팝업을 보여줍니다.
+    
     const timer = setTimeout(() => {
       setShowPopup(true);
     }, 500);
-
+    // , start_time, rating, parking_time
+    // , parking_time
     return () => clearTimeout(timer);
   }, []);
-
+  if(localStorage.getItem("Kickid_toRiding")) localStorage.setItem("Kickid_Receipt", localStorage.getItem("Kickid_toRiding"))
+  else localStorage.setItem("Kickid_Receipt", localStorage.getItem("Tractionid_toRiding"))
+  localStorage.setItem("rating", "10:10:10")
+  //localStorage.setItem("Kickid_Receipt", )
+  localStorage.removeItem("Kickid_toRiding");
+  localStorage.removeItem("Tractionid_toRiding")
+  localStorage.removeItem("getNamespace");
   return (
     <>
       <Container>
@@ -177,7 +186,7 @@ const Reward = (props) => {
           </HomeBtn>
           <HomeBtn
             onClick={() => {
-              navigate("/reward");
+              navigate("/Reward");
             }}
           >
             리워드 확인하러 가기

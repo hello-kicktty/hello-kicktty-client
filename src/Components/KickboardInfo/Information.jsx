@@ -168,6 +168,7 @@ const Information = (props) => {
   }
   const random = getRandomInt(30,100);
   const toggleActive1 = (e) => {
+    console.log(e);
     setBtnActive1((prev) => {
       return e.target.value;
     });
@@ -188,6 +189,8 @@ const Information = (props) => {
     }
   };
 
+  let rewards = JSON.parse(localStorage.getItem("rewards"));
+  localStorage.setItem("isToggle", true);
   return (
     <div>
       <Box opacity={opacity} display={display}>
@@ -240,7 +243,7 @@ const Information = (props) => {
               <Icon4 />
               리워드
             </MiddleText>
-            <MiddleText1>내 잔여 리워드 : 4000P</MiddleText1>
+            <MiddleText1>내 잔여 리워드 : {rewards.reward}P</MiddleText1>
           </MiddleTextBox>
           <Buttonbox1>
             <MiddleText2>리워드 사용해 할인받기</MiddleText2>

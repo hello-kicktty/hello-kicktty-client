@@ -119,6 +119,32 @@ const Rewardbox = styled(Link)`
     
 `
 const Profile = () => {
+    // skm
+    let init_rewards = {
+        "reward": 4500,
+        "reward_list": [
+            {type:"견인", use: true, reward:4000},
+            {type:"견인", use: true, reward:500},
+            {type:"주차", use: true, reward:100},
+            {type:"주차", use: true, reward:300},
+            {type:"사용", use: true, reward:-1000},
+            {type:"주차", use: true, reward:200},
+            {type:"주차", use: true, reward:400},
+        ],
+    };
+
+    if (!localStorage.getItem("rewards")) {
+        localStorage.setItem("rewards", JSON.stringify(init_rewards));
+    }
+    let rewards = JSON.parse(localStorage.getItem("rewards"));
+    let today_reward = 0;
+    rewards.reward_list.forEach((node)=> {
+        if(!node.use && node.reward >= 0){
+            today_reward += node.reward;
+        }
+
+    });
+
     return (
         <>
         <All>
@@ -138,11 +164,11 @@ const Profile = () => {
                         <Boxcontainer>
                             <BlackBox>
                                 <BlackText>누적된 리워드</BlackText>
-                                <BlackText1>1500 P</BlackText1>
+                                <BlackText1>{rewards.reward} P</BlackText1>
                             </BlackBox>
                             <BlackBox>
                                 <BlackText>오늘 받은 리워드</BlackText>
-                                <BlackText1>1500 P</BlackText1>
+                                <BlackText1>{today_reward} P</BlackText1>
                             </BlackBox>
                         </Boxcontainer>
                         <div style={{ width: 92, height: 92 }}>

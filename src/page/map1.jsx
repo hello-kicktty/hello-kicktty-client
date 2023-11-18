@@ -53,6 +53,7 @@ function Map() {
   const navigate = useNavigate();
   const handleBackButtonClick = () => {
     localStorage.removeItem("Tractionid");
+    localStorage.removeItem("TractionData");
     navigate(-1); // Navigate back
   };
 
@@ -201,14 +202,12 @@ function Map() {
               marker.getMap().setCenter(new window.kakao.maps.LatLng(pos.latlng.La,pos.latlng.Ma))
               defaultPosition = new window.kakao.maps.LatLng(pos.latlng.La,pos.latlng.Ma)
               let pos_id = pos.title.split(" ")[1];
-              console.log(pos_id);
               const namespace = JSON.parse(localStorage.getItem("getNamespace"));
-              console.log(namespace);
-       
+
               namespace.kickboards.forEach(kick=>{
-                console.log(kick.id)
                 if(kick.id == pos_id)setKickname(kick);
               })
+              localStorage.setItem("Tractionid", pos_id)
               setTractionId(pos_id);
             });
             
@@ -333,8 +332,8 @@ function Map() {
       <MapContainer id="map" />
       <BackBtnImg id="backBtn" src={BackBtn} onClick={handleBackButtonClick} />
       {console.log("Info 값:", Info)}
-      <ParkingSpotInformation id={kickname.id} name ={kickname.name}/>
-      {localStorage.getItem("TractionData_toRiding") && <TractionInfor/>}
+      {localStorage.getItem("Tractionid") && <ParkingSpotInformation id={kickname.id} name ={kickname.name}/>}
+      {localStorage.getItem("Tractionid_toRiding") && <TractionInfor/>}
     </MapBox>
   );
 }
