@@ -7,6 +7,7 @@ import img2 from "../../Components/Box/img/Group 232.png";
 import img3 from "../../Components/Box/img/킥보드 번호 날짜 시간 거리 적립된 리워드.png";
 import img4 from "../../Components/Box/img/소계 할인.png";
 import img5 from "../../Components/Box/img/Group 155.png";
+import Homebtnimg from "../homebtnimg";
 const Top = styled.div`
   display: flex;
   flex-direction: column;
@@ -144,6 +145,8 @@ const Receipt = () => {
   return (
     <div>
       <Top>
+        <Homebtnimg transform="translate(550%, 80%)"></Homebtnimg>
+
         <Toptext1>주행 상세 영수증</Toptext1>
         <Img />
       </Top>
