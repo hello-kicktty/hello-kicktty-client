@@ -4,6 +4,8 @@ import img1 from '../../Components/Box/img/Group 147.png'
 import styled from 'styled-components';
 import { Outlet } from 'react-router-dom';
 import { useState } from 'react';
+import { ReactComponent as Img4 } from './지금까지 받은 리워드 11월 견인 리워드 11월 주차 리워드.svg';
+
 const Img = styled.div`
     background-image: url(${img});
     background-size: cover;
@@ -14,8 +16,9 @@ const Img = styled.div`
 const Img1 = styled.div`
     background-image: url(${img1});
     background-size: cover;
-    width: 37.5px;
-    height: 39px;
+    width: 27px;
+    height: 27px;
+    margin-top: 10px;
 `
 const Box = styled.div`
     width: 350px;
@@ -33,6 +36,18 @@ const Top = styled.div`
     flex-direction: row;
     margin-left:-90px;
     margin-bottom: 13px;
+    margin-top: 10px;
+`
+const Box3 = styled.div`
+    width: 320px;
+    height: 94px;
+    background-color: white;
+    border-radius: 20px;
+    margin-top: 11px;
+    margin-bottom: 13px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 `
 const TextWrapper = styled.div`
     margin-left: 11.75px;
@@ -51,15 +66,25 @@ const Text2 = styled.p`
     color: #506B00;
     margin-top: 5px;
 `
+const Text5 = styled.p`
+    font-size: 11px;
+    font-weight: 500;
+`
+const TextWrraper2 = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap:20px;
+`
 const Box1 = styled.div`
     width: 320px;
     height: 31px;
-    background-color: white;
+    background-color: #4A6300;
     border-radius: 20px;
     display: flex;
     align-items: center;
     justify-content: space-around;
     margin-top: 5px;
+    color: white;
 `
 const Text3 = styled.p`
     font-size: 10px;
@@ -116,13 +141,21 @@ const Reward = () => {
                     </TextWrapper>
             </Top>
             <Box1>
-                <Text>누적된 리워드</Text>
+                <Text>사용가능한 리워드</Text>
                 <Text>1000 P</Text>
             </Box1>
             <Box1>
                 <Text>오늘 받은 리워드</Text>
                 <Text>20 P</Text>
             </Box1>
+            <Box3>
+                <Img4></Img4>
+                <TextWrraper2>
+                    <Text5>15400P</Text5>
+                    <Text5>15400P</Text5>
+                    <Text5>15400P</Text5>
+                </TextWrraper2>
+            </Box3>
         </Box>
         <Buttonbox>
             {data.map((item, idx) => (
