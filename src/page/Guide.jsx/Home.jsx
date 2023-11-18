@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-
+import Homebtnimg from "../homebtnimg";
 const Top = styled.div`
   display: flex;
   flex-direction: row;
@@ -42,44 +42,56 @@ const SectionText = styled.div`
   margin: 3px;
 `;
 const Home = () => {
-    const navigate = useNavigate();
-    const params = useParams();
+  const navigate = useNavigate();
+  const params = useParams();
 
-    const [activeSection, setActiveSection] = useState(params.section || 'Riding');
-    useEffect(() => {
-        setActiveSection(params.section || 'Parking');
-    }, [params.section]);
+  const [activeSection, setActiveSection] = useState(
+    params.section || "Riding"
+  );
+  useEffect(() => {
+    setActiveSection(params.section || "Parking");
+  }, [params.section]);
 
-    const handleSectionClick = (section) => {
-        navigate(`${section}`);
-        setActiveSection(section);
-    };
-    const goBack = () => {
-        navigate('/main'); 
-      };
-    return (
-        <div>
-            <Top>
-            <Icon onClick={goBack}></Icon>
-            <Text>이용가이드</Text>
-            </Top>
-            <Section>
-                <SectionBox active={activeSection === 'Parking'} onClick={() => handleSectionClick('Parking')}>
-                    <SectionText>주차하기</SectionText>
-                    <hr/>
-                </SectionBox>
-                <SectionBox active={activeSection === 'Traction'} onClick={() => handleSectionClick('Traction')}>
-                    <SectionText>견인하기</SectionText>
-                    <hr/>
-                </SectionBox>
-                <SectionBox active={activeSection === 'Riding'} onClick={() => handleSectionClick('Riding')}>
-                    <SectionText>리워드안내</SectionText>
-                    <hr/>
-                </SectionBox>
-            </Section>
-            <Outlet/>
-        </div>
-    );
+  const handleSectionClick = (section) => {
+    navigate(`${section}`);
+    setActiveSection(section);
+  };
+  const goBack = () => {
+    navigate("/main");
+  };
+  return (
+    <div>
+      <Top>
+        <Icon onClick={goBack}></Icon>
+        <Text>이용가이드</Text>
+        <Homebtnimg transform="translate(600%, 5%)"></Homebtnimg>
+      </Top>
+      <Section>
+        <SectionBox
+          active={activeSection === "Parking"}
+          onClick={() => handleSectionClick("Parking")}
+        >
+          <SectionText>주차하기</SectionText>
+          <hr />
+        </SectionBox>
+        <SectionBox
+          active={activeSection === "Traction"}
+          onClick={() => handleSectionClick("Traction")}
+        >
+          <SectionText>견인하기</SectionText>
+          <hr />
+        </SectionBox>
+        <SectionBox
+          active={activeSection === "Riding"}
+          onClick={() => handleSectionClick("Riding")}
+        >
+          <SectionText>리워드안내</SectionText>
+          <hr />
+        </SectionBox>
+      </Section>
+      <Outlet />
+    </div>
+  );
 };
 
 export default Home;
