@@ -143,6 +143,28 @@ const Text3 = styled.p`
 const Receipt = () => {
   const navigate = useNavigate();
   const rating = localStorage.getItem("rating");
+  const estimated_cost = rating.split(":")[1] * 160 + 600;
+  const id = localStorage.getItem("Kickid_toRiding");
+  localStorage.removeItem("Kickid_toRiding");
+
+  const reward = id >= 1000 ? 200 : 100;
+
+  const total_cost = estimated_cost - reward;
+
+  function getCurrentDate() {
+    const daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
+    const currentDate = new Date();
+
+    const year = currentDate.getFullYear();
+    const month = String(currentDate.getMonth() + 1).padStart(2, "0"); // 월은 0부터 시작하므로 +1
+    const day = String(currentDate.getDate()).padStart(2, "0");
+    const dayOfWeek = daysOfWeek[currentDate.getDay()]; // 0부터 시작하는 요일 인덱스
+
+    const formattedDate = `${year}-${month}-${day} (${dayOfWeek})`;
+    return formattedDate;
+  }
+
+  const currentDate = getCurrentDate();
 
   return (
     <div>
@@ -157,23 +179,23 @@ const Receipt = () => {
         <Box4>
           <Img3 />
           <TextBox>
-            <Text1>31323</Text1>
-            <Text1>2023-11-19(일)</Text1>
+            <Text1>{id}</Text1>
+            <Text1>{currentDate}</Text1>
             <Text1>{rating}</Text1>
             <Text1>1.0km</Text1>
-            <Text1>50P</Text1>
+            <Text1>{reward}P</Text1>
           </TextBox>
         </Box4>
         <Img2 />
         <Box1>
           <Text2>전체</Text2>
-          <Text2>1,284원</Text2>
+          <Text2>{total_cost}원</Text2>
         </Box1>
         <Box5>
           <Img4 />
           <TextBox>
-            <Text3>1,385원</Text3>
-            <Text3>100원</Text3>
+            <Text3>{estimated_cost}원</Text3>
+            <Text3>{reward}원</Text3>
           </TextBox>
         </Box5>
         <Img5 />
