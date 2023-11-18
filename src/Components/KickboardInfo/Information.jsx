@@ -190,7 +190,7 @@ const Information = (props) => {
   };
 
   let rewards = JSON.parse(localStorage.getItem("rewards"));
-
+  localStorage.setItem("isToggle", true);
   return (
     <div>
       <Box opacity={opacity} display={display}>
