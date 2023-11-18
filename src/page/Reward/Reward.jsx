@@ -132,17 +132,19 @@ const Reward = () => {
   let rewards = JSON.parse(localStorage.getItem("rewards")); // reward: int, reward_list: List[{type:str, reward:int}] 
   
   let cumulate_reward = 0;
-  let usable_reward = 0;
+  let usable_reward = rewards.reward;
   let today_reward = 0;
   let track_reward = 0;
   let parking_reward = 0;
 
   rewards.reward_list.forEach(
     (node) => {
+      
       if (node.reward >= 0) {
         cumulate_reward += node.reward;
-        if (node.use) today_reward += node.reward;
-        else usable_reward += node.reward;
+        if (!node.use) today_reward += node.reward;
+        
+
         if (node.type == "견인") {
           track_reward += node.reward;
         } else if (node.type == "주차") {

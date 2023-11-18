@@ -147,20 +147,36 @@ const Receipt = () => {
   const id = localStorage.getItem("Kickid_toRiding");
   localStorage.removeItem("Kickid_toRiding");
 
-  const reward = id >= 1000 ? 200 : 100;
+  const basic_reward = id >= 1000 ? 200 : 100;
 
-  const total_cost = estimated_cost - reward;
+  let total_cost = estimated_cost;
 
   let rewards = JSON.parse(localStorage.getItem("rewards"));
   let isToggle = localStorage.getItem("isToggle");
+  
+  // add basic rewards
+  rewards.reward_list.push({type:"주차", use:false, reward: basic_reward});
+  rewards.reward += basic_reward;
 
-  let discount = reward;
-  if (isToggle && rewards.reward >= total_cost) {
-    rewards.reward -= total_cost;
-    rewards.reward_list.push({ type: "사용", use: false, reward: -total_cost });
-    discount -= total_cost;
-    total_cost = 0;
+
+  // calculate usable reward
+  let usable_reward = 0;
+  rewards.reward_list.forEach( (node)=>{
+    if (node.use && node.reward >= 0) {
+      usable_reward += node.reward;
+    }
+  });
+
+  let discount_cost = 0;
+
+  if (isToggle) {
+    discount_cost = Math.min(usable_reward, total_cost);
+    total_cost -= discount_cost;
+    rewards.reward_list.push({ type: "사용", use: false, reward: -discount_cost });
   }
+    
+  localStorage.removeItem("isToggle");
+  localStorage.setItem("rewards", JSON.stringify(rewards));
 
   function getCurrentDate() {
     const daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
@@ -194,7 +210,7 @@ const Receipt = () => {
             <Text1>{currentDate}</Text1>
             <Text1>{rating}</Text1>
             <Text1>1.0km</Text1>
-            <Text1>{reward}P</Text1>
+            <Text1>{basic_reward}P</Text1>
           </TextBox>
         </Box4>
         <Img2 />
@@ -206,7 +222,7 @@ const Receipt = () => {
           <Img4 />
           <TextBox>
             <Text3>{estimated_cost}원</Text3>
-            <Text3>{discount}원</Text3>
+            <Text3>{discount_cost}원</Text3>
           </TextBox>
         </Box5>
         <Img5 />
