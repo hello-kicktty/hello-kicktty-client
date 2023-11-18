@@ -88,31 +88,29 @@ const Top = ({
     selectedLocation,
     handleAccordionItemClick,
     onDataToParent,
+    kickid,
   }) => {
+    const kickid1 = kickid;
     const [data, setData] = useState([]); 
     const sendDataToParent = () => {
         const dataToSend = data;
         onDataToParent(dataToSend);
       };
-    
+    console.log(kickid1)
     const getData = async () => {
-      try {
-        const fetchedData = await api.getKickRecommend(localStorage.getItem("Tractionid"));
-        console.log(fetchedData);
+        console.log(kickid1)
+        const fetchedData = await api.getKickRecommend(parseInt(kickid1));
+        console.log(typeof (fetchedData));
         setData(fetchedData);
         localStorage.setItem("TractionData", JSON.stringify(fetchedData));
         sendDataToParent();
-      } catch (error) {
-        // Handle error if needed
-        console.error(error);
-      }
     };
   
     useEffect(() => {
-      getData();
-    }, []);
-    if(data && data.clusters){
-        console.log(data.clusters)
+     if(kickid1)getData();
+    }, [kickid1]);
+    if(data) {
+    }
     return (
     <StyledTop isAccordionOpen={isAccordionOpen}>
       {selectedLocation}
@@ -127,22 +125,22 @@ const Top = ({
             <AccordionInnerEach
               onClick={() => handleAccordionItemClick("인하대 본관")}
             >
-              {data.clusters[0].name}
+              {JSON.parse(localStorage.getItem("getNamespace"))[data.clusters[0].cluster_id]}
             </AccordionInnerEach>
             <AccordionInnerEach
               onClick={() => handleAccordionItemClick("인하대 5호관 남")}
             >
-              {data.clusters[1].name}
+              {JSON.parse(localStorage.getItem("getNamespace"))[data.clusters[1].cluster_id]}
             </AccordionInnerEach>
             <AccordionInnerEach
               onClick={() => handleAccordionItemClick("인하대 서호관")}
             >
-              {data.clusters[2].name}
+              {JSON.parse(localStorage.getItem("getNamespace"))[data.clusters[2].cluster_id]}
             </AccordionInnerEach>
             <AccordionInnerEach
               onClick={() => handleAccordionItemClick("인하대 하이테크관")}
             >
-              {data.clusters[3].name}
+              {JSON.parse(localStorage.getItem("getNamespace"))[data.clusters[3].cluster_id]}
             </AccordionInnerEach>
           </AccordionInner>
         </AccordionContent>
@@ -150,6 +148,5 @@ const Top = ({
     </StyledTop>
       );
     }
-    };
   
   export default Top;

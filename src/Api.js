@@ -9,6 +9,9 @@ export function getKickList() {
   export function getKickRecommend(id) {
     return axios.get(`${BASE_URL}/recommend?id=${id}`).then((res) => res.data);
   }
+  export function getnamespace() {
+    return axios.get(`${BASE_URL}/namespace`).then((res) => res.data);
+  }
   export function postParking(id,lat) {
     const data = {
       id: id,

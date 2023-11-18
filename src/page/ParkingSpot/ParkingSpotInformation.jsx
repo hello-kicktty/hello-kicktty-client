@@ -243,11 +243,14 @@ const AddressBox2 = styled.div`
 `;
 
 
-const ParkingSpotInformation = () => {
+const ParkingSpotInformation = ({id,name}) => {
   const [isAccordionOpen, setIsAccordionOpen] = useState(false);
   const [selectedLocation, setSelectedLocation] =useState("추천 주차지 선택하기");
   const [data, setData] = useState("");
   const [TractionData, setTractionData] = useState("");
+  const kickname=name;
+  console.log(id);
+  const kickid=id;
   const navigate = useNavigate();
   const handleAccordionToggle = () => {
     setIsAccordionOpen(!isAccordionOpen);
@@ -279,7 +282,6 @@ const handleTractionButtonClick = () => {
   // }, [TractionData]); // Make sure the dependencies are correctly set
   
   // console.log(TractionData);
-
   return (
     <>
       <Box>
@@ -289,6 +291,7 @@ const handleTractionButtonClick = () => {
           handleAcz cordionToggle={handleAccordionToggle}
           selectedLocation={selectedLocation}
           handleAccordionItemClick={handleAccordionItemClick}
+          kickid = {kickid}
         />
         <Middle>
           <WhiteBox>
@@ -302,7 +305,7 @@ const handleTractionButtonClick = () => {
             <InformInner>소요시간 | 8m</InformInner>
           </InformBox>
           <WhiteBox>
-            <InnerBox2 margintop="20px">{TractionData}</InnerBox2>{" "}
+            <InnerBox2 margintop="20px">{kickname}</InnerBox2>{" "}
             <AddressBox1>인천광역시 미추홀구 인하로 100 인하대학교</AddressBox1>
             <InnerBox2
               margintop="70px"

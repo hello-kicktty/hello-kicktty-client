@@ -48,17 +48,25 @@ function Map() {
   const [Info, setInfo] = useState(false);
   const [tractionId, setTractionId] = useState("");
   const [data, setData] = useState([]);
+  const [namespace, setNamespace] = useState([]);
+  const [kickname, setKickname] = useState("");
   const navigate = useNavigate();
   const handleBackButtonClick = () => {
     localStorage.removeItem("Tractionid");
     navigate(-1); // Navigate back
   };
 
+
   const getData = async () => {
     const data = await api.getKickList();
+    const data2 = await api.getnamespace();
     console.log(data);
+    console.log(data2);
     localStorage.setItem("getData", JSON.stringify(data));
+    localStorage.setItem("getNamespace", JSON.stringify(data2));
     setData(data);
+    setNamespace(data2);
+
   };
 
   useEffect(() => {
@@ -187,8 +195,13 @@ function Map() {
               console.log(pos);
 
               let pos_id = pos.title.split(" ")[1];
-              localStorage.removeItem('TractionData');
-              localStorage.setItem('Tractionid',pos_id);
+              console.log(pos_id);
+              const namespace = JSON.parse(localStorage.getItem("getNamespace"));
+              console.log(namespace);
+              namespace.kickboards.forEach(kick=>{
+                console.log(kick.id)
+                if(kick.id == pos_id)setKickname(kick);
+              })
               setTractionId(pos_id);
             });
             
@@ -207,8 +220,6 @@ function Map() {
 
           tmp.forEach(cluster => {
             if(cluster.cluster_id == -1) return;
-            console.log(cluster.cluster_id)
-            console.log(cluster.center)
             const center = new window.kakao.maps.LatLng(cluster.center.lat, cluster.center.lng)
             var layerLatLng = []
             cluster.borders.forEach(latlng => {
@@ -297,7 +308,7 @@ function Map() {
         mapContainer.addEventListener("wheel", handleMouseWheel, {
           passive: false,
         });
-
+        
         // 컴포넌트 언마운트 시 이벤트 리스너 제거
         return () => {
           mapContainer.removeEventListener("wheel", handleMouseWheel);
@@ -305,7 +316,7 @@ function Map() {
         };
       });
     };
-    console.log(Info)
+    console.log(kickname)
     mapScript.addEventListener("load", onLoadKakaoMap);
   }, [data,tractionId,Info]);
   
@@ -314,8 +325,7 @@ function Map() {
       <MapContainer id="map" />
       <BackBtnImg id="backBtn" src={BackBtn} onClick={handleBackButtonClick} />
       {console.log("Info 값:", Info)}
-      {Info && <ParkingSpotInformation Title={tractionId} key={tractionId} />}
-      <FirstInfo></FirstInfo>
+      <ParkingSpotInformation id={kickname.id} name ={kickname.name}/>
       {localStorage.getItem("TractionData_toRiding") && <TractionInfor/>}
     </MapBox>
   );

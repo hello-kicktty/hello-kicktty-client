@@ -66,7 +66,7 @@ const ScanBox = () => {
                 <Title> QR을 스캔 후 주행 견인을 시작하세요.</Title>
                 <BoxWrapper>
                 <Box to="/ridingqr"><Img/><Button>주행하기</Button></Box>
-                <Box to="/tractionqr"><Img/><Button>견인하기</Button></Box>
+                <Box to="/map1"><Img/><Button>견인하기</Button></Box>
                 </BoxWrapper>
             </All>
         </div>
