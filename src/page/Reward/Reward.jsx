@@ -2,7 +2,7 @@ import React from 'react';
 import img from '../../Components/Box/img/Group 236.png'
 import img1 from '../../Components/Box/img/Group 147.png'
 import styled from 'styled-components';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { ReactComponent as Img4 } from './지금까지 받은 리워드 11월 견인 리워드 11월 주차 리워드.svg';
 
@@ -103,7 +103,7 @@ const RewardBox = styled.div`
   background: #fff;
 `;
 
-`
+
 const Buttonbox = styled.div`
     display: flex;
     flex-direction: row;
@@ -115,17 +115,13 @@ const Buttonbox = styled.div`
 `
 
 const Reward = () => {
+    const navigate = useNavigate();
     let [btnActive, setBtnActive] = useState("");
     let [btnActive1, setBtnActive1] = useState("");
     const data = ['리워드 적립 내역', '리워드 사용 내역'];
     const data1 = ['ON', 'OFF'];
     const toggleActive = (e) => {
         setBtnActive((prev) => {
-          return e.target.value;
-        });
-      };
-      const toggleActive1 = (e) => {
-        setBtnActive1((prev) => {
           return e.target.value;
         });
       };
