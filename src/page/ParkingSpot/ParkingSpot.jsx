@@ -10,7 +10,7 @@ import ParkingSpotInformation from "./ParkingSpotInformation";
 const apiKey = "759cc21177f7d8714e0d75a11877c4ab";
 
 const MapBox = styled.div`
-  display: flex;
+  /* display: flex; */
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -73,12 +73,11 @@ function ParkingSpot() {
   return (
     <>
       <MapBox>
+        <OnlyMap></OnlyMap>
         <BackBtnImg id="backBtn" src={BackBtn} />
         <ReloadBtnImg id="reloadBtn" src={ReloadBtn}></ReloadBtnImg>
-
         <MapContainer id="map" />
         <ParkingSpotInformation />
-        {<OnlyMap></OnlyMap>}
       </MapBox>
     </>
   );
