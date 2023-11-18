@@ -1,5 +1,12 @@
-import { useEffect } from 'react';
-import {useParams } from 'react-router-dom';
+import React from "react";
+import { ReactComponent as Icon } from "../../Components/KickboardInfo/Assets/Group 240.svg";
+import styled from "styled-components";
+import { Outlet } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
+
 const Top = styled.div`
   display: flex;
   flex-direction: row;

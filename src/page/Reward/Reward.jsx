@@ -103,7 +103,7 @@ const RewardBox = styled.div`
   background: #fff;
 `;
 
-`
+
 const Buttonbox = styled.div`
     display: flex;
     flex-direction: row;
