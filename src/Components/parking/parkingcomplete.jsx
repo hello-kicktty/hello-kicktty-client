@@ -148,6 +148,10 @@ const ParkingComplete = (props) => {
     return () => clearTimeout(timer);
   }, []);
 
+  let rewards = JSON.parse(localStorage.getItem("rewards"));
+  rewards.reward += 200;
+  rewards.reward_list.push({ type: "주차", use: false, reward: 200 });
+  localStorage.setItem("rewards", JSON.stringify(rewards));
   return (
     <>
       <Homebtnimg></Homebtnimg>
