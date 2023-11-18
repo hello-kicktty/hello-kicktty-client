@@ -175,8 +175,20 @@ const Reward = (props) => {
           >
             Home
           </HomeBtn>
-          <HomeBtn>리워드 확인하러 가기</HomeBtn>
-          <HomeBtn>주행 영수증 보러가기</HomeBtn>
+          <HomeBtn
+            onClick={() => {
+              navigate("/reward");
+            }}
+          >
+            리워드 확인하러 가기
+          </HomeBtn>
+          <HomeBtn
+            onClick={() => {
+              navigate("/receipt");
+            }}
+          >
+            주행 영수증 보러가기
+          </HomeBtn>
         </BtnContainer>
       </Container>
     </>

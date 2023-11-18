@@ -125,6 +125,8 @@ const Reward = () => {
       return e.target.value;
     });
   };
+  var kick_id = localStorage.getItem("Kickid_toRiding");
+  localStorage.removeItem("Kickid_toRiding");
 
   return (
     <>
