@@ -143,7 +143,7 @@ const ParkingQR = (props) => {
         <BtnBox>
           <BackBtn
             onClick={() => {
-              navigate('/main');
+              navigate('/ParkingReward');
             }}
           >
             돌아가기
