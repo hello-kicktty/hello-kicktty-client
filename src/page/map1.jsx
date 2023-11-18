@@ -199,8 +199,7 @@ function Map() {
               console.log(pos);
               console.log(pos.latlng.La)
               console.log(pos.latlng.Ma)
-              marker.getMap().setCenter(new window.kakao.maps.LatLng(pos.latlng.La,pos.latlng.Ma))
-              defaultPosition = new window.kakao.maps.LatLng(pos.latlng.La,pos.latlng.Ma)
+    
               let pos_id = pos.title.split(" ")[1];
               const namespace = JSON.parse(localStorage.getItem("getNamespace"));
 
