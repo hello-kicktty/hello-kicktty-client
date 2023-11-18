@@ -128,6 +128,30 @@ const Reward = () => {
   var kick_id = localStorage.getItem("Kickid_toRiding");
   localStorage.removeItem("Kickid_toRiding");
 
+
+  let rewards = JSON.parse(localStorage.getItem("rewards")); // reward: int, reward_list: List[{type:str, reward:int}] 
+  
+  let cumulate_reward = 0;
+  let usable_reward = 0;
+  let today_reward = 0;
+  let track_reward = 0;
+  let parking_reward = 0;
+
+  rewards.reward_list.forEach(
+    (node) => {
+      if (node.reward >= 0) {
+        cumulate_reward += node.reward;
+        if (node.use) today_reward += node.reward;
+        else usable_reward += node.reward;
+        if (node.type == "견인") {
+          track_reward += node.reward;
+        } else if (node.type == "주차") {
+          parking_reward += node.reward;
+        }
+      }
+    }
+  )
+
   return (
     <>
       <Img></Img>
@@ -138,23 +162,23 @@ const Reward = () => {
           <Img1></Img1>
           <TextWrapper>
             <Text1>SONNY님</Text1>
-            <Text2>SONNY님! 1000P 달성하셨네요!</Text2>
+            <Text2>SONNY님! {rewards.reward} 달성하셨네요!</Text2>
           </TextWrapper>
         </Top>
         <Box1>
           <Text>사용가능한 리워드</Text>
-          <Text>1000 P</Text>
+          <Text>{usable_reward} P</Text>
         </Box1>
         <Box1>
           <Text>오늘 받은 리워드</Text>
-          <Text>20 P</Text>
+          <Text>{today_reward} P</Text>
         </Box1>
         <Box3>
           <Img4></Img4>
           <TextWrraper2>
-            <Text5>15400P</Text5>
-            <Text5>15400P</Text5>
-            <Text5>15400P</Text5>
+            <Text5>{cumulate_reward}P</Text5>
+            <Text5>{track_reward}P</Text5>
+            <Text5>{parking_reward}P</Text5>
           </TextWrraper2>
         </Box3>
       </Box>

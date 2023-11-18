@@ -151,6 +151,17 @@ const Receipt = () => {
 
   const total_cost = estimated_cost - reward;
 
+  let rewards = JSON.parse(localStorage.getItem("rewards"));
+  let isToggle = localStorage.getItem("isToggle");
+
+  let discount = reward;
+  if (isToggle && rewards.reward >= total_cost) {
+    rewards.reward -= total_cost;
+    rewards.reward_list.push({ type: "사용", use: false, reward: -total_cost });
+    discount -= total_cost;
+    total_cost = 0;
+  }
+
   function getCurrentDate() {
     const daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
     const currentDate = new Date();
@@ -195,7 +206,7 @@ const Receipt = () => {
           <Img4 />
           <TextBox>
             <Text3>{estimated_cost}원</Text3>
-            <Text3>{reward}원</Text3>
+            <Text3>{discount}원</Text3>
           </TextBox>
         </Box5>
         <Img5 />
