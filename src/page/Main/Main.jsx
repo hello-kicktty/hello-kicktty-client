@@ -10,13 +10,11 @@ import styled from 'styled-components';
 import Footer from '../../Components/main/Footer';
 import { useEffect } from "react";
 const Main = () => {
-    useEffect(() => {
-        localStorage.removeItem('Kickid');
-    }, []);
 
     return (
-        <>
-          <Header/>
+           <>
+           
+            <Header/>
             <MiniMap text="가까운 전동 킥보드를 찾아보세요"></MiniMap>
             <ScanBox/>
             <Profile/>
@@ -24,5 +22,5 @@ const Main = () => {
             <Footer/>
         </>
     );
-    }
+}
 export default Main;

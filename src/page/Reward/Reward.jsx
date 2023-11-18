@@ -2,6 +2,8 @@ import React from 'react';
 import img from '../../Components/Box/img/Group 236.png'
 import img1 from '../../Components/Box/img/Group 147.png'
 import styled from 'styled-components';
+import { Outlet } from 'react-router-dom';
+import { useState } from 'react';
 const Img = styled.div`
     background-image: url(${img});
     background-size: cover;
@@ -76,8 +78,32 @@ const RewardBox = styled.div`
     background: #FFF;
 
 `
+const Buttonbox = styled.div`
+    display: flex;
+    flex-direction: row;
+    width: 350px;
+    height:32px;
+    background-color: white;
+    border-radius: 10px;
+    margin-top: 20px;
+`
 
 const Reward = () => {
+    let [btnActive, setBtnActive] = useState("");
+    let [btnActive1, setBtnActive1] = useState("");
+    const data = ['리워드 적립 내역', '리워드 사용 내역'];
+    const data1 = ['ON', 'OFF'];
+    const toggleActive = (e) => {
+        setBtnActive((prev) => {
+          return e.target.value;
+        });
+      };
+      const toggleActive1 = (e) => {
+        setBtnActive1((prev) => {
+          return e.target.value;
+        });
+      };
+  
     return (
         <>
         <Img></Img>
@@ -98,9 +124,21 @@ const Reward = () => {
                 <Text>20 P</Text>
             </Box1>
         </Box>
+        <Buttonbox>
+            {data.map((item, idx) => (
+             <button
+             value={idx}
+             className={"btn1" + (idx == btnActive ? " active" : "")}
+             onClick={toggleActive}
+           >
+             {item}
+           </button>
+            ))}
+            </Buttonbox>
         <Text3>최신순</Text3>
+        
         <RewardAll>
-            <RewardBox></RewardBox>
+        <Outlet/>
         </RewardAll>
         </>
     );
