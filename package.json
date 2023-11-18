@@ -17,13 +17,10 @@
     "react-hot-toast": "^2.4.1",
     "react-icon": "^1.0.0",
     "react-icons": "^4.11.0",
-    "react-native-camera-kit": "^13.0.0",
-    "react-native-vision-camera": "^3.6.4",
     "react-router-dom": "^6.17.0",
     "react-scripts": "5.0.1",
     "reactstrap": "^9.2.0",
     "recoil": "^0.7.7",
-    "reset": "^0.1.0",
     "styled-components": "^6.1.0",
     "styled-reset": "^4.5.1",
     "web-vitals": "^2.1.4"
