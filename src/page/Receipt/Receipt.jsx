@@ -142,6 +142,7 @@ const Text3 = styled.p`
 `;
 const Receipt = () => {
   const navigate = useNavigate();
+  const rating = localStorage.getItem("rating");
 
   return (
     <div>
@@ -157,8 +158,8 @@ const Receipt = () => {
           <Img3 />
           <TextBox>
             <Text1>31323</Text1>
-            <Text1>2023-10-25(목)</Text1>
-            <Text1>오전 11:50 ~ 11:54</Text1>
+            <Text1>2023-11-19(일)</Text1>
+            <Text1>{rating}</Text1>
             <Text1>1.0km</Text1>
             <Text1>50P</Text1>
           </TextBox>
