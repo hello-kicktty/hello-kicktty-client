@@ -2,12 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import Kickboard from "../Box/img/메이커톤 킥보드 1.png";
 import { useNavigate } from "react-router-dom";
-
+import {motion} from "framer-motion"
 import { ReactComponent as Icon1 } from "./Assets/Group 181.svg";
 import { ReactComponent as Icon2 } from "./Assets/🦆 icon _coin_.svg";
 import { ReactComponent as Icon3 } from "./Assets/🦆 icon _map_.svg";
 import { ReactComponent as Icon4 } from "./Assets/🦆 icon _organic food_.svg";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
+import { MotionConfig } from "framer-motion";
+import Img3 from "./Group 610.png";
 const Box = styled.div`
   border-radius: 50px 50px 0px 0px;
   background: #f0f0f0;
@@ -58,6 +60,15 @@ const KickboardInfo = styled.div`
   flex-direction: column;
   gap: 5px;
 `;
+const Motionbox = styled(motion.div)`
+  background-image:url(${Img3});
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+  border-radius: 20px;
+  z-index: 10;
+  position: absolute;
+`
 const KickboardText1 = styled.p`
   font-size: 10px;
   font-weight: bold;
@@ -111,17 +122,39 @@ const Text1 = styled.p`
     height: 25px;
   }
 `;
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min) + min); // min 이상 max 미만의 랜덤 정수값 반환
+}
+
 const RidingInfor = () => {
   const navigate = useNavigate();
-
+  const Kickid = localStorage.getItem('Kickid');
+  const handleButtonClick = () => {
+    localStorage.removeItem('Kickid');
+    navigate('/parkingQR');
+  };
+  const random = getRandomInt(30,100);
   return (
     <>
+            <Motionbox
+    initial={{ rotate:90, scale: 0 }}
+    animate={{ rotate: 360, scale: 1 }}
+    transition={{
+      type: "spring",
+      stiffness: 150,
+      damping: 30,
+      repeat: Infinity,
+      repeatType: "reverse"
+    }}
+  />
       <Box>
         <Top>
           <div style={{ width: 54, height: 54 }}>
             <CircularProgressbar
-              value={66}
-              text={"66%"}
+              value={random}
+              text={random+"%"}
               strokeWidth={15}
               styles={buildStyles({
                 textColor: "black",
@@ -132,7 +165,7 @@ const RidingInfor = () => {
           </div>
           <KickboardInfo>
             <KickboardText1>Max Pro</KickboardText1>
-            <KickboardText2>234125</KickboardText2>
+            <KickboardText2>{Kickid}</KickboardText2>
             <KickboardText2>
               약 <span>24km</span>주행할 수 있어요!
             </KickboardText2>
@@ -159,9 +192,7 @@ const RidingInfor = () => {
           <Text1>1km</Text1>
         </Box2>
         <Buttonbox3
-          onClick={() => {
-            navigate("/parkingQR");
-          }}
+          onClick={handleButtonClick}
         >
           주차하기
         </Buttonbox3>

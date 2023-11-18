@@ -9,17 +9,20 @@ import Guide from "../../Components/Box/Guide";
 import styled from "styled-components";
 import Footer from "../../Components/main/Footer";
 import { useEffect } from "react";
-import Map from "../map";
+
+
 const Main = () => {
-  return (
-    <>
-      <Header />
-      <MiniMap text="가까운 전동 킥보드를 찾아보세요"></MiniMap>
-      <ScanBox />
-      <Profile />
-      <Guide />
-      <Footer />
-    </>
-  );
-};
+
+    return (
+           <>
+            <Header/>
+            <MiniMap text="가까운 전동 킥보드를 찾아보세요"></MiniMap>
+            <ScanBox/>
+            <Profile/>
+            <Guide/>
+            <Footer/>
+        </>
+    );
+}
 export default Main;
+

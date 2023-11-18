@@ -110,7 +110,8 @@ const Box1 = styled.div`
 `
 const ParkingQR = (props) => {
     const [latitude, setLatitude] = useState(null);
-  const [longitude, setLongitude] = useState(null);
+    const [longitude, setLongitude] = useState(null);
+    const navigate = useNavigate();
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
@@ -127,7 +128,7 @@ const ParkingQR = (props) => {
       }
     );
   }, []); // 빈 배열을 전달하여 컴포넌트가 마운트될 때 한 번만 실행되도록 설정
-  const navigate = useNavigate();
+  
   return (
     <>
       <Container>
@@ -143,7 +144,7 @@ const ParkingQR = (props) => {
         <BtnBox>
           <BackBtn
             onClick={() => {
-              navigate('/ParkingReward');
+              navigate(-1);
             }}
           >
             돌아가기

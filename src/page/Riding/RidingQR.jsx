@@ -21,7 +21,7 @@ const Box = styled.div`
   margin-bottom: 30px;
   `
 const RidingTextBox = styled.div`
- background: #000;
+  background: #000;
   width: 273px;
   height: 44px;
   font-weight: bold;
@@ -123,6 +123,7 @@ const RidingQR = (props) => {
         <BtnBox>
           <BackBtn
             onClick={() => {
+              localStorage.removeItem("Kickid_toRiding");
               navigate('/main');
             }}
           >
