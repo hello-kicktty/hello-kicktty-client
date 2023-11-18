@@ -3,6 +3,7 @@ import styled, { keyframes } from "styled-components";
 import { useNavigate } from "react-router-dom";
 import coin from "./coin.png";
 import stars from "./stars.png";
+import Homebtnimg from "../../page/homebtnimg";
 
 const Container = styled.div`
   width: 100%;
@@ -155,6 +156,7 @@ const Reward = (props) => {
   return (
     <>
       <Container>
+        <Homebtnimg transform="translate(300%, -770%)"></Homebtnimg>
         {/* 애니메이션이 적용된 팝업 */}
         {showPopup && <SlideInPopup />}
         <Stars1 src={stars}></Stars1>

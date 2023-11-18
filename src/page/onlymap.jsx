@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import BackBtn from "./backbtn.png";
 import { useNavigate } from "react-router-dom";
-import OnlyMap from "./onlymap";
 import Information from "../Components/KickboardInfo/Information";
 import RidingInfor from "../Components/KickboardInfo/RidingInfor";
 import toast, { Toaster } from "react-hot-toast";
@@ -43,7 +42,7 @@ const MapContainer = styled.div`
   display: flex;
 `;
 
-function Map() {
+function OnlyMap() {
   const [Info, setInfo] = useState(false);
   const [kickId, setKickId] = useState("");
   const [data, setData] = useState([]);
@@ -257,16 +256,7 @@ function Map() {
 
     mapScript.addEventListener("load", onLoadKakaoMap);
   }, [data]);
-  return (
-    <MapBox>
-      <BackBtnImg id="backBtn" src={BackBtn} onClick={handleBackButtonClick} />
-
-      {Info && <Information Title={kickId} />}
-      <RidingInfor></RidingInfor>
-      <FirstInfo></FirstInfo>
-      <OnlyMap />
-    </MapBox>
-  );
+  return <MapContainer id="map" />;
 }
 
-export default Map;
+export default OnlyMap;
