@@ -53,6 +53,7 @@ function Map() {
   const navigate = useNavigate();
   const handleBackButtonClick = () => {
     localStorage.removeItem("Tractionid");
+    localStorage.removeItem("TractionData");
     navigate(-1); // Navigate back
   };
 
@@ -324,7 +325,7 @@ function Map() {
       <BackBtnImg id="backBtn" src={BackBtn} onClick={handleBackButtonClick} />
       {console.log("Info 값:", Info)}
       {localStorage.getItem("Tractionid") && <ParkingSpotInformation id={kickname.id} name ={kickname.name}/>}
-      {localStorage.getItem("TractionData_toRiding") && <TractionInfor/>}
+      {localStorage.getItem("Tractionid_toRiding") && <TractionInfor/>}
     </MapBox>
   );
 }
