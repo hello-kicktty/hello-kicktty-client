@@ -7,12 +7,12 @@ import { useState } from 'react';
 import { ReactComponent as Img4 } from './지금까지 받은 리워드 11월 견인 리워드 11월 주차 리워드.svg';
 
 const Img = styled.div`
-    background-image: url(${img});
-    background-size: cover;
-    width: 345px;
-    height: 85px;
-    margin-top: 60px;
-`
+  background-image: url(${img});
+  background-size: cover;
+  width: 345px;
+  height: 85px;
+  margin-top: 60px;
+`;
 const Img1 = styled.div`
     background-image: url(${img1});
     background-size: cover;
@@ -21,16 +21,16 @@ const Img1 = styled.div`
     margin-top: 10px;
 `
 const Box = styled.div`
-    width: 350px;
-    height: 230px;
-    border-radius: 20px;
-    background: #D3FF52;
-    margin-top: 2px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-`
+  width: 350px;
+  height: 230px;
+  border-radius: 20px;
+  background: #d3ff52;
+  margin-top: 2px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
 const Top = styled.div`
     display: flex;
     flex-direction: row;
@@ -50,17 +50,17 @@ const Box3 = styled.div`
     align-items: center;
 `
 const TextWrapper = styled.div`
-    margin-left: 11.75px;
-    margin-top: 6px;
-`
+  margin-left: 11.75px;
+  margin-top: 6px;
+`;
 const Text = styled.p`
-    font-size: 12px;
-    font-weight: bold;
-`
-const Text1= styled.p`
-    font-size:16px;
-    font-weight: bold;
-`
+  font-size: 12px;
+  font-weight: bold;
+`;
+const Text1 = styled.p`
+  font-size: 16px;
+  font-weight: bold;
+`;
 const Text2 = styled.p`
     font-size: 12px;
     color: #506B00;
@@ -87,20 +87,21 @@ const Box1 = styled.div`
     color: white;
 `
 const Text3 = styled.p`
-    font-size: 10px;
-    margin-top: 22px;
-    margin-left: auto;
-    margin-right: 10%;
-`
+  font-size: 10px;
+  margin-top: 22px;
+  margin-left: auto;
+  margin-right: 10%;
+`;
 const RewardAll = styled.div`
-    gap:16px;
-    margin-top: 10px;
-`
+  gap: 16px;
+  margin-top: 10px;
+`;
 const RewardBox = styled.div`
-    width: 350px;
-    height: 104px;
-    border-radius: 20px;
-    background: #FFF;
+  width: 350px;
+  height: 104px;
+  border-radius: 20px;
+  background: #fff;
+`;
 
 `
 const Buttonbox = styled.div`
