@@ -8,7 +8,7 @@ import { useState } from "react";
 const Box = styled.div`
   border-radius: 50px 50px 0px 0px;
   background: #f0f0f0;
-  box-shadow: 0px 0px 70px 0px rgba(0, 0, 0, 0.25);
+  /* box-shadow: 0px 0px 70px 0px rgba(0, 0, 0, 0.25); */
   width: 390px;
   height: 45%;
   position: absolute;
@@ -284,7 +284,6 @@ const ParkingSpotInformation = () => {
   const [selectedLocation, setSelectedLocation] =
     useState("추천 주차지 선택하기");
 
-
   // 자신의 현재 위치에 따라서 추천 주차구역을 안내해주는 함수입니다.
   const reccParkingSpot = (lat, lng) => {
     //var myLat = 37.449616541723806; // 인자 중 lat 더미 테스트용 코드
@@ -294,26 +293,27 @@ const ParkingSpotInformation = () => {
     console.log(clusterList); // 데이터가 잘 들어오는지 확인용
     var reccSpotList = []; // 거리별로 계산해서 클러스터 id 정렬하는 배열 [[cluster_id, distance],...] 의 형식으로 들어있음
     var retSpotList = []; // 최종 반환용 리스트 (clusters 내부에 있는 각 cluster 데이터)
-    clusterList.forEach(cluster => {
+    clusterList.forEach((cluster) => {
       var cl_lat = cluster.center.lat;
       var cl_lng = cluster.center.lng;
       //var tmp = Math.sqrt(Math.pow(myLat - cl_lat, 2) + Math.pow(myLng - cl_lng, 2)); // 더미 테스트용 코드
-      var distance = Math.sqrt(Math.pow(lat - cl_lat, 2) + Math.pow(lng - cl_lng, 2)); // 거리 계산
+      var distance = Math.sqrt(
+        Math.pow(lat - cl_lat, 2) + Math.pow(lng - cl_lng, 2)
+      ); // 거리 계산
       reccSpotList.push([cluster.cluster_id, distance]);
     });
 
     reccSpotList.sort((a, b) => {
-        return a[1] - b[1]
-    })
+      return a[1] - b[1];
+    });
 
-    for(var i = 0; i < 5; i++){
-      retSpotList.push(clusterList[reccSpotList[i][0]-1]); // -1이 들어가는 이유는 배열은 0부터 시작하지만 클러스터는 1부터 시작하기 때문
+    for (var i = 0; i < 5; i++) {
+      retSpotList.push(clusterList[reccSpotList[i][0] - 1]); // -1이 들어가는 이유는 배열은 0부터 시작하지만 클러스터는 1부터 시작하기 때문
     }
 
     console.log(retSpotList); // 최종 반환 값입니다.
-  }
+  };
   reccParkingSpot(); // 함수 실행
-
 
   const handleAccordionToggle = () => {
     setIsAccordionOpen(!isAccordionOpen);

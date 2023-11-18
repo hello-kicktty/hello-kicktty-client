@@ -3,8 +3,7 @@ import styled from "styled-components";
 import BackBtn from "./backbtn.png";
 import ReloadBtn from "./reloadbtn.png";
 import { useNavigate } from "react-router-dom";
-import Map from "../map";
-
+import OnlyMap from "../onlymap";
 import toast, { Toaster } from "react-hot-toast";
 import ParkingSpotInformation from "./ParkingSpotInformation";
 
@@ -56,31 +55,32 @@ function ParkingSpot() {
     const handleBackButtonClick = () => {
       navigate(-1); // -1은 뒤로가기를 의미함
     };
+
+    document
+      .getElementById("backBtn")
+      .addEventListener("click", handleBackButtonClick);
+
+    document
+      .getElementById("reloadBtn")
+      .addEventListener("click", handleReloadButtonClick);
+
+    mapScript.async = true;
+    mapScript.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${apiKey}&autoload=false&libraries=services,clusterer,drawing`;
+
+    document.head.appendChild(mapScript);
   });
 
-  document
-    .getElementById("backBtn")
-    .addEventListener("click", handleBackButtonClick);
-
-  document
-    .getElementById("reloadBtn")
-    .addEventListener("click", handleReloadButtonClick);
-
-  mapScript.async = true;
-  mapScript.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${apiKey}&autoload=false&libraries=services,clusterer,drawing`;
-
-  document.head.appendChild(mapScript);
-
   return (
-    // <MapBox>
-    <Map>
-      <BackBtnImg id="backBtn" src={BackBtn} />
-      <ReloadBtnImg id="reloadBtn" src={ReloadBtn}></ReloadBtnImg>
+    <>
+      <MapBox>
+        <BackBtnImg id="backBtn" src={BackBtn} />
+        <ReloadBtnImg id="reloadBtn" src={ReloadBtn}></ReloadBtnImg>
 
-      <MapContainer id="map" />
-      <ParkingSpotInformation />
-    </Map>
-    // </MapBox>
+        <MapContainer id="map" />
+        <ParkingSpotInformation />
+        {<OnlyMap></OnlyMap>}
+      </MapBox>
+    </>
   );
 }
 
