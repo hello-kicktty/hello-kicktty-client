@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import BackBtn from "./backbtn.png";
 import { useNavigate } from "react-router-dom";
-import OnlyMap from "./onlymap";
 import Information from "../Components/KickboardInfo/Information";
 import RidingInfor from "../Components/KickboardInfo/RidingInfor";
 import toast, { Toaster } from "react-hot-toast";
@@ -11,6 +10,7 @@ import FirstInfo from "../Components/KickboardInfo/FirstInfo";
 import * as api from "../Api";
 import axios from "axios";
 import KicklayerData from "../ziko_restrictLayers.json"
+
 const apiKey = "759cc21177f7d8714e0d75a11877c4ab";
 
 const MapBox = styled.div`
@@ -187,6 +187,7 @@ function Map() {
             
           })(marker, i);
         }
+
         //console.log(data.clusters.length);
 
         if (data.clusters && data.clusters.length > 0) {
@@ -210,57 +211,15 @@ function Map() {
             });
             // 지도에 다각형을 표시합니다
             polygon.setMap(map);
-
           });
-        } else {
-          // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
-
-          var locPosition = new window.kakao.maps.LatLng(33.450701, 126.570667),
-            message = "geolocation을 사용할수 없어요..";
-
-          displayMarker(locPosition, message);
         }
-
-        // 지도에 마커와 인포윈도우를 표시하는 함수입니다
-        function displayMarker(locPosition, message) {
-          // 고정마커를 생성합니다
-          var marker = new window.kakao.maps.Marker({
-            map: map,
-            position: locPosition,
-            image: UsermarkerImage,
-          });
-
-          var iwContent = message, // 인포윈도우에 표시할 내용
-            iwRemoveable = true;
-
-          // 클릭 이벤트 핸들러 등록
-          window.kakao.maps.event.addListener(
-            map,
-            "click",
-            function (mouseEvent) {
-              const latlng = mouseEvent.latLng;
-              const lat = latlng.getLat();
-              const lng = latlng.getLng();
-              console.log("클릭한 위치의 위도:", lat);
-              console.log("클릭한 위치의 경도:", lng);
-              // 마커 위치를 클릭한 위치로 옮깁니다
-              // marker.setPosition(latlng);
-              displayLevel();
-            }
-          );
-
-          // 인포윈도우를 마커위에 표시합니다
-
-          // 지도 중심좌표를 접속위치로 변경합니다
-          map.setCenter(locPosition);
-        }
-        console.log(KicklayerData);
+        console.log(KicklayerData)
         if (KicklayerData && KicklayerData.restrictLayers) {
           KicklayerData.restrictLayers.forEach((layerObj) => {
             const polygonPath = layerObj.layer.map((latlng) => {
               return new window.kakao.maps.LatLng(latlng.lat, latlng.lng);
             });
-
+        
             const polygon = new window.kakao.maps.Polygon({
               path: polygonPath,
               strokeWeight: 3,
@@ -270,23 +229,23 @@ function Map() {
               fillColor: "#F6B0A8",
               fillOpacity: 0.7,
             });
-
+        
             polygon.setMap(map); // Assuming 'map' is your kakao map instance
           });
         }
    
         function zoomIn() {
           var level = map.getLevel();
-
+  
           if (level > 5) {
             map.setLevel(level - 1);
             displayLevel();
           }
         }
-
+        
         function zoomOut() {
           var level = map.getLevel();
-
+        
           // Limit the maximum zoom level to 1
           if (level < 1) {
             map.setLevel(level + 1);
@@ -329,6 +288,7 @@ function Map() {
   if(Info){
   return (
     <MapBox>
+      <MapContainer id="map" />
       <BackBtnImg id="backBtn" src={BackBtn} onClick={handleBackButtonClick} />
       {console.log("Info 값:", Info)}
       <Information Title={kickId} key={kickId} />
@@ -354,7 +314,6 @@ function Map() {
       <BackBtnImg id="backBtn" src={BackBtn} onClick={handleBackButtonClick} />
       {console.log("Info 값:", Info)}
       <FirstInfo></FirstInfo>
-      <OnlyMap />
     </MapBox>
   );
   }
