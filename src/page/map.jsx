@@ -312,6 +312,7 @@ function Map() {
       <BackBtnImg id="backBtn" src={BackBtn} onClick={handleBackButtonClick} />
 
       {Info && <Information Title={kickId} />}
+      <RidingInfor></RidingInfor>
       <FirstInfo></FirstInfo>
     </MapBox>
   );
