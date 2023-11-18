@@ -1,45 +1,39 @@
-import React from 'react';
-import { ReactComponent as Icon } from "../../Components/KickboardInfo/Assets/Group 240.svg"
-import styled from 'styled-components';
-import { Outlet } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
-import {useParams } from 'react-router-dom';
 import { useEffect } from 'react';
+import {useParams } from 'react-router-dom';
 const Top = styled.div`
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-right: 130px;
-    margin-top: 30px;
-`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 130px;
+  margin-top: 30px;
+`;
 const Text = styled.p`
-    font-size:20px;
-    font-weight: bold;
-    margin-left: 80px;
-    margin-top: -20px;
-`
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 80px;
+  margin-top: -20px;
+`;
 const Section = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    gap: 40px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  gap: 40px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+`;
 const SectionBox = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    hr {
-        border: solid 2px ${props => (props.active ? '#D3FF52' : '#D9D9D9')};
-        width: 240%;
-    }
-`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  hr {
+    border: solid 2px ${(props) => (props.active ? "#D3FF52" : "#D9D9D9")};
+    width: 240%;
+  }
+`;
 const SectionText = styled.div`
-    font-size: 12px;
-    margin:3px;
-`
+  font-size: 12px;
+  margin: 3px;
+`;
 const Home = () => {
     const navigate = useNavigate();
     const params = useParams();

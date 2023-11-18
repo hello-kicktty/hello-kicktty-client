@@ -3,6 +3,7 @@ import styled, { keyframes } from "styled-components";
 import { useNavigate } from "react-router-dom";
 import stars from "../../Components/parking/stars.png";
 import kickboard from "./coin.png";
+import Homebtnimg from "../homebtnimg";
 
 const Container = styled.div`
   width: 100%;
@@ -151,6 +152,8 @@ const TractionComplete = (props) => {
   return (
     <>
       <Container>
+        <Homebtnimg transform="translate(250%, -730%)"></Homebtnimg>
+
         {/* 애니메이션이 적용된 팝업 */}
         {showPopup && <SlideInPopup />}
         <Stars1 src={stars}></Stars1>

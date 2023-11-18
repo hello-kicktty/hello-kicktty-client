@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
+import BackBtn from "./backbtn.png";
+import { useNavigate } from "react-router-dom";
 import Information from "../Components/KickboardInfo/Information";
 import RidingInfor from "../Components/KickboardInfo/RidingInfor";
 import toast, { Toaster } from "react-hot-toast";
@@ -20,6 +22,15 @@ const MapBox = styled.div`
   box-sizing: border-box;
 `;
 
+const BackBtnImg = styled.img`
+  width: 41px;
+  height: 41px;
+  position: absolute;
+  top: 4rem;
+  left: 2rem;
+  z-index: 5;
+`;
+
 const MapBoxTextBox = styled.div`
   font-weight: bold;
   font-family: "Courier New", Courier, monospace;
@@ -35,6 +46,10 @@ function Map() {
   const [Info, setInfo] = useState(false);
   const [kickId, setKickId] = useState("");
   const [data, setData] = useState([]);
+  const navigate = useNavigate();
+  const handleBackButtonClick = () => {
+    navigate(-1); // Navigate back
+  };
 
   const getData = async () => {
     const data = await api.getKickList();
@@ -67,15 +82,6 @@ function Map() {
           level: 3,
         };
         const map = new window.kakao.maps.Map(mapContainer, mapOption);
-
-        var drawingFlag = false; // 원이 그려지고 있는 상태를 가지고 있을 변수입니다
-        var centerPosition; // 원의 중심좌표 입니다
-        var drawingCircle; // 그려지고 있는 원을 표시할 원 객체입니다
-        var drawingLine; // 그려지고 있는 원의 반지름을 표시할 선 객체입니다
-        var drawingOverlay; // 그려지고 있는 원의 반경을 표시할 커스텀오버레이 입니다
-        var drawingDot; // 그려지고 있는 원의 중심점을 표시할 커스텀오버레이 입니다
-
-        var circles = []; // 클릭으로 그려진 원과 반경 정보를 표시하는 선과 커스텀오버레이를 가지고 있을 배열입니다
 
         var positions = [];
 
@@ -260,7 +266,10 @@ function Map() {
   return (
     <MapBox>
       <MapContainer id="map" />
+      <BackBtnImg id="backBtn" src={BackBtn} onClick={handleBackButtonClick} />
+
       {Info && <Information Title={kickId} />}
+      <RidingInfor></RidingInfor>
       <FirstInfo></FirstInfo>
     </MapBox>
   );
