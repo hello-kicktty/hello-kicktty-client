@@ -1,15 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import jsQR from "jsqr";
 import './QRcode.css'
-
-// Delete Method
+import axios from "axios"
 import * as api from "../../Api";
-
-
-function QRCodeScanner() {
+function QRCodeScanner1(latitude, longitude) {
   const navigate = useNavigate();
-
   useEffect(() => {
     const video = document.createElement('video');
     const canvasElement = document.getElementById('canvas');
@@ -19,14 +15,6 @@ function QRCodeScanner() {
     const outputMessage = document.getElementById('outputMessage');
     const outputData = document.getElementById('outputData');
 
-    
-    // Delete Method
-    const handleDelete = async (kickId) => {
-      const response = await api.borrowKick(kickId);
-      console.log(response);
-    };
-
-
     function drawLine(begin, end, color) {
       canvas.beginPath();
       canvas.moveTo(begin.x, begin.y);
@@ -35,15 +23,12 @@ function QRCodeScanner() {
       canvas.strokeStyle = color;
       canvas.stroke();
     }
-
-    // Request access to the user's camera
     navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } }).then(function (stream) {
-      video.srcObject = stream;
-      video.setAttribute('playsinline', true); // iOS 사용시 전체 화면을 사용하지 않음을 전달
-      video.play();
-      requestAnimationFrame(tick);
-    });
-
+        video.srcObject = stream;
+        video.setAttribute('playsinline', true); // iOS 사용시 전체 화면을 사용하지 않음을 전달
+        video.play();
+        requestAnimationFrame(tick);
+      });
     function tick() {
       loadingMessage.innerText = '⌛ 스캔 기능을 활성화 중입니다.';
       if (video.readyState === video.HAVE_ENOUGH_DATA) {
@@ -58,31 +43,29 @@ function QRCodeScanner() {
         const imageData = canvas.getImageData(0, 0, canvasElement.width, canvasElement.height);
 
         // You'll need to include the jsQR library for this part
-
         const code = jsQR(imageData.data, imageData.width, imageData.height, {
           inversionAttempts: 'dontInvert',
         });
-
         if (code) {
           drawLine(code.location.topLeftCorner, code.location.topRightCorner, '#FF0000');
           drawLine(code.location.topRightCorner, code.location.bottomRightCorner, '#FF0000');
           drawLine(code.location.bottomRightCorner, code.location.bottomLeftCorner, '#FF0000');
           drawLine(code.location.bottomLeftCorner, code.location.topLeftCorner, '#FF0000');
-
+        
           outputMessage.hidden = true;
           outputData.parentElement.hidden = false;
 
           outputData.innerHTML = code.data;
-          console.log(code.data)
-          navigate('/map');
-          localStorage.setItem('Kickid', code.data);
-          
-          // Delete Method 실행
-          handleDelete(code.data);
-          
-
-
-
+          if (code.data && latitude !== null && longitude !== null) {
+            const postData = async () => {
+              await api.postParking(
+                code.data,
+                latitude,
+                longitude,
+              );
+            };
+            postData();
+          }
         } else {
           outputMessage.hidden = false;
           outputData.parentElement.hidden = true;
@@ -91,7 +74,7 @@ function QRCodeScanner() {
 
       requestAnimationFrame(tick);
     }
-  }, [navigate]);
+  }, [navigate,latitude,longitude]);
 
   return (
     <div>
@@ -118,4 +101,4 @@ function QRCodeScanner() {
   );
 }
 
-export default QRCodeScanner;
+export default QRCodeScanner1;

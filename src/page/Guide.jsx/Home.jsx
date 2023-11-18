@@ -1,11 +1,5 @@
-import React from "react";
-import { ReactComponent as Icon } from "../../Components/KickboardInfo/Assets/Group 240.svg";
-import styled from "styled-components";
-import { Outlet } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import Homebtnimg from "../homebtnimg";
-
+import { useEffect } from 'react';
+import {useParams } from 'react-router-dom';
 const Top = styled.div`
   display: flex;
   flex-direction: row;
@@ -41,49 +35,44 @@ const SectionText = styled.div`
   margin: 3px;
 `;
 const Home = () => {
-  const navigate = useNavigate();
-  const [activeSection, setActiveSection] = useState("Riding");
-  const handleSectionClick = (section) => {
-    navigate(section);
-    setActiveSection(section);
-  };
-  const goBack = () => {
-    navigate("/main");
-  };
-  return (
-    <div>
-      <Top>
-        <Homebtnimg transform="translate(600%, 5%)"></Homebtnimg>
+    const navigate = useNavigate();
+    const params = useParams();
 
-        <Icon onClick={goBack}></Icon>
-        <Text>이용가이드</Text>
-      </Top>
-      <Section>
-        <SectionBox
-          active={activeSection === "Parking"}
-          onClick={() => handleSectionClick("Parking")}
-        >
-          <SectionText>주차하기</SectionText>
-          <hr />
-        </SectionBox>
-        <SectionBox
-          active={activeSection === "Traction"}
-          onClick={() => handleSectionClick("Traction")}
-        >
-          <SectionText>견인하기</SectionText>
-          <hr />
-        </SectionBox>
-        <SectionBox
-          active={activeSection === "Riding"}
-          onClick={() => handleSectionClick("Riding")}
-        >
-          <SectionText>리워드안내</SectionText>
-          <hr />
-        </SectionBox>
-      </Section>
-      <Outlet />
-    </div>
-  );
+    const [activeSection, setActiveSection] = useState(params.section || 'Riding');
+    useEffect(() => {
+        setActiveSection(params.section || 'Parking');
+    }, [params.section]);
+
+    const handleSectionClick = (section) => {
+        navigate(`${section}`);
+        setActiveSection(section);
+    };
+    const goBack = () => {
+        navigate('/main'); 
+      };
+    return (
+        <div>
+            <Top>
+            <Icon onClick={goBack}></Icon>
+            <Text>이용가이드</Text>
+            </Top>
+            <Section>
+                <SectionBox active={activeSection === 'Parking'} onClick={() => handleSectionClick('Parking')}>
+                    <SectionText>주차하기</SectionText>
+                    <hr/>
+                </SectionBox>
+                <SectionBox active={activeSection === 'Traction'} onClick={() => handleSectionClick('Traction')}>
+                    <SectionText>견인하기</SectionText>
+                    <hr/>
+                </SectionBox>
+                <SectionBox active={activeSection === 'Riding'} onClick={() => handleSectionClick('Riding')}>
+                    <SectionText>리워드안내</SectionText>
+                    <hr/>
+                </SectionBox>
+            </Section>
+            <Outlet/>
+        </div>
+    );
 };
 
 export default Home;
