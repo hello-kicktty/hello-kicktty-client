@@ -98,6 +98,7 @@ const Box3 = styled.div`
   width: 350px;
   height: 58px;
   border-radius: 10px;
+  margin-top: 120px;
   background: black;
   font-size: 16px;
   font-weight: bold;
@@ -176,13 +177,7 @@ const Receipt = () => {
         </Box5>
         <Img5 />
       </Box>
-      <Box2
-        onClick={() => {
-          navigate("/main");
-        }}
-      >
-        HOME
-      </Box2>
+
       <Box3
         onClick={() => {
           navigate("/reward");
