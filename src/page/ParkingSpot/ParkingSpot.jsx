@@ -73,7 +73,6 @@ function ParkingSpot() {
   return (
     <>
       <MapBox>
-        <OnlyMap></OnlyMap>
         <BackBtnImg id="backBtn" src={BackBtn} />
         <ReloadBtnImg id="reloadBtn" src={ReloadBtn}></ReloadBtnImg>
         <MapContainer id="map" />

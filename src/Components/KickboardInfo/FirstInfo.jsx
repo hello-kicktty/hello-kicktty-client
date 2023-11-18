@@ -41,7 +41,7 @@ const FirstInfo = () => {
 
   const handleTractionClick = () => {
     localStorage.removeItem("Kickid");
-    navigate("/tractionQR");
+    navigate("/map1");
   };
   return (
     <div>

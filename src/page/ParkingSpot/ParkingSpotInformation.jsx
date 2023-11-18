@@ -4,6 +4,10 @@ import Toggle from "./toggle.png";
 import Line from "./line.png";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import { useState } from "react";
+import * as api from "../../Api";
+import { useEffect } from "react";
+import Top from "./Top";
+import { useNavigate } from "react-router";
 
 const Box = styled.div`
   border-radius: 50px 50px 0px 0px;
@@ -22,47 +26,6 @@ const Box = styled.div`
   align-items: center;
 `;
 
-const Top = ({
-  isAccordionOpen,
-  handleAccordionToggle,
-  selectedLocation,
-  handleAccordionItemClick,
-}) => (
-  <StyledTop isAccordionOpen={isAccordionOpen}>
-    {selectedLocation}
-    <TopToggle onClick={handleAccordionToggle}>
-      {" "}
-      <TopToggleImg src={Toggle} isAccordionOpen={isAccordionOpen} />{" "}
-    </TopToggle>
-    {isAccordionOpen && (
-      <AccordionContent isAccordionOpen={isAccordionOpen}>
-        {/* 아코디언 내용 */}
-        <AccordionInner>
-          <AccordionInnerEach
-            onClick={() => handleAccordionItemClick("인하대 본관")}
-          >
-            인하대 본관
-          </AccordionInnerEach>
-          <AccordionInnerEach
-            onClick={() => handleAccordionItemClick("인하대 5호관 남")}
-          >
-            인하대 5호관 남
-          </AccordionInnerEach>
-          <AccordionInnerEach
-            onClick={() => handleAccordionItemClick("인하대 서호관")}
-          >
-            인하대 서호관
-          </AccordionInnerEach>
-          <AccordionInnerEach
-            onClick={() => handleAccordionItemClick("인하대 하이테크관")}
-          >
-            인하대 하이테크관
-          </AccordionInnerEach>
-        </AccordionInner>
-      </AccordionContent>
-    )}
-  </StyledTop>
-);
 
 const AccordionInner = styled.div`
   display: flex;
@@ -279,45 +242,24 @@ const AddressBox2 = styled.div`
   transform: translate(0%, -15%);
 `;
 
+
 const ParkingSpotInformation = () => {
   const [isAccordionOpen, setIsAccordionOpen] = useState(false);
-  const [selectedLocation, setSelectedLocation] =
-    useState("추천 주차지 선택하기");
-
-  // 자신의 현재 위치에 따라서 추천 주차구역을 안내해주는 함수입니다.
-  const reccParkingSpot = (lat, lng) => {
-    //var myLat = 37.449616541723806; // 인자 중 lat 더미 테스트용 코드
-    //var myLng = 126.65848433907536; // 인자 중 lng 더미 테스트용 코드
-    var clusterList = JSON.parse(localStorage.getItem("getData")).clusters;
-
-    console.log(clusterList); // 데이터가 잘 들어오는지 확인용
-    var reccSpotList = []; // 거리별로 계산해서 클러스터 id 정렬하는 배열 [[cluster_id, distance],...] 의 형식으로 들어있음
-    var retSpotList = []; // 최종 반환용 리스트 (clusters 내부에 있는 각 cluster 데이터)
-    clusterList.forEach((cluster) => {
-      var cl_lat = cluster.center.lat;
-      var cl_lng = cluster.center.lng;
-      //var tmp = Math.sqrt(Math.pow(myLat - cl_lat, 2) + Math.pow(myLng - cl_lng, 2)); // 더미 테스트용 코드
-      var distance = Math.sqrt(
-        Math.pow(lat - cl_lat, 2) + Math.pow(lng - cl_lng, 2)
-      ); // 거리 계산
-      reccSpotList.push([cluster.cluster_id, distance]);
-    });
-
-    reccSpotList.sort((a, b) => {
-      return a[1] - b[1];
-    });
-
-    for (var i = 0; i < 5; i++) {
-      retSpotList.push(clusterList[reccSpotList[i][0] - 1]); // -1이 들어가는 이유는 배열은 0부터 시작하지만 클러스터는 1부터 시작하기 때문
-    }
-
-    console.log(retSpotList); // 최종 반환 값입니다.
-  };
-  reccParkingSpot(); // 함수 실행
-
+  const [selectedLocation, setSelectedLocation] =useState("추천 주차지 선택하기");
+  const [data, setData] = useState("");
+  const [TractionData, setTractionData] = useState("");
+  const navigate = useNavigate();
   const handleAccordionToggle = () => {
     setIsAccordionOpen(!isAccordionOpen);
+
   };
+  const handleDataFromTop = (receivedData) => {
+    console.log('자식 컴포넌트에서 받은 데이터:', receivedData);
+    // 여기서 받은 데이터로 상태 업데이트나 필요한 작업 수행
+  };
+const handleTractionButtonClick = () => {
+  navigate('/TractionQr')
+}
 
   const handleAccordionItemClick = (location) => {
     setSelectedLocation(location);
@@ -325,12 +267,26 @@ const ParkingSpotInformation = () => {
     // Perform any additional actions if needed
   };
 
+  // useEffect(() => {
+  //   const storedTractionData = localStorage.getItem("TractionData");
+  //   if (storedTractionData) {
+  //     const tractionData = JSON.parse(storedTractionData);
+  //     if (tractionData.my_name) {
+  //       setTractionData(tractionData.my_name);
+  //       console.log(tractionData.my_name);
+  //     }
+  //   }
+  // }, [TractionData]); // Make sure the dependencies are correctly set
+  
+  // console.log(TractionData);
+
   return (
     <>
       <Box>
         <Top
+          onDataToParent={handleDataFromTop}
           isAccordionOpen={isAccordionOpen}
-          handleAccordionToggle={handleAccordionToggle}
+          handleAcz cordionToggle={handleAccordionToggle}
           selectedLocation={selectedLocation}
           handleAccordionItemClick={handleAccordionItemClick}
         />
@@ -346,7 +302,7 @@ const ParkingSpotInformation = () => {
             <InformInner>소요시간 | 8m</InformInner>
           </InformBox>
           <WhiteBox>
-            <InnerBox2 margintop="20px">현위치</InnerBox2>{" "}
+            <InnerBox2 margintop="20px">{TractionData}</InnerBox2>{" "}
             <AddressBox1>인천광역시 미추홀구 인하로 100 인하대학교</AddressBox1>
             <InnerBox2
               margintop="70px"
@@ -369,7 +325,7 @@ const ParkingSpotInformation = () => {
           <Text1>거리</Text1>
           <Text1>1km</Text1>
         </Box2> */}
-        <Buttonbox3>견인하기</Buttonbox3>
+        <Buttonbox3 onClick={handleTractionButtonClick}>견인하기</Buttonbox3>
       </Box>
     </>
   );
