@@ -6,6 +6,7 @@ import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { ReactComponent as Icon2 } from "./Assets/🦆 icon _coin_.svg";
 import { ReactComponent as Icon4 } from "./Assets/🦆 icon _organic food_.svg";
+import { useNavigate } from "react-router-dom";
 
 const Box = styled.div`
   border-radius: 50px 50px 0px 0px;
@@ -151,7 +152,7 @@ const Information = (props) => {
   const [btnActive1, setBtnActive1] = useState("");
   const [opacity, setOpacity] = useState(1);
   const [display, setDisplay] = useState("flex"); // 추가: 초기값 "flex"로 설정
-
+  const navigate  = useNavigate();
   const data = ["분당 요금제", "거리 우선 요금제"];
   const data1 = ["ON", "OFF"];
 
@@ -160,7 +161,12 @@ const Information = (props) => {
       return e.target.value;
     });
   };
-
+  function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min) + min); // min 이상 max 미만의 랜덤 정수값 반환
+  }
+  const random = getRandomInt(30,100);
   const toggleActive1 = (e) => {
     setBtnActive1((prev) => {
       return e.target.value;
@@ -170,7 +176,16 @@ const Information = (props) => {
   const startDriving = () => {
     setOpacity(0);
     setDisplay("none"); // 추가: display를 "none"으로 변경
-    // 다른 로직 추가...
+    if(localStorage.getItem("Kickid_toRiding")){
+      navigate("/map");
+    }
+    else if(localStorage.getItem("Kickid")){
+      localStorage.removeItem("Kickid");
+      navigate("/ridingqr");
+    }
+    else{
+
+    }
   };
 
   return (
@@ -179,8 +194,8 @@ const Information = (props) => {
         <Top>
           <div style={{ width: 54, height: 54 }}>
             <CircularProgressbar
-              value={66}
-              text={"66%"}
+              value={random}
+              text={random+"%"}
               strokeWidth={15}
               styles={buildStyles({
                 textColor: "black",
@@ -242,7 +257,7 @@ const Information = (props) => {
               ))}
             </Buttonbox2>
           </Buttonbox1>
-        </Bottom>
+        </Bottom> 
         <Buttonbox3 onClick={startDriving}>주행하기</Buttonbox3>
       </Box>
     </div>

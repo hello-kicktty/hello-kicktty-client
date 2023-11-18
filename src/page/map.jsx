@@ -10,6 +10,7 @@ import FirstInfo from "../Components/KickboardInfo/FirstInfo";
 import * as api from "../Api";
 import axios from "axios";
 import KicklayerData from "../ziko_restrictLayers.json"
+
 const apiKey = "759cc21177f7d8714e0d75a11877c4ab";
 
 const MapBox = styled.div`
@@ -25,12 +26,11 @@ const MapBox = styled.div`
 const BackBtnImg = styled.img`
   width: 41px;
   height: 41px;
-  position: absolute;
-  top: 4rem;
-  left: 2rem;
+  position: fixed;
+  top: 2rem; /* 위에서 2rem만큼 */
+  left: 2rem; /* 왼쪽에서 2rem만큼 */
   z-index: 5;
 `;
-
 const MapBoxTextBox = styled.div`
   font-weight: bold;
   font-family: "Courier New", Courier, monospace;
@@ -48,6 +48,7 @@ function Map() {
   const [data, setData] = useState([]);
   const navigate = useNavigate();
   const handleBackButtonClick = () => {
+    localStorage.removeItem("Kickid");
     navigate(-1); // Navigate back
   };
 
@@ -67,6 +68,7 @@ function Map() {
       setInfo(true);
       setKickId(storedKickId);
     }
+
     const mapScript = document.createElement("script");
 
     mapScript.async = true;
@@ -77,14 +79,49 @@ function Map() {
     const onLoadKakaoMap = () => {
       window.kakao.maps.load(() => {
         const mapContainer = document.getElementById("map");
+        const defaultPosition = new window.kakao.maps.LatLng(37.44978, 126.6586);
         const mapOption = {
-          center: new window.kakao.maps.LatLng(37.44978, 126.6586),
+          center: defaultPosition,
           level: 3,
         };
         const map = new window.kakao.maps.Map(mapContainer, mapOption);
+    
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function (position) {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+            const locPosition = new window.kakao.maps.LatLng(lat, lon);
+            const message = '<div style="padding:5px;">내 위치</div>';
 
+            const marker = new window.kakao.maps.Marker({
+              map: map,
+              position: locPosition,
+              UsermarkerImage
+            });
+    
+            map.setCenter(locPosition);
+    
+            const infowindow = new window.kakao.maps.InfoWindow({
+              content: message,
+            });
+            infowindow.open(map, marker);
+          });
+        } else {
+          const message = "Geolocation을 사용할 수 없어요..";
+          const marker = new window.kakao.maps.Marker({
+            map: map,
+            position: defaultPosition,
+            image: "./userlocation.png"
+          });
+    
+          const infowindow = new window.kakao.maps.InfoWindow({
+            content: message,
+          });
+          infowindow.open(map, marker);
+        }
         var positions = [];
 
+      
         if (data.kickboards && data.kickboards.length > 0) {
           var positions = [];
           data.kickboards.forEach((kickboard) => {
@@ -98,24 +135,38 @@ function Map() {
           });
           console.log(positions);
         }
+
+
         // 마커 이미지의 이미지 주소입니다
-        var imageSrc = require("./marker.png");
-        var userlocation = require("./userlocation.png");
-
+        const markers = [
+          require("../Makers/KakaoTalk_20231118_111714053.png"),
+          require("../Makers/KakaoTalk_20231118_111714053_01.png"),
+          require("../Makers/KakaoTalk_20231118_111714053_02.png"),
+          require("../Makers/KakaoTalk_20231118_111714053_03.png"),
+          require("../Makers/KakaoTalk_20231118_111714053_04.png"),
+          require("../Makers/KakaoTalk_20231118_111714053_05.png"),
+          require("../Makers/KakaoTalk_20231118_111714053_06.png"),
+          require("../Makers/KakaoTalk_20231118_111714053_07.png"),
+        ];
+        
         for (var i = 0; i < positions.length; i++) {
-          // 마커 이미지의 이미지 크기 입니다
+          const randomIndex = Math.floor(Math.random() * markers.length);
+          const randomMarkerImageSrc = markers[randomIndex];
+        
+          // 마커 이미지의 이미지 크기입니다
           var imageSize = new window.kakao.maps.Size(30.91, 40);
-
-          // 마커 이미지를 생성합니다
+        
+          // 랜덤 마커 이미지 객체를 생성합니다
           var markerImage = new window.kakao.maps.MarkerImage(
-            imageSrc,
+            randomMarkerImageSrc,
             imageSize
           );
+        
 
           // 마커 이미지의 이미지 크기 입니다
           var UserimageSize = new window.kakao.maps.Size(40, 40);
 
-          // 유저 위치마커 이미지를 생성합니다
+          var userlocation = require("./userlocation.png");
           var UsermarkerImage = new window.kakao.maps.MarkerImage(
             userlocation,
             UserimageSize
@@ -128,25 +179,14 @@ function Map() {
             title: positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
             image: markerImage, // 마커 이미지
           });
+          (function (marker, index) {
+            window.kakao.maps.event.addListener(marker, 'click', function() {
+              localStorage.setItem('Kickid',index)
+              setKickId(index);
+            });
+            
+          })(marker, i);
         }
-        // 지도를 클릭한 위치에 표출할 마커입니다
-        var marker = new window.kakao.maps.Marker({
-          // 지도 중심좌표에 마커를 생성합니다
-          position: map.getCenter(),
-          image: UsermarkerImage,
-        });
-
-        // 마커를 클릭했을 때 마커 위에 표시할 인포윈도우를 생성합니다
-        var iwContent = '<div style="padding:1px;">내위치</div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-          iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
-
-        // 인포윈도우를 생성합니다
-        var infowindow = new window.kakao.maps.InfoWindow({
-          content: iwContent,
-          removable: iwRemoveable,
-        });
-        // 지도에 마커를 표시합니다
-        marker.setMap(map);
 
         //console.log(data.clusters.length);
 
@@ -193,7 +233,7 @@ function Map() {
             polygon.setMap(map); // Assuming 'map' is your kakao map instance
           });
         }
-
+   
         function zoomIn() {
           var level = map.getLevel();
   
@@ -216,24 +256,6 @@ function Map() {
           const level = map.getLevel(); // 현재 지도 레벨을 가져옵니다
           console.log("현재 지도의 레벨 :" + level);
         }
-
-        // 클릭 이벤트 핸들러 등록
-        window.kakao.maps.event.addListener(
-          map,
-          "click",
-          function (mouseEvent) {
-            const latlng = mouseEvent.latLng;
-            const lat = latlng.getLat();
-            const lng = latlng.getLng();
-            console.log("클릭한 위치의 위도:", lat);
-            console.log("클릭한 위치의 경도:", lng);
-            // 마커 위치를 클릭한 위치로 옮깁니다
-            // marker.setPosition(latlng);
-            // 마커 위에 인포윈도우를 표시합니다
-            infowindow.open(map, marker);
-            displayLevel();
-          }
-        );
 
         // 이벤트 리스너 추가: 마우스 스크롤 이벤트
         const handleMouseWheel = (e) => {
@@ -260,19 +282,41 @@ function Map() {
         };
       });
     };
-
+    console.log(Info)
     mapScript.addEventListener("load", onLoadKakaoMap);
-  }, [data]);
+  }, [data,kickId,Info]);
+  if(Info){
   return (
     <MapBox>
       <MapContainer id="map" />
       <BackBtnImg id="backBtn" src={BackBtn} onClick={handleBackButtonClick} />
-
-      {Info && <Information Title={kickId} />}
-      <RidingInfor></RidingInfor>
+      {console.log("Info 값:", Info)}
+      <Information Title={kickId} key={kickId} />
       <FirstInfo></FirstInfo>
     </MapBox>
   );
+  }
+  else if(localStorage.getItem("Kickid_toRiding")){
+    return(
+    <MapBox>
+      <MapContainer id="map" />
+      <BackBtnImg id="backBtn" src={BackBtn} onClick={handleBackButtonClick} />
+      {console.log("Info 값:", Info)}
+      
+      <RidingInfor Title={kickId} key={localStorage.getItem("Kickid_toRiding")} />
+      <FirstInfo></FirstInfo>
+    </MapBox>
+  )}
+  else{
+  return (
+    <MapBox>
+      <MapContainer id="map" />
+      <BackBtnImg id="backBtn" src={BackBtn} onClick={handleBackButtonClick} />
+      {console.log("Info 값:", Info)}
+      <FirstInfo></FirstInfo>
+    </MapBox>
+  );
+  }
 }
 
 export default Map;

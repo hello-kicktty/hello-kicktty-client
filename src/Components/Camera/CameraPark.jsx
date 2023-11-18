@@ -56,6 +56,7 @@ function QRCodeScanner1(latitude, longitude) {
           outputData.parentElement.hidden = false;
 
           outputData.innerHTML = code.data;
+          console.log(code.data);
           if (code.data && latitude !== null && longitude !== null) {
             const postData = async () => {
               await api.postParking(
@@ -65,6 +66,8 @@ function QRCodeScanner1(latitude, longitude) {
               );
             };
             postData();
+            localStorage.removeItem("Kickid_toRiding");
+            navigate('/parkingreward');
           }
         } else {
           outputMessage.hidden = false;
