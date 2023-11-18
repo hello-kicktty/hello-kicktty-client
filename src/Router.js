@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Map from "./page/map";
+import Map1 from "./page/map1";
 import Layout from "./Components/Layout/Layout";
 import LogoWelcome from "./page/Welcome/Welcome";
 import Main from "./page/Main/Main";
@@ -40,6 +41,7 @@ function Router() {
       <Routes>
         <Route element={<Layout />}>
           <Route path="/Map" element={<Map />} />
+          <Route path="/Map1" element={<Map1/>} />
           <Route path="" element={<Intro />} />
           <Route path="/main" element={<Main />} />
           <Route path="/RidingQR" element={<RidingQR text="주행하기" />} />

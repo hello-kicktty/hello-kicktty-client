@@ -60,7 +60,7 @@ function QRCodeScanner2() {
 
           outputData.innerHTML = code.data;
           navigate('/map');
-          localStorage.setItem('Kickid', code.data);
+          localStorage.setItem("Tractionid_toRiding",code.data);
 
         } else {
           outputMessage.hidden = false;
