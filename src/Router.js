@@ -19,6 +19,9 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import ParkingQR from "./page/Riding/ParkingQR";
 import TractionQR from "./page/Riding/TracktionQr";
+import Intro from "./page/Welcome/Welcome";
+import Get from "./page/Reward/Get";
+import Use from "./page/Reward/Use";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -37,13 +40,12 @@ function Router() {
       <Routes>
         <Route element={<Layout />}>
           <Route path="/Map" element={<Map />} />
-          <Route path="" element={<LogoWelcome />} />
+          <Route path="" element={<Intro />} />
           <Route path="/main" element={<Main />} />
           <Route path="/RidingQR" element={<RidingQR text="주행하기" />} />
           <Route path="/tractionQR" element={<TractionQR text="견인하기" />} />
           <Route path="/parkingQR" element={<ParkingQR text="주차하기" />} />
           <Route path="/receipt" element={<Receipt />} />
-          <Route path="/reward" element={<Reward />} />
           <Route path="/TractionComplete" element={<TractionComplete />} />
           <Route path="/ParkingComplete" element={<ParkingComplete />} />
           <Route path="/ParkingReward" element={<ParkReward />} />
@@ -51,6 +53,10 @@ function Router() {
             <Route path="Riding" element={<Riding />} />
             <Route path="Parking" element={<Parking />} />
             <Route path="Traction" element={<Traction />} />
+          </Route>
+          <Route exact path="/Reward" element={<Reward />}>
+            <Route path="get" element={<Get />} />
+            <Route path="use" element={<Use />} />
           </Route>
           <Route path="/ParkingSpot" element={<ParkingSpot />} />
         </Route>

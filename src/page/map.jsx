@@ -7,7 +7,7 @@ import { useState } from "react";
 import FirstInfo from "../Components/KickboardInfo/FirstInfo";
 import * as api from "../Api";
 import axios from "axios";
-
+import KicklayerData from "../ziko_restrictLayers.json"
 const apiKey = "759cc21177f7d8714e0d75a11877c4ab";
 
 const MapBox = styled.div`
@@ -146,26 +146,47 @@ function Map() {
 
         if (data.clusters && data.clusters.length > 0) {
           var tmp = data.clusters;
-          console.log(data.clusters)
+          
           tmp.forEach(cluster => {
+            if(cluster.cluster_id == -1) return;
+            console.log(cluster.cluster_id)
             var layerLatLng = []
             cluster.borders.forEach(latlng => {
               layerLatLng.push(new window.kakao.maps.LatLng(latlng.lat, latlng.lng))
             })
             var polygon = new window.kakao.maps.Polygon({
               path: layerLatLng, // 그려질 다각형의 좌표 배열입니다
-              strokeWeight: 20, // 선의 두께입니다
+              strokeWeight: 30, // 선의 두께입니다
               strokeColor: '#39DE2A', // 선의 색깔입니다
-              strokeOpacity: 0.8, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+              strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
               strokeStyle: 'longdash', // 선의 스타일입니다
               fillColor: '#39DE2A', // 채우기 색깔입니다
-              fillOpacity: 0.7 // 채우기 불투명도 입니다
+              fillOpacity: 1 // 채우기 불투명도 입니다
             });
             // 지도에 다각형을 표시합니다
             polygon.setMap(map);
           });
         }
-
+        console.log(KicklayerData)
+        if (KicklayerData && KicklayerData.restrictLayers) {
+          KicklayerData.restrictLayers.forEach((layerObj) => {
+            const polygonPath = layerObj.layer.map((latlng) => {
+              return new window.kakao.maps.LatLng(latlng.lat, latlng.lng);
+            });
+        
+            const polygon = new window.kakao.maps.Polygon({
+              path: polygonPath,
+              strokeWeight: 3,
+              strokeColor: "#F6B0A8",
+              strokeOpacity: 0.8,
+              strokeStyle: "longdash",
+              fillColor: "#F6B0A8",
+              fillOpacity: 0.7,
+            });
+        
+            polygon.setMap(map); // Assuming 'map' is your kakao map instance
+          });
+        }
 
         function zoomIn() {
           var level = map.getLevel();
@@ -207,40 +228,6 @@ function Map() {
             displayLevel();
           }
         );
-
-        // 다각형을 구성하는 좌표 배열입니다. 이 좌표들을 이어서 다각형을 표시합니다
-        var polygonPath = [
-          new window.kakao.maps.LatLng(37.44530517404025, 126.65925260652892),
-          new window.kakao.maps.LatLng(37.44651469242157, 126.66000427818024),
-          new window.kakao.maps.LatLng(37.446927240459104, 126.66012107084096),
-          new window.kakao.maps.LatLng(37.44698632517772, 126.66030161834878),
-          new window.kakao.maps.LatLng(37.44680349317251, 126.66252872192162),
-          new window.kakao.maps.LatLng(37.44640528757706, 126.66349108185493),
-          new window.kakao.maps.LatLng(37.445269676731115, 126.66575347654735),
-          new window.kakao.maps.LatLng(37.4433459033457, 126.66412347940455),
-          new window.kakao.maps.LatLng(37.443495052892274, 126.66350129063738),
-          new window.kakao.maps.LatLng(37.44384519506977, 126.66306182998811),
-          new window.kakao.maps.LatLng(37.44389407327951, 126.66282430112803),
-          new window.kakao.maps.LatLng(37.444493380676285, 126.66129603739688),
-          new window.kakao.maps.LatLng(37.44473037072315, 126.66067626198775),
-          new window.kakao.maps.LatLng(37.44487390578653, 126.66045807706557),
-          new window.kakao.maps.LatLng(37.444967584982074, 126.6601355860088),
-          new window.kakao.maps.LatLng(37.44515802305834, 126.65977875410422),
-        ];
-
-        // 지도에 표시할 다각형을 생성합니다
-        var polygon = new window.kakao.maps.Polygon({
-          path: polygonPath, // 그려질 다각형의 좌표 배열입니다
-          strokeWeight: 3, // 선의 두께입니다
-          strokeColor: "#F6B0A8", // 선의 색깔입니다
-          strokeOpacity: 0.8, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
-          strokeStyle: "longdash", // 선의 스타일입니다
-          fillColor: "#F6B0A8", // 채우기 색깔입니다
-          fillOpacity: 0.7, // 채우기 불투명도 입니다
-        });
-
-        // 지도에 다각형을 표시합니다
-        polygon.setMap(map);
 
         // 이벤트 리스너 추가: 마우스 스크롤 이벤트
         const handleMouseWheel = (e) => {
