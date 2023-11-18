@@ -144,8 +144,8 @@ const Receipt = () => {
   const navigate = useNavigate();
   const rating = localStorage.getItem("rating");
   const estimated_cost = rating.split(":")[1] * 160 + 600;
-  const id = localStorage.getItem("Kickid_toRiding");
-  localStorage.removeItem("Kickid_toRiding");
+  const id = localStorage.getItem("Kickid_Receipt");
+  localStorage.removeItem("Kickid_Receipt");
 
   const reward = id >= 1000 ? 200 : 100;
 
