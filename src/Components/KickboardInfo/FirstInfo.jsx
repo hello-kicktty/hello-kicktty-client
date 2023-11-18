@@ -35,10 +35,12 @@ const FirstInfo = () => {
   const navigate = useNavigate();
 
   const handleDriveClick = () => {
+    localStorage.removeItem("Kickid");
     navigate("/ridingQR");
   };
 
   const handleTractionClick = () => {
+    localStorage.removeItem("Kickid");
     navigate("/tractionQR");
   };
   return (

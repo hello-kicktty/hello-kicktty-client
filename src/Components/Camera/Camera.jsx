@@ -5,11 +5,12 @@ import './QRcode.css'
 
 // Delete Method
 import * as api from "../../Api";
+import Information from '../KickboardInfo/Information';
 
 
 function QRCodeScanner() {
   const navigate = useNavigate();
-
+  const Kickid =localStorage.getItem("Kickid_toRiding");
   useEffect(() => {
     const video = document.createElement('video');
     const canvasElement = document.getElementById('canvas');
@@ -74,11 +75,21 @@ function QRCodeScanner() {
 
           outputData.innerHTML = code.data;
           console.log(code.data)
-          navigate('/map');
-          localStorage.setItem('Kickid', code.data);
+          if(Number(code.data) > 0 && Number(code.data) < 1000){
+            console.log("not null data");
+            localStorage.setItem('Kickid_toRiding', code.data);
+            // Delete Method 실행
+            handleDelete(code.data);
+            navigate('/map');
+          }
+          else{
+            console.log("is null data");
+          }
+
           
-          // Delete Method 실행
-          handleDelete(code.data);
+          
+          
+
           
 
 
@@ -88,10 +99,10 @@ function QRCodeScanner() {
           outputData.parentElement.hidden = true;
         }
       }
-
+          const Kickid =localStorage.getItem("Kickid_toRiding");
       requestAnimationFrame(tick);
     }
-  }, [navigate]);
+  }, [navigate,Kickid]);
 
   return (
     <div>
@@ -113,7 +124,8 @@ function QRCodeScanner() {
             <canvas id="canvas"></canvas>
           </div>
         </div>
-      </main>
+      </main>{ Kickid ? <Information /> : null
+      }
     </div>
   );
 }
