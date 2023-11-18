@@ -124,7 +124,7 @@ const TractionQR = (props) => {
         <BtnBox>
           <BackBtn
             onClick={() => {
-              navigate('/main');
+              navigate(-1);
             }}
           >
             돌아가기

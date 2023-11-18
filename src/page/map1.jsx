@@ -195,13 +195,11 @@ function Map() {
               console.log(pos);
 
               let pos_id = pos.title.split(" ")[1];
-              console.log(pos_id);
               const namespace = JSON.parse(localStorage.getItem("getNamespace"));
-              console.log(namespace);
               namespace.kickboards.forEach(kick=>{
-                console.log(kick.id)
                 if(kick.id == pos_id)setKickname(kick);
               })
+              localStorage.setItem("Tractionid", pos_id)
               setTractionId(pos_id);
             });
             
@@ -325,7 +323,7 @@ function Map() {
       <MapContainer id="map" />
       <BackBtnImg id="backBtn" src={BackBtn} onClick={handleBackButtonClick} />
       {console.log("Info 값:", Info)}
-      <ParkingSpotInformation id={kickname.id} name ={kickname.name}/>
+      {localStorage.getItem("Tractionid") && <ParkingSpotInformation id={kickname.id} name ={kickname.name}/>}
       {localStorage.getItem("TractionData_toRiding") && <TractionInfor/>}
     </MapBox>
   );

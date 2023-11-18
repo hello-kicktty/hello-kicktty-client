@@ -124,7 +124,7 @@ const RidingQR = (props) => {
           <BackBtn
             onClick={() => {
               localStorage.removeItem("Kickid_toRiding");
-              navigate('/main');
+              navigate(-1);
             }}
           >
             돌아가기
