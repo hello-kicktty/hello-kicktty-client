@@ -22,7 +22,8 @@ const Box = styled.div`
   justify-content: space-evenly;
   flex-direction: column;
   align-items: center;
-  opacity: ${({ opacity }) => opacity};
+  /* opacity: ${({ opacity }) => opacity}; */
+  display: ${({ display }) => display};
   /* transition: opacity 0.5s ease; // 투명도 전환 시 부드럽게 애니메이션 적용 */
 `;
 
@@ -149,6 +150,7 @@ const Information = (props) => {
   const [btnActive, setBtnActive] = useState("");
   const [btnActive1, setBtnActive1] = useState("");
   const [opacity, setOpacity] = useState(1);
+  const [display, setDisplay] = useState("flex"); // 추가: 초기값 "flex"로 설정
 
   const data = ["분당 요금제", "거리 우선 요금제"];
   const data1 = ["ON", "OFF"];
@@ -167,12 +169,13 @@ const Information = (props) => {
 
   const startDriving = () => {
     setOpacity(0);
+    setDisplay("none"); // 추가: display를 "none"으로 변경
     // 다른 로직 추가...
   };
 
   return (
     <div>
-      <Box opacity={opacity}>
+      <Box opacity={opacity} display={display}>
         <Top>
           <div style={{ width: 54, height: 54 }}>
             <CircularProgressbar

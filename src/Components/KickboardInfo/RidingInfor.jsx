@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import Kickboard from "../Box/img/메이커톤 킥보드 1.png";
+import { useNavigate } from "react-router-dom";
+
 import { ReactComponent as Icon1 } from "./Assets/Group 181.svg";
 import { ReactComponent as Icon2 } from "./Assets/🦆 icon _coin_.svg";
 import { ReactComponent as Icon3 } from "./Assets/🦆 icon _map_.svg";
@@ -110,6 +112,8 @@ const Text1 = styled.p`
   }
 `;
 const RidingInfor = () => {
+  const navigate = useNavigate();
+
   return (
     <>
       <Box>
@@ -154,7 +158,13 @@ const RidingInfor = () => {
           <Icon3 />
           <Text1>1km</Text1>
         </Box2>
-        <Buttonbox3>주차하기</Buttonbox3>
+        <Buttonbox3
+          onClick={() => {
+            navigate("/parkingQR");
+          }}
+        >
+          주차하기
+        </Buttonbox3>
       </Box>
     </>
   );
