@@ -31,7 +31,11 @@ function QRCodeScanner1(latitude, longitude) {
         video.play();
         requestAnimationFrame(tick);
       });
+      let codeFound = false;
     function tick() {
+      if (codeFound) {
+        return;
+      }
       loadingMessage.innerText = "⌛ 스캔 기능을 활성화 중입니다.";
       if (video.readyState === video.HAVE_ENOUGH_DATA) {
         loadingMessage.hidden = true;
@@ -105,6 +109,7 @@ function QRCodeScanner1(latitude, longitude) {
 
             console.log(timeString);
             navigate("/parkingreward");
+            codeFound = true;
           }
         } else {
           outputMessage.hidden = false;
