@@ -79,13 +79,20 @@ function Map() {
     const onLoadKakaoMap = () => {
       window.kakao.maps.load(() => {
         const mapContainer = document.getElementById("map");
-        const defaultPosition = new window.kakao.maps.LatLng(37.44978, 126.6586);
+        var defaultPosition
+        if(localStorage.getItem("Kickid")){
+          var kickLatlng = JSON.parse(localStorage.getItem("getData")).kickboards[localStorage.getItem("Kickid")-1];
+          defaultPosition = new window.kakao.maps.LatLng(kickLatlng.lat-0.001, kickLatlng.lng);
+        }
+        else{
+          defaultPosition = new window.kakao.maps.LatLng(37.44886935653217, 126.65176069247235)
+        }
         const mapOption = {
           center: defaultPosition,
           level: 3,
         };
         const map = new window.kakao.maps.Map(mapContainer, mapOption);
-        
+        /*
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function (position) {
             const lat = position.coords.latitude;
@@ -119,6 +126,7 @@ function Map() {
           });
           infowindow.open(map, marker);
         }
+        */
         var positions = [];
 
       
@@ -133,7 +141,7 @@ function Map() {
               ),
             });
           });
-          console.log(positions);
+          //console.log(positions);
         }
 
 
@@ -181,6 +189,7 @@ function Map() {
           });
           (function (marker, index) {
             window.kakao.maps.event.addListener(marker, 'click', function() {
+              console.log("Clicked Kick: " + index);
               localStorage.setItem('Kickid',index)
               setKickId(index);
             });
@@ -195,7 +204,7 @@ function Map() {
           
           tmp.forEach(cluster => {
             if(cluster.cluster_id == -1) return;
-            console.log(cluster.cluster_id)
+            //console.log(cluster.cluster_id)
             var layerLatLng = []
             cluster.borders.forEach(latlng => {
               layerLatLng.push(new window.kakao.maps.LatLng(latlng.lat, latlng.lng))
@@ -213,7 +222,7 @@ function Map() {
             polygon.setMap(map);
           });
         }
-        console.log(KicklayerData)
+        //console.log(KicklayerData)
         if (KicklayerData && KicklayerData.restrictLayers) {
           KicklayerData.restrictLayers.forEach((layerObj) => {
             const polygonPath = layerObj.layer.map((latlng) => {
@@ -254,7 +263,7 @@ function Map() {
         }
         function displayLevel() {
           const level = map.getLevel(); // 현재 지도 레벨을 가져옵니다
-          console.log("현재 지도의 레벨 :" + level);
+          //console.log("현재 지도의 레벨 :" + level);
         }
 
         // 이벤트 리스너 추가: 마우스 스크롤 이벤트
@@ -282,15 +291,14 @@ function Map() {
         };
       });
     };
-    console.log(Info)
     mapScript.addEventListener("load", onLoadKakaoMap);
   }, [data,kickId,Info]);
   if(Info){
+  //console.log(Info);
   return (
     <MapBox>
       <MapContainer id="map" />
       <BackBtnImg id="backBtn" src={BackBtn} onClick={handleBackButtonClick} />
-      {console.log("Info 값:", Info)}
       <Information Title={kickId} key={kickId} />
       <FirstInfo></FirstInfo>
     </MapBox>
@@ -301,8 +309,6 @@ function Map() {
     <MapBox>
       <MapContainer id="map" />
       <BackBtnImg id="backBtn" src={BackBtn} onClick={handleBackButtonClick} />
-      {console.log("Info 값:", Info)}
-      
       <RidingInfor Title={kickId} key={localStorage.getItem("Kickid_toRiding")} />
       <FirstInfo></FirstInfo>
     </MapBox>
@@ -312,7 +318,6 @@ function Map() {
     <MapBox>
       <MapContainer id="map" />
       <BackBtnImg id="backBtn" src={BackBtn} onClick={handleBackButtonClick} />
-      {console.log("Info 값:", Info)}
       <FirstInfo></FirstInfo>
     </MapBox>
   );

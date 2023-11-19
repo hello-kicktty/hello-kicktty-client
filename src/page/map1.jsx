@@ -91,7 +91,14 @@ function Map() {
 
       window.kakao.maps.load(() => {
         const mapContainer = document.getElementById("map");
-        var defaultPosition = new window.kakao.maps.LatLng(37.44978, 126.6586);
+        var defaultPosition
+        if(localStorage.getItem("Tractionid")){
+          var kickLatlng = JSON.parse(localStorage.getItem("getData")).kickboards[localStorage.getItem("Tractionid")-1];
+          defaultPosition = new window.kakao.maps.LatLng(kickLatlng.lat-0.001, kickLatlng.lng);
+        }
+        else{
+          defaultPosition = new window.kakao.maps.LatLng(37.44886935653217, 126.65176069247235)
+        }
         const mapOption = {
           center: defaultPosition,
           level: 3,
