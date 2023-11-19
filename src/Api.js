@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const BASE_URL = "http://3.35.50.22:59295";
+const BASE_URL = "https://hello-kicktty.run.goorm.site"
+// const BASE_URL = "http://3.35.50.22:59295";
 
 
 export function getKickList() {

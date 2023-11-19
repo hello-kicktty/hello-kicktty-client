@@ -12,6 +12,14 @@ import { useEffect } from "react";
 
 
 const Main = () => {
+    localStorage.removeItem("Kickid_receipt");
+    localStorage.removeItem("parking_time");
+    localStorage.removeItem("getNamespace");
+    localStorage.removeItem("Tractionid_toRiding");
+    localStorage.removeItem("rating");
+    localStorage.removeItem("start_time");
+    localStorage.removeItem("getData");
+
 
     return (
            <>
